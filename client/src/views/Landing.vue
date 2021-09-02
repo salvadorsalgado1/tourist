@@ -2,7 +2,7 @@
   <div class="landing">
       <h2>Landing Page</h2>
      
-        <Typed sentence="Randeouvs"/>
+        <Typed />
   </div>
 </template>
 

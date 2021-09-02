@@ -1,14 +1,13 @@
 <template>
   <div class="typed">
-       
-      <div class="type-it" id="element"></div>
+      <div class="display-4 type-it" id="element"></div>
   </div>
 </template>
 
 <script>
 import TypeIt from 'typeit'
 export default {
-    props:['sentence'],
+     
     data(){
         return{
             string:this.sentence
@@ -16,10 +15,9 @@ export default {
     },
     mounted(){
         new TypeIt("#element", {
-            strings: ["Come explore the city us,", "Let's Rendezvous"],
-            speed: 75,
-            loop: true,
-        }).go();
+            strings: ["Let me show you around the city."],
+            speed: 60,
+        }).pause(2000).break().type("Let's Rendezvous!").go();
     }
 }
 </script>

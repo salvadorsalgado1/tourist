@@ -9,6 +9,12 @@ const routes = [
     props:true
   },
   {
+    path: '/home',
+    name: 'Home',
+    component: Home,
+    props:true
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

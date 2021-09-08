@@ -1,6 +1,7 @@
 <template>
   <div class="typed">
-      <div class="display-4 type-it" id="element"></div>
+      <p class="display-4 type-it" id="element"></p>
+        <router-link class="btn btn-outline-primary" :to="{name:'Home'}">Get Started</router-link>
   </div>
 </template>
 

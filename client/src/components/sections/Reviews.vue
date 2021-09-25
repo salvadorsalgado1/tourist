@@ -1,9 +1,10 @@
 <template>
   <div class="reviews">
-      <div class="reviews-body">
+          <h2 class="display-4 white-text testimonial-text">Testimonials</h2>
           <div class="container">
-              <h2 class="display-4 gray-text">Testimonials</h2>
-              <div class="row mt-4">
+              <div class="reviews-body">
+              <div class="row">
+                  
                   <div class="col-md-6 col-sm-12">
                       <ReviewCard name="Mary" 
                       review="First time doing this tour thing with Rendezvous, and I could not have been happier. 
@@ -42,12 +43,30 @@
 <script>
 import ReviewCard from '../../components/ReviewCard'
 export default {
-components:{ReviewCard}
+components:{ReviewCard},
+data(){
+    return{
+         
+    }
+     
+},
+
+mounted(){
+    console.log("this loads before the page loads")
+},
+beforeMount(){
+    console.log("this loads before the page loads, and before mounted");
+},
 }
 </script>
 
 <style>
 .reviews{
     background-color:rgb(245, 80, 80);
+    
 }
+.reviews-body{
+    
+}
+
 </style>

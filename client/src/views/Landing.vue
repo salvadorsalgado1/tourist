@@ -1,6 +1,8 @@
 <template>
   <div class="landing">
-    <div class="background-video"> 
+
+    <div class="background-video">
+
           <Typed />
       <video playsinline autoplay muted loop poster="polina.jpg" id="bgvid">
          <source src="../assets/video/tour-opt.mp4" type="video/mp4">
@@ -18,6 +20,7 @@ components:{Typed}
 </script>
 
 <style>
+ 
  .background-video  {
    color:white;
    display:flex;

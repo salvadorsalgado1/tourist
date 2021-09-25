@@ -4,9 +4,7 @@
 </div>
 
   <router-view/>
-</template>
- 
-
+</template> 
 <script>
 import Navbar from './components/Navbar'
 export default {
@@ -18,6 +16,9 @@ components:{Navbar}
 <style>
 .gray-text{
   color:gray;
+}
+.white-text{
+  color:white;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

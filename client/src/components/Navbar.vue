@@ -3,7 +3,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(235, 141, 134)">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="../assets/logos/logo_transparent-sm.png" alt="" class="d-inline-block align-text-top brand-img-nav">
+      <img src="../assets/logos/we-travel/letter-logo-transparent.png" alt="" class="d-inline-block align-text-top brand-img-nav">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -36,8 +36,11 @@ export default {
 </script>
 
 <style>
+.navbar-dark .navbar-nav .nav-link{
+  font-size:1.6em;
+}
 .brand-img-nav{
-    height:60px !important;
+    height:70px !important;
     width:auto;
 }
 </style>

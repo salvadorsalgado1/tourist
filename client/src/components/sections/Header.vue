@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1 class="display-4">Give the world a search</h1>
+                    <h1 class="display-4">Give the world a search {{this.$store.state.testing}}</h1>
                 </div>
             </div>
             <div class="row">
@@ -17,9 +17,7 @@
             </div>
         </div>
     </div>
-    
 </div>
-  
 </template>
 
 <script>
@@ -35,17 +33,11 @@ export default {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-   
-    background-size:cover;
-    height:60vh;
-    
-    
-    
-}
+ }
 .header-body{
     color:white;
     background-color:rgba(0, 0, 0, 0.349);
-    height:60vh;
+    height:80vh;
     display:flex;
     align-items:center;
     justify-content: center;

@@ -12,7 +12,7 @@ app.use(cors());
 
 if(process.env.NODE_ENV === 'production'){
     //Set static folder
-    app.use(express.static(__dirname + 'client/dist'));
+    app.use(express.static(__dirname + '/client/dist'));
     app.get(/^((?!(api)).)*$/, 
     (req,res)=>res.sendFile(__dirname + '/client/dist/index.html'))
 }

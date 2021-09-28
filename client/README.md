@@ -1,19 +1,13 @@
-# client
+# Client
 
-## Project setup
-```
-npm install
-```
+## Vue JS
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Public
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Consists of favicon.ico and main html index file.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Source Folder
+
+#### Asssets
+
+Icons, background images and video. Any media content will be inserted.

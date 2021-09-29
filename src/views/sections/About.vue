@@ -13,7 +13,7 @@
             and head straight to the best restaurants, bars, tourist spots and
             views.
           </p>
-          <img class="mx-auto d-block img-thumbnail about-image-g mt-4" src="../../assets/camera.jpg" alt=""
+          <img class="mx-auto d-block img-thumbnail about-image-g mt-4" src="../../assets/misc/camera.jpg" alt=""
           />
           <p class="about-description mt-4">
             Once you call yourself a local, why not also become part of the

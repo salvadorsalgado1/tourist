@@ -1,6 +1,6 @@
 <template>
   <span class="star-rating">
-    <img class="star-img" src="../assets/star.png" alt=""/>
+    <img class="star-img" src="../assets/icons/star.png" alt=""/>
   </span>
 </template>
 

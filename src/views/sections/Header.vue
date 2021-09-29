@@ -2,17 +2,19 @@
 <div class="header-section">
     <div class="header-body">
         <div class="container">
-            <div class="row">
+            <div class="row mb-4">
                 <div class="col">
-                    <h1 class="display-4">Give the world a search {{this.$store.state.testing}}</h1>
+                    <h1 class="display-4">Try Giving The World A Search</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <div class="input-group input-group-lg mb-3">
+                    <form @submit.prevent="display()">
+                        <div class="input-group input-group-lg mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                    <input v-model="search" type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -22,7 +24,16 @@
 
 <script>
 export default {
-
+    data(){
+        return{
+            search:''
+        }
+    },
+    methods:{
+        display(){
+            console.log(this.search);
+        }
+    }
 }
 </script>
 
@@ -30,9 +41,9 @@ export default {
 .header-section{
     background:url('../../assets/backgrounds/postcards.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
  }
 .header-body{
     color:white;

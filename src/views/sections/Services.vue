@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ServiceCard from '../ServiceCard'
+import ServiceCard from '../../components/ServiceCard'
 export default {
 components:{ServiceCard}
 }
@@ -29,12 +29,8 @@ components:{ServiceCard}
 <style>
 .services{
     height:100%;
-    
 }
 .services-heading{
     color:gray;
-}
-.services-body{
-     
 }
 </style>

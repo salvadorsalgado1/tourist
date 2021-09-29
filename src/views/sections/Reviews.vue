@@ -43,30 +43,19 @@
 <script>
 import ReviewCard from '../../components/ReviewCard'
 export default {
-components:{ReviewCard},
-data(){
-    return{
-         
-    }
-     
-},
+    components:{ReviewCard},
+    data(){
+        return{
+            
+        }
+        
+    },
 
-mounted(){
-    console.log("this loads before the page loads")
-},
-beforeMount(){
-    console.log("this loads before the page loads, and before mounted");
-},
 }
 </script>
 
 <style>
 .reviews{
     background-color:rgb(245, 80, 80);
-    
 }
-.reviews-body{
-    
-}
-
 </style>

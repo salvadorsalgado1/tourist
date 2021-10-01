@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
-      <nav class=" navbar navbar-expand-lg navbar-dark" style="background-color:rgb(235, 141, 134)">
-  <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(235, 141, 134)">
+    <div class="container-fluid">
     <router-link class="navbar-brand" :to="{name:'Landing'}">
       <img src="../assets/logos/we-travel/letter-logo-transparent.png" alt="" class="d-inline-block align-text-top brand-img-nav">
     </router-link>
@@ -17,14 +17,10 @@
           <router-link class="nav-link" :to="{name:'About'}">About</router-link>
          </li>
       </ul>
-      <div v-if="isLogged">
-        <!--User is Logged In-->
-        <NavbarLogged/>
-      </div>
-      <div v-if="!isLogged">
-        <!--User is Not Logged In-->
-        <NavbarNLogged/>
-      </div>
+      <span class="navbar-text">
+        <router-link :to="{name:''}">Sign Up</router-link> | 
+        <router-link :to="{name:''}">Sign In</router-link> 
+      </span>
     </div>
   </div>
 </nav>
@@ -33,9 +29,8 @@
 
 <script>
 import NavbarLogged from '../components/NavbarLogged'
-import NavbarNLogged from '../components/NavbarNLogged'
-export default {
-  components:{NavbarLogged, NavbarNLogged},
+ export default {
+  components:{NavbarLogged},
   data(){
     return{
 

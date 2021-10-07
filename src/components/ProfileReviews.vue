@@ -4,45 +4,36 @@
           <div class="card-body">
               <h2>Check Out What Others Have to Say</h2>
               <ul class="list-group list-group-flush text-start">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="review">
-                            <div class="review-card-1">
-                                <img class="review-img rounded-circle" src="../assets/portraits/review-portrait-four.jpg" alt=""/>
-                            </div>
-                            <div class="review-card-2">
-                                <Stars v-for="index in 4" :key="index"/>
-                            </div>
-                            <div class="review-card-3">
-                                <p>This is the review of the service.</p>
-                            </div>
-                        </div>
-                     </li>
-                    <li class="list-group-item"><img class="review-img rounded-circle" src="../assets/portraits/review-portrait-four.jpg" alt=""/> This is the review of the service.</li>
-                    <li class="list-group-item"><img class="review-img rounded-circle" src="../assets/portraits/review-portrait-four.jpg" alt=""/> This is the review of the service.</li>
-                    <li class="list-group-item"><img class="review-img rounded-circle" src="../assets/portraits/review-portrait-four.jpg" alt=""/> This is the review of the service.</li>
-                    <li class="list-group-item"><img class="review-img rounded-circle" src="../assets/portraits/review-portrait-four.jpg" alt=""/> This is the review of the service.</li>
-                </ul>
+                <Reviews    name="Jessica"
+                            review="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget aliquam felis. Donec porta sollicitudin facilisis. Sed facilisis, 
+                            dui a gravida interdum, odio neque lacinia enim, ac iaculis ante felis in quam. Donec mattis suscipit purus, quis pellentesque libero. 
+                            In et velit in felis lacinia blandit et nec purus. In fringilla nisl quis magna suscipit varius. Aliquam pretium mattis enim non euismod. 
+                            eget porttitor lobortis." 
+                            stars="5" 
+                            image="review-portrait-four"/> 
+                <Reviews    name="Mariee"
+                            review="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget aliquam felis. Donec porta sollicitudin facilisis. Sed facilisis, 
+                            dui a gravida." 
+                            stars="4" 
+                            image="review-portrait-four"/>  
+            </ul>
           </div>
       </div>
   </div>
 </template>
 
 <script>
-import Stars from '../components/Stars'
 
+import Reviews from '../components/Reviews';
 export default {
-components:{Stars},
+components:{ Reviews},
 }
 </script>
 
 <style>
-.review-img{
-    width:20%;
-}
-.review{
-    display: flex;
-    -webkit-box-align:center;
-    align-items: center;
+
+.review-card-body{
+    
 }
  
 </style>

@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h2>Achievements and Ratings</h2>
                 <p>Ratings: <!--TODO-->4.7</p>
-                <p>Reviews: <!--TODO-->5 {{getRatings}}</p>
+                <p>Reviews: <!--TODO-->5</p>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@ computed:{
     getRatings(){
         let rating = this.$store.state.reviews.reviews;
         //TODO
-        
+
 
 
 

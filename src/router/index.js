@@ -7,8 +7,7 @@ import SignIn from '../views/SignIn'
 import Account from '../views/Account'
 import Testing from '../views/Testing'
 import Four from '../views/Four'
-import Registration from '../views/Registration'
-
+ 
 const routes = [
  
   {
@@ -51,13 +50,6 @@ const routes = [
      
   },
   {
-    path: '/:catchall(.*)',
-    name: 'Four',
-    component: Four,
-     
-  },
- 
-  {
     path: '/signup',
     name: 'Registration',
     component: Registration,
@@ -69,6 +61,11 @@ const routes = [
     component: SignIn,
     props:true
   },
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four 
+  }, 
+ 
 ]
 
 const router = createRouter({

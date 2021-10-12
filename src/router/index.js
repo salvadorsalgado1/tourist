@@ -60,11 +60,13 @@ const routes = [
     name: 'SignIn',
     component: SignIn,
     props:true
+    
   },
+  {
     path: '/:catchall(.*)',
     name: 'Four',
     component: Four 
-  }, 
+  }
  
 ]
 

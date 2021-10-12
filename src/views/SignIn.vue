@@ -1,7 +1,7 @@
 <template>
   <div class="sign-in">
-    <div class="container">
-      <div class="card" style="width: 18rem;">
+    <div class="container container-sign-in">
+      <div class="card card-sign-in" style="width: 18rem;">
         <div class="card-body">
           <form>
             <h3>Sign In</h3>
@@ -28,13 +28,13 @@ name:'SignIn'
 </script>
 
 <style>
-.container {
+.container-sign-in {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
-.card {
+.card-sign-in{
   margin: 0 auto;
   float: none; 
   margin-bottom: 10px;

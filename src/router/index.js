@@ -5,7 +5,10 @@ import Profile from '../views/Profile'
 import Account from '../views/Account'
 import Testing from '../views/Testing'
 import Four from '../views/Four'
- const routes = [
+import Registration from '../views/Registration'
+
+const routes = [
+  
   {
     path: '/',
     name: 'Landing',
@@ -51,7 +54,16 @@ import Four from '../views/Four'
     component: Four,
      
   },
+ 
+  {
+    path: '/signup',
+    name: 'Registration',
+    component: Registration,
+    props:true
+  },
+ 
    
+ 
 ]
 
 const router = createRouter({

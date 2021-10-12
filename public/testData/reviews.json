@@ -1,0 +1,28 @@
+{
+    "reviews": [
+      { "id": 0,
+        "name": "Cynthia",
+        "review": "This is the review or alot of reviews.",
+        "stars": "5",
+        "image": "review-portrait-four"
+      },
+      { "id": 1,
+        "name": "Jason",
+        "review": "This another review. I had fun.",
+        "stars": "5",
+        "image": "review-portrait-two"
+      },
+      { "id": 2,
+        "name": "Christina",
+        "review": "The tour was pretty quick but I learned a lot from the culture",
+        "stars": "4",
+        "image": "review-portrait-three"
+      },
+      { "id": 3,
+        "name": "Lisa",
+        "review": "This is was fun! The guide was able to find multiple ways to get to the bars and best restaurants",
+        "stars": "5",
+        "image": "review-portrait-one"
+      }
+    ]
+  }

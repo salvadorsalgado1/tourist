@@ -1,14 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Landing from '../views/Landing'
-import Profile from '../views/Profile' 
+import Profile from '../views/Profile'
 import Registration from '../views/Registration'
+import SignIn from '../views/SignIn'
 import Account from '../views/Account'
 import Testing from '../views/Testing'
 import Four from '../views/Four'
  
 const routes = [
-
+ 
   {
     path: '/',
     name: 'Landing',
@@ -55,11 +56,16 @@ const routes = [
     props:true
   },
   {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn,
+    props:true
+  },
     path: '/:catchall(.*)',
     name: 'Four',
-    component: Four,
-     
+    component: Four 
   }, 
+ 
 ]
 
 const router = createRouter({

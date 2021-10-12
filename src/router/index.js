@@ -2,6 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Landing from '../views/Landing'
 import Profile from '../views/Profile'
+ 
+import Registration from '../views/Registration'
+
+
+ 
 import Account from '../views/Account'
 import Testing from '../views/Testing'
 import Four from '../views/Four'
@@ -9,6 +14,8 @@ import Registration from '../views/Registration'
 
 const routes = [
   
+
+ 
   {
     path: '/',
     name: 'Landing',

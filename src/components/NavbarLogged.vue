@@ -19,6 +19,9 @@
           <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Profile'}">My Profile</router-link>
          </li>
+         <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'SignIn'}">SignIn</router-link>
+         </li>
       </ul>
       <span class="navbar-text">
           Welcome Back User!

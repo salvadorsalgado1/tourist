@@ -3,7 +3,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(235, 141, 134)">
     <div class="container-fluid">
     <router-link class="navbar-brand" :to="{name:'Landing'}">
-      <img src="../assets/logos/we-travel/letter-logo-transparent.png" alt="" class="d-inline-block align-text-top brand-img-nav">
+      <img src="../assets/logos/we-travel/letter-logo-md.png" alt="" class="d-inline-block align-text-top brand-img-nav">
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,8 +21,8 @@
          </li> -->
       </ul>
       <span class="navbar-text">
-        <router-link :to="{name:''}">Sign Up</router-link> | 
-        <router-link :to="{name:'SignIn'}">Sign In</router-link> 
+        <router-link :to="{name:'SignIn'}">Sign In</router-link> | 
+        <router-link :to="{name:'Registration'}">Sign Up</router-link>  
       </span>
     </div>
   </div>
@@ -53,10 +53,10 @@ import NavbarLogged from '../components/NavbarLogged'
   font-size:1.6em;
 }
 .brand-img-nav{
-    height:70px !important;
+    height:40px !important;
     width:auto;
 }
-.navbar{
-  box-shadow:10px 10px 20px 5px rgba(19, 19, 19, 0.877);
+.navigation{
+     box-shadow:5px 5px 20px 5px rgba(19, 19, 19, 0.562);
 }
 </style>

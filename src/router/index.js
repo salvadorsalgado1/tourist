@@ -2,8 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Landing from '../views/Landing'
 import Profile from '../views/Profile'
+import Registration from '../views/Registration'
 import SignIn from '../views/SignIn'
+import Account from '../views/Account'
+import Testing from '../views/Testing'
+import Four from '../views/Four'
+import Registration from '../views/Registration'
+
 const routes = [
+ 
   {
     path: '/',
     name: 'Landing',
@@ -29,9 +36,35 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+    props:true
   },
   {
-    path: '/SignIn',
+    path: '/account',
+    name: 'Account',
+    component: Account,
+    props:true
+  },
+  {
+    path: '/testing',
+    name: 'Testing',
+    component: Testing,
+     
+  },
+  {
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four,
+     
+  },
+ 
+  {
+    path: '/signup',
+    name: 'Registration',
+    component: Registration,
+    props:true
+  },
+  {
+    path: '/signin',
     name: 'SignIn',
     component: SignIn,
     props:true
@@ -39,6 +72,7 @@ const routes = [
 ]
 
 const router = createRouter({
+  mode:'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })

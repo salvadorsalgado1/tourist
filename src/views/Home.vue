@@ -14,6 +14,9 @@
  import Reviews from './sections/Reviews'
 export default {
   name: 'Home',
-  components: {Header, About, Services, Reviews}
+  components: {Header, About, Services, Reviews},
+  mounted(){
+    
+  }
 }
 </script>

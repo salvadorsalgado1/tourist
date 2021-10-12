@@ -18,7 +18,7 @@
          </li>
       </ul>
       <span class="navbar-text">
-        <router-link :to="{name:''}">Sign Up</router-link> | 
+        <router-link :to="{name:'Registration'}">Sign Up</router-link> | 
         <router-link :to="{name:''}">Sign In</router-link> 
       </span>
     </div>

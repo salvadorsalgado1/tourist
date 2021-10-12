@@ -2,8 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Landing from '../views/Landing'
 import Profile from '../views/Profile'
+ 
+import Registration from '../views/Registration'
+
+const routes = [
+ 
 import Account from '../views/Account'
  const routes = [
+ 
   {
     path: '/',
     name: 'Landing',
@@ -37,7 +43,16 @@ import Account from '../views/Account'
     component: Account,
     props:true
   },
+ 
+  {
+    path: '/signup',
+    name: 'Registration',
+    component: Registration,
+    props:true
+  },
+ 
    
+ 
 ]
 
 const router = createRouter({

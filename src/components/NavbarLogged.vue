@@ -19,8 +19,12 @@
           <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Profile'}">My Profile</router-link>
          </li>
+          <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'Registration'}">Sign Up</router-link>
+          
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Account'}">My Account</router-link>
+ 
          </li>
       </ul>
       <span class="navbar-text">

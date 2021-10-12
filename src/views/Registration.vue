@@ -1,6 +1,6 @@
 <template>
   <div class="registration">
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 22rem;margin:0 auto;">
         <div class="card-body">
           <form>
             <h3>Sign Up</h3>

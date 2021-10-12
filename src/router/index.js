@@ -3,6 +3,8 @@ import Home from '../views/Home.vue'
 import Landing from '../views/Landing'
 import Profile from '../views/Profile'
 import Account from '../views/Account'
+import Testing from '../views/Testing'
+import Four from '../views/Four'
  const routes = [
   {
     path: '/',
@@ -37,10 +39,23 @@ import Account from '../views/Account'
     component: Account,
     props:true
   },
+  {
+    path: '/testing',
+    name: 'Testing',
+    component: Testing,
+     
+  },
+  {
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four,
+     
+  },
    
 ]
 
 const router = createRouter({
+  mode:'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })

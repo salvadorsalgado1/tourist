@@ -29,7 +29,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted(){
+    this.$store.dispatch('dispatchDetails');
+  },
+  computed:{
+
+  }
+};
 </script>
 
 <style></style>

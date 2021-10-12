@@ -5,10 +5,13 @@ export default createStore({
   state: {
     loggedIn:true,
     reviews:[],
-    person:[]
-    
+    person:[],
+    details:[]
   },
   mutations: {
+    getDetails(state, payload){
+      state.reviews = payload;
+    },
     getReviews(state, payload){
       state.reviews = payload;
     },
@@ -17,11 +20,20 @@ export default createStore({
     }
   },
   actions: {
+    dispatchDetails({commit}){
+      fetch("./testData/details.json")
+      .then((res)=>{
+        return res.json();
+      }).then((data)=>{
+        console.log(data);
+        commit('getDetails', data);
+       })
+      },
     dispatchUser({commit}){
       fetch("./testData/person.json")
-      .then(function(res){
+      .then((res)=>{
         return res.json();
-      }).then(function(data){
+      }).then((data)=>{
         console.log(data);
         commit('getPerson', data);
        })

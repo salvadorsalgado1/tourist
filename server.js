@@ -16,6 +16,9 @@ app.use('/api/users', users);
 //const profile = require('./routes/api/profile')
 //app.use('./app/profile', profile);
 
+//const details = require('./routes/api/details')
+//app.use('./app/details', details);
+
 if(process.env.NODE_ENV === 'production'){
     //Set static folder
     app.use(express.static(__dirname + '/dist'));

@@ -1,5 +1,4 @@
 <template>
-    
         <div class="review container">
             <div class="row">
                 <div class="col-md-5 col-sm-12">
@@ -16,7 +15,6 @@
                 </div>
             </div>
         </div>
-    
 </template>
 
 <script>

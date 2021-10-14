@@ -2,7 +2,7 @@
   <div class="details">
     <div class="card shadow">
       <div class="card-body">
-        <h2>Details About Me</h2>
+        <h2>About Me</h2>
         <table class="table table-bordered table-striped">
           <tbody>
             <tr>
@@ -29,9 +29,11 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   mounted(){
     this.$store.dispatch('dispatchDetails');
+    //axios.get('http://localhost:8000/')
   },
   computed:{
 

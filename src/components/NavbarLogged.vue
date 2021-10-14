@@ -19,15 +19,12 @@
           <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Profile'}">My Profile</router-link>
          </li>
-          <li class="nav-item">
-          <router-link class="nav-link" :to="{name:'Registration'}">Sign Up</router-link>
-          </li>
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Account'}">My Account</router-link>
          </li>
       </ul>
       <span class="navbar-text">
-          Welcome Back User!
+          Welcome Back {{getUser}}!
       </span>
     </div>
   </div>
@@ -49,6 +46,10 @@ import NavbarLogged from '../components/NavbarLogged'
     isLogged(){
       let status = this.$store.state.loggedIn;
       return status;
+    },
+    getUser(){
+      let user = this.$store.state.person.name;
+      return user;
     }
   }
 }

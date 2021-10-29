@@ -2,13 +2,13 @@
   <div class="profile-reviews">
       <div class="card shadow">
           <div class="card-body">
-              <h2>My Reviews!</h2>
+              <h2>My Reviews! {{this.$route.params.slug}}</h2>
               <ul class="list-group list-group-flush text-start">
                 <li v-for="rev in getReviews" :key="rev" class="list-group-item mt-3">
-                 <Reviews  :name="rev.name"
-                            :review="rev.review" 
-                            :stars="rev.stars" 
-                            :image="rev.image"/> 
+                 <Reviews name="Cynthia Tayllor"
+                          :review="rev.review" 
+                          :stars="rev.rating" 
+                          image="review-portrait-four"/> 
                  </li>
             </ul>
           </div>
@@ -20,7 +20,7 @@
 
 import Reviews from '../components/Reviews';
 export default {
-components:{ Reviews},
+components:{Reviews},
 data(){
   return{
     
@@ -28,13 +28,12 @@ data(){
 },
 computed:{
   getReviews(){
-    let review = this.$store.state.reviews.reviews;
+    let review = this.$store.state.reviews;
     return review;
   }
 },
 mounted(){
- this.$store.dispatch('dispatchReviews');
-}
+ }
 }
 </script>
 

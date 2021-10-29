@@ -5,12 +5,11 @@
         <div class="row">
           <div class="col-6 d-flex align-items-center justify-content-center">
             <img :src="userWithImage" alt="" class="rounded-circle profile-img "/>
-
           </div>
           <div class="col-6 text-start">
-            <h1 class="heading-name">{{Person.name}}</h1>
+            <h1 class="heading-name">{{fullName}}</h1>
             <p class="left-text">
-              {{Person.intro}}
+              {{description}}
             </p>
           </div>
         </div>
@@ -21,16 +20,16 @@
 
 <script>
 export default {
+  props:[  'description', 'fullName'],
   mounted(){
   },
   beforeMount(){
     this.$store.dispatch('dispatchUser');
-
   },
   computed:{
     
     Person(){
-      let person = this.$store.state.person;
+      let person = this.$store.state.user;
       return person;
     },
     userWithImage(){

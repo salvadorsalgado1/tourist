@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(235, 141, 134)">
+      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rgb(235, 141, 134)">
     <div class="container-fluid">
     <router-link class="navbar-brand" :to="{name:'Landing'}">
       <img src="../assets/logos/we-travel/letter-logo-md.png" alt="" class="d-inline-block align-text-top brand-img-nav">

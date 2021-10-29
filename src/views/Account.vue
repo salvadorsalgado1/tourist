@@ -1,7 +1,8 @@
 <template>
   <div class="account">
-      <h2>Account</h2>
-      <div class="container">
+      
+      <div class="container mt-4">
+        <h2>Account</h2>
         <div class="card">
           <div class="card-body">
             <form>

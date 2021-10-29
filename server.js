@@ -19,6 +19,15 @@ app.use('/api/users', users);
 //const details = require('./routes/api/details')
 //app.use('./app/details', details);
 
+ const login = require('./routes/api/login')
+ app.use('/api/login', login);
+
+ const reviews = require('./routes/api/reviews')
+ app.use('/api/reviews', reviews);
+
+ const register = require('./routes/api/register')
+ app.use('/api/register', register)
+ 
 if(process.env.NODE_ENV === 'production'){
     //Set static folder
     app.use(express.static(__dirname + '/dist'));

@@ -7,7 +7,8 @@ import SignIn from '../views/SignIn'
 import Account from '../views/Account'
 import Testing from '../views/Testing'
 import Four from '../views/Four'
- 
+import store from '../store/index'
+
 const routes = [
  
   {
@@ -21,7 +22,8 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    props:true
+    props:true,
+     
   },
   {
     path: '/about',
@@ -35,13 +37,15 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
-    props:true
+    props:true,
+    meta:{auth:true}
   },
   {
     path: '/account',
     name: 'Account',
     component: Account,
-    props:true
+    props:true,
+    meta:{auth:true}
   },
   {
     path: '/testing',
@@ -59,7 +63,9 @@ const routes = [
     path: '/signin',
     name: 'SignIn',
     component: SignIn,
-    props:true
+    props:true,
+    meta:{auth:false}
+     
     
   },
   {
@@ -75,5 +81,14 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next)=>{
+  if(to.meta.auth && !store.state.loggedIn){
+    next('/home')
+  }else{
+    next();
+  }
+})
+
 
 export default router

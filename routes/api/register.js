@@ -10,12 +10,14 @@ const db = mysql.createPool({
     password:'3f2b40ad'
   })
 
-  router.get('/all', (req, res)=>{
-      const sqlGetAll = "SELECT * FROM heroku_533291d08d93d66.users;";
-      db.query(sqlGetAll, (err, result)=>{
+  router.get('/', (req, res)=>{
+    const sqlTest= "CALL testingP()";
+   // const userPW = req.params.userPW;
+       db.query(sqlTest, (err, result)=>{
           res.send(result);
       })
   })
+   
   
 
   module.exports = router;

@@ -1,10 +1,10 @@
 <template>
         <div class="review container">
             <div class="row">
-                <div class="col-md-5 col-sm-12">
+                <div class="col-md-5 col-sm-12 col-xs-12 d-flex align-items-center justify-content-start">
                   <img class="review-img rounded-circle" :src="require(`../assets/portraits/${image}.jpg`)" :alt="name"/>
                 </div>
-                <div class="col-md-7 col-sm-12 review-card-body">
+                <div class="col-md-7 col-sm-12 col-xs-12 review-card-body">
                     <div class="stars">
                         <p>{{name}}</p>
                         <Stars v-for="index in this.getRating.rating" :key="index"/>
@@ -28,6 +28,9 @@ export default {
     },
 components:{Stars},
 props:['name', 'review', 'stars', 'image'],
+mounted(){
+    
+},
 computed:{
     getRating(){
             let reviewStars = parseInt(this.stars);
@@ -44,9 +47,17 @@ computed:{
 </script>
 
 <style>
-.review-img{
-    width:100px;
-     
+@media only screen and (max-width: 600px) {
+  .review-img {
+    width:50%;
+    max-width:200px;
     
+  }
+}
+.review-img{
+    width:75%;
+    
+    
+    margin-bottom:25px;
 }
 </style>

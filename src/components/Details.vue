@@ -7,19 +7,19 @@
           <tbody>
             <tr>
               <th>Location</th>
-              <td>New York, New York</td>
+              <td>{{location}}</td>
             </tr>
             <tr>
               <th>Age</th>
-              <td>45</td>
+              <td>{{age}}</td>
             </tr>
             <tr>
               <th>Languages Spoken</th>
-              <td>English, Portuguese</td>
+              <td>{{languageSpoken}}</td>
             </tr>
             <tr>
               <th>Favorite Food</th>
-              <td>Pizza</td>
+              <td>{{food}}</td>
             </tr>
           </tbody>
         </table>
@@ -29,12 +29,10 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
+  props:['location', 'age', 'languageSpoken', 'food'],
   mounted(){
-    this.$store.dispatch('dispatchDetails');
-    //axios.get('http://localhost:8000/')
-  },
+   },
   computed:{
 
   }

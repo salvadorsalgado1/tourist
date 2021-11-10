@@ -60,5 +60,4 @@ computed:{
 .heading-name{
     font-size:1.8em;
 }
-
 </style>

@@ -48,7 +48,7 @@ const routes = [
     meta:{auth:true}
   },
   {
-    path: '/testing',
+    path: '/testing/:slug',
     name: 'Testing',
     component: Testing,
      

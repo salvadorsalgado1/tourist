@@ -5,7 +5,6 @@ import Profile from '../views/Profile'
  
 import Registration from '../views/Registration'
 
-const routes = [
  
 import Account from '../views/Account'
  const routes = [

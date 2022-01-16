@@ -4,7 +4,7 @@ import axios from 'axios'
 export default createStore({
   state: {
  
-    loggedIn:false
+    loggedIn:false,
     reviews:[],
     person:[]
     

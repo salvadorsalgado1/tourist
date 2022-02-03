@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 export default createStore({
   state: {
+    loggedIn:false,
     test:5,
     user:null,
     userID:null,

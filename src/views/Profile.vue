@@ -3,23 +3,31 @@
       <div class="container mb-4">
           <div class="row mt-4">
               <div class="col-md-8 mb-4">
-                <ProfileHeader/>
+                <ProfileHeader :fullName="userData.fullName" :description="userData.introText" />
               </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 mb-4">
                     <div class="col-md-12 mb-4">
-                        <Details/>
+                        <Details :location="userData.location" 
+                        :age="userData.age" 
+                        :languageSpoken="userData.language_spoken" 
+                        :food="userData.favorite_food"/>
                     </div>
                     <div class="col-md-12 mb-4">
-                        <Ratings/>
+                        <Ratings />
                     </div>
                     <div class="col-md-12 mb-4">
                         <Contact/>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <ProfileReviews/>    
+                    <div class="col-md-12 mb-4">
+                        <SocialMedia />
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <ProfileReviews/>  
+                    </div>
                 </div>
           </div> 
       </div>
@@ -31,11 +39,20 @@ import ProfileHeader from '../components/ProfileHeader'
 import Ratings from '../components/Ratings'
 import ProfileReviews from '../components/ProfileReviews'
 import Details from '../components/Details'
+import SocialMedia from '../components/SocialMedia'
 import Contact from '../components/Contact'
 export default {
+    name:'Profile',
 components:{
-    ProfileReviews, Ratings, Details, ProfileHeader, Contact
-}
+    ProfileReviews, Ratings, Details, ProfileHeader, Contact, SocialMedia
+},
+computed:{
+    userData(){
+        let user = this.$store.state.user
+        return user;
+    },
+},
+ 
 }
 </script>
 
@@ -43,5 +60,4 @@ components:{
 .heading-name{
     font-size:1.8em;
 }
-
 </style>

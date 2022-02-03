@@ -9,6 +9,7 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^0.22.0",
     "body-parser": "^1.19.0",
     "core-js": "^3.6.5",
@@ -16,6 +17,7 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.13",
+    "path": "^0.12.7",
     "typeit": "^8.0.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",

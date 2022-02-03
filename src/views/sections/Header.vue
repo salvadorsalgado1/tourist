@@ -9,8 +9,8 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <form @submit.prevent="display()">
-                        <div class="input-group input-group-lg mb-3">
+                    <form @submit.prevent="searchResult()">
+                    <div class="input-group input-group-lg mb-3">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
                     <input v-model="search" type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
@@ -23,17 +23,23 @@
 </template>
 
 <script>
+import Testing from '../Testing'
 export default {
+    components:{Testing},
     data(){
         return{
-            search:''
-        }
+            search:'',
+         }
+    },
+    mounted(){
+        console.log("This is the state test: ", this.$store.state.test);
     },
     methods:{
-        display(){
+        searchResult(){
             console.log(this.search);
+            this.$router.push({name:'Search', params:{search:this.search}});
         }
-    }
+    },
 }
 </script>
 

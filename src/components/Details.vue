@@ -2,24 +2,24 @@
   <div class="details">
     <div class="card shadow">
       <div class="card-body">
-        <h2>Details About Me</h2>
+        <h2>About Me</h2>
         <table class="table table-bordered table-striped">
           <tbody>
             <tr>
               <th>Location</th>
-              <td>New York, New York</td>
+              <td>{{location}}</td>
             </tr>
             <tr>
               <th>Age</th>
-              <td>45</td>
+              <td>{{age}}</td>
             </tr>
             <tr>
               <th>Languages Spoken</th>
-              <td>English, Portuguese</td>
+              <td>{{languageSpoken}}</td>
             </tr>
             <tr>
               <th>Favorite Food</th>
-              <td>Pizza</td>
+              <td>{{food}}</td>
             </tr>
           </tbody>
         </table>
@@ -29,7 +29,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props:['location', 'age', 'languageSpoken', 'food'],
+  mounted(){
+   },
+  computed:{
+
+  }
+};
 </script>
 
 <style></style>

@@ -2,13 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Landing from '../views/Landing'
 import Profile from '../views/Profile'
- 
-import Registration from '../views/Registration'
-
- 
+import Registration from '../views/Registration' 
+import SignIn from '../views/SignIn'
 import Account from '../views/Account'
- const routes = [
- 
+import Testing from '../views/Testing'
+import Four from '../views/Four'
+import store from '../store/index'
+import Search from '../views/Search'
+const routes = [
   {
     path: '/',
     name: 'Landing',
@@ -20,7 +21,8 @@ import Account from '../views/Account'
     path: '/home',
     name: 'Home',
     component: Home,
-    props:true
+    props:true,
+     
   },
   {
     path: '/about',
@@ -34,29 +36,60 @@ import Account from '../views/Account'
     path: '/profile',
     name: 'Profile',
     component: Profile,
-    props:true
+    props:true,
   },
   {
     path: '/account',
     name: 'Account',
     component: Account,
-    props:true
+    props:true,
+    meta:{auth:true}
   },
- 
+  {
+    path: '/testing/:slug',
+    name: 'Testing',
+    component: Testing,
+     
+  },
   {
     path: '/signup',
     name: 'Registration',
     component: Registration,
     props:true
   },
- 
-   
+  {
+    path: '/signin',
+    name: 'SignIn',
+    component: SignIn,
+    props:true,
+    meta:{auth:false}
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search 
+  },
+  {
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four 
+  }
  
 ]
 
 const router = createRouter({
+  mode:'history',
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next)=>{
+  if(to.meta.auth && !store.state.loggedIn){
+    next('/home')
+  }else{
+    next();
+  }
+})
+
 
 export default router

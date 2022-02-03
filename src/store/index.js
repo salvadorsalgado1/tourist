@@ -1,8 +1,8 @@
 import { createStore } from 'vuex'
-import router from "../router"
 import axios from 'axios'
 export default createStore({
   state: {
+    test:5,
     user:null,
     userID:null,
     slug:'',
@@ -13,6 +13,7 @@ export default createStore({
     details:[],
     password:'',
     feedback:'',
+    userList:'',
     successLogin:false
   },
   mutations: {
@@ -20,11 +21,9 @@ export default createStore({
       state.user = payload[0]
       state.userID = payload[0].userID;
       state.slug = payload[0].slug;
-      
       //let slug = state.user.slug;
       state.loggedIn = true;
      // router.push({path:`/profile/${slug}`})
-      
     },
     setReviews(state, payload){
       state.reviews = payload;
@@ -43,9 +42,20 @@ export default createStore({
     },
     successLoginState(state){
       state.successLogin = true;
+    },
+    setUserList(state, payload){
+      state.userList = payload;
     }
   },
   actions: {
+    getListUsers({commit}, payload){
+      console.log(payload);
+      axios.get(`http://localhost:5000/api/users/list/${payload}`)
+      .then(response=>{
+        console.log(response.data);
+        commit('setUserList', response.data);
+      })
+    },
     getProfile({commit}, payload){
       console.log(payload)
     },
@@ -85,12 +95,12 @@ export default createStore({
       .then((res)=>{
         return res.json();
       }).then((data)=>{
-         
         commit('getPerson', data);
        })
     },
     
   },
   modules: {
+    
   }
 })

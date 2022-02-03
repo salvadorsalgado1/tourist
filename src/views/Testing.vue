@@ -26,12 +26,12 @@ console.log("Current Slug: ", this.$route.params.slug)
   .then(response => response.json())
   .then(json => console.log(json))
 */
-fetch(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.slug}`)
+  fetch(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.slug}`)
   .then(response => response.json())
   .then(json => {
     this.sampleData = json;
     console.log(json)
-    })
+  })
 
   
  

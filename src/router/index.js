@@ -8,9 +8,8 @@ import Account from '../views/Account'
 import Testing from '../views/Testing'
 import Four from '../views/Four'
 import store from '../store/index'
-
+import Search from '../views/Search'
 const routes = [
- 
   {
     path: '/',
     name: 'Landing',
@@ -38,7 +37,6 @@ const routes = [
     name: 'Profile',
     component: Profile,
     props:true,
-    meta:{auth:true}
   },
   {
     path: '/account',
@@ -65,8 +63,11 @@ const routes = [
     component: SignIn,
     props:true,
     meta:{auth:false}
-     
-    
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search 
   },
   {
     path: '/:catchall(.*)',

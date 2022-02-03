@@ -16,6 +16,17 @@ const db = mysql.createPool({
           res.send(result);
       })
   })
+
+  router.get('/list/:param', (req, res)=>{
+    const param = req.params.param;
+    const sqlGetList = `SELECT * FROM heroku_533291d08d93d66.users WHERE fullName LIKE '%${param}%' LIMIT 100;`
+    console.log(param);
+    db.query(sqlGetList, (err, result)=>{
+        res.send(result);
+    })
+})
+
+
   
 
   module.exports = router;

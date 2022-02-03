@@ -1,9 +1,11 @@
 <template>
-  <div class="404page">
-    <img src="../assets/backgrounds/page404.png" alt="Page404Image">
+  <div class="four-page">
+    <div>
+      <img class="img-four" src="../assets/backgrounds/page404.png" alt="404">
       <h1>404 - Page Not Found</h1>
       <p>Sorry, we could not find the page that you were looking for.</p>
       <router-link class="btn btn-outline-primary" :to="{name:'Home'}">Back Home</router-link>
+    </div>
   </div>
 </template>
 
@@ -14,17 +16,15 @@ name:'Four'
 </script>
 
 <style>
-body {
-  background-color: rgb(245, 211, 196);
-  color: rgb(0, 0, 0)
+.img-four{
+  width:100%;
+  max-width:1000px;
 }
-/* img {
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 50px;
-   width:50%;
-   height: auto; 
-} */
-
+.four-page {
+  background-color: rgb(245, 211, 196);
+  height:90vh;
+  justify-content: center;
+  align-items: center;
+  display:flex;
+}
 </style>

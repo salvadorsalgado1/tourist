@@ -3,9 +3,13 @@ import axios from 'axios'
 export default createStore({
   state: {
     loggedIn:false,
+    image:null,
     test:5,
-    user:null,
+    user:{profile:{}, socials:{}},
     userID:null,
+    profile:[],
+    socials:[],
+    fullName:'',
     slug:'',
     reviews:[],
     loggedIn:false,
@@ -15,10 +19,12 @@ export default createStore({
     password:'',
     feedback:'',
     userList:'',
-    successLogin:false
+    successLogin:false,
+    errorLogin:false
   },
   mutations: {
     setUser(state, payload){
+      state.fullName = payload[0].fullName;
       state.user = payload[0]
       state.userID = payload[0].userID;
       state.slug = payload[0].slug;
@@ -26,17 +32,8 @@ export default createStore({
       state.loggedIn = true;
      // router.push({path:`/profile/${slug}`})
     },
-    setReviews(state, payload){
-      state.reviews = payload;
-    },
     logoutUser(state){
        state.loggedIn=false;
-    },
-    getDetails(state, payload){
-      state.reviews = payload;
-    },
-    getReviews(state, payload){
-      state.reviews = payload;
     },
     getPerson(state, payload){
       state.person = payload;
@@ -44,11 +41,27 @@ export default createStore({
     successLoginState(state){
       state.successLogin = true;
     },
+    failedLoginState(state){
+      console.log("Setting Login State to true");
+      state.errorLogin=true;
+    },
     setUserList(state, payload){
       state.userList = payload;
+    },
+    setProfile(state, payload){
+      state.profile = payload[0][0]
+      state.reviews = payload[1] 
     }
   },
   actions: {
+    getProfile({commit}, payload){
+      console.log(payload)
+      axios.get(`http://localhost:5000/api/profile/${payload}`)
+      .then(response=>{
+        console.log(response.data)
+        commit('setProfile', response.data)
+      }) 
+    },
     getListUsers({commit}, payload){
       console.log(payload);
       axios.get(`http://localhost:5000/api/users/list/${payload}`)
@@ -56,9 +69,6 @@ export default createStore({
         console.log(response.data);
         commit('setUserList', response.data);
       })
-    },
-    getProfile({commit}, payload){
-      console.log(payload)
     },
     getReviews({commit}, payload){
       axios.get(`http://localhost:5000/api/reviews/${payload}`)
@@ -73,31 +83,26 @@ export default createStore({
       .then(response=>{
         console.log(response.data);
         commit('setUser', response.data);
-        this.dispatch('getReviews', payload)
+        //this.dispatch('getReviews', payload)
       })
     },
     loginUser({commit}, payload){
       axios.get(`http://localhost:5000/api/login/user/${payload.email}`)
       .then(response=>{
-        let userPassword = response.data[0].userPassword;
-        let ID = response.data[0].userID;
-        console.log(response.data[0].userPassword);
-        if(userPassword == payload.password){
-          console.log(ID);
-          commit('successLoginState');
-          this.dispatch('acceptLogin', ID);
+        if(response.data.length == 0){
+          console.log("Login User, If Statement");
         }else{
-          console.log("cannot login")
+            console.log(response.data);
+            let userPassword = response.data[0].userPassword;
+          if(userPassword == payload.password){
+            let ID = response.data[0].userID;
+            commit('successLoginState');
+            this.dispatch('acceptLogin', ID);
+          }else{
+            console.log("cannot login")
+          }
         }
-      }) 
-    },
-    dispatchUser({commit}){
-      fetch("./testData/person.json")
-      .then((res)=>{
-        return res.json();
-      }).then((data)=>{
-        commit('getPerson', data);
-       })
+      })
     },
     
   },

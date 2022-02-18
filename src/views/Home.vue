@@ -1,8 +1,8 @@
 <template>
   <div class="home">
      <Header/>
-     <About/>
      <Services/>
+     <About/>
      <Reviews/>
   </div>
 </template>
@@ -15,8 +15,5 @@
 export default {
   name: 'Home',
   components: {Header, About, Services, Reviews},
-  mounted(){
-    
-  }
 }
 </script>

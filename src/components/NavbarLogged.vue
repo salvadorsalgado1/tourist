@@ -17,17 +17,14 @@
           <router-link class="nav-link" :to="{name:'About'}">About</router-link>
          </li>
           <li class="nav-item">
-          <router-link class="nav-link" :to="{name:'Profile'}">My Profile</router-link>
+           <router-link class="nav-link" :to="{path:`/profile/${this.$store.state.slug}`}">My Profile</router-link>
          </li>
-          <li class="nav-item">
-          <router-link class="nav-link" :to="{name:'Registration'}">Sign Up</router-link>
-         </li> 
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Account'}">My Account</router-link>
          </li>
       </ul>
       <span class="navbar-text">
-          Welcome Back {{getUser}}!
+          Welcome back {{getUser}}!
       </span>
       <button @click="logOut()" class="btn btn-primary log-out">Log Out</button>
     </div>
@@ -59,7 +56,7 @@ import NavbarLogged from '../components/NavbarLogged'
       return status;
     },
     getUser(){
-      let user = this.$store.state.person.name;
+      let user = this.$store.state.fullName;
       return user;
     }
   }

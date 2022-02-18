@@ -1,5 +1,5 @@
 <template>
-<div class="header-section">
+<section class="header-section">
     <div class="header-body">
         <div class="container">
             <div class="row mb-4">
@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 </template>
 
 <script>
@@ -30,9 +30,6 @@ export default {
         return{
             search:'',
          }
-    },
-    mounted(){
-        console.log("This is the state test: ", this.$store.state.test);
     },
     methods:{
         searchResult(){

@@ -18,19 +18,7 @@ const db = mysql.createPool({
       })
   })
   router.get('/success/:id', (req, res)=>{
-    const sqlSuccess = "SELECT \
-    users.userID,\
-    users.fullName,\
-    users.slug,\
-    intro.introText,\
-    details.location,\
-    details.age,\
-    details.language_spoken,\
-    details.favorite_food\
-    FROM heroku_533291d08d93d66.users \
-     INNER JOIN heroku_533291d08d93d66.details on users.userID = details.userID\
-    INNER JOIN heroku_533291d08d93d66.intro ON users.userID = intro.userID\
-    where users.userID = ?;";
+    const sqlSuccess = "SELECT * from heroku_533291d08d93d66.users where userID = ?";
     const id = req.params.id;
     console.log(id);
        db.query(sqlSuccess, id, (err, result)=>{

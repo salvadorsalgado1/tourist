@@ -19,14 +19,33 @@ const db = mysql.createPool({
 
   router.get('/list/:param', (req, res)=>{
     const param = req.params.param;
-    const sqlGetList = `SELECT * FROM heroku_533291d08d93d66.users WHERE fullName LIKE '%${param}%' LIMIT 100;`
-    console.log(param);
+    const sqlGetList = `SELECT 
+    users.userID,\
+    users.fullName,\
+    users.slug,\
+    details.location,\
+    details.age,\
+    details.language_spoken\
+    FROM heroku_533291d08d93d66.users\ 
+    INNER JOIN heroku_533291d08d93d66.details on users.userID = details.userID\
+    INNER JOIN heroku_533291d08d93d66.intro ON users.userID = intro.userID\
+    where details.userID = users.userID\
+    AND users.fullname\
+    LIKE '%${param}%' LIMIT 100;`;
+     console.log(param);
     db.query(sqlGetList, (err, result)=>{
         res.send(result);
     })
 })
 
-
+router.get('/profile', (req, res)=>{
+   // const param = req.params.param;
+    const sqlGetList = `SELECT * FROM heroku_533291d08d93d66.users;`
+    //console.log(param);
+    db.query(sqlGetList, (err, result)=>{
+        res.send(result);
+    })
+})
   
 
   module.exports = router;

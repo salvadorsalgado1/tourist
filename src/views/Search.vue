@@ -6,7 +6,7 @@
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <h1>Search</h1>
-                            <form @submit.prevent="searchResult()">
+                            <form @submit.prevent="searchResult">
                                 <div class="input-group input-group-md mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
                                     <input v-model="search" type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
@@ -17,8 +17,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-4" v-for="(user, index) in currentUsers" :key="index">
-                    <Users :name="user.fullName" :userURL="user.slug"/>
+                <div class="col-md-6 " v-for="(user, index) in this.$store.state.userList" :key="index">
+                    <Users 
+                    :name="user.fullName" 
+                    :userURL="user.slug"
+                    :location="user.location"
+                    :age="user.age"
+                    :language="user.language_spoken"/>
                 </div>
             </div>   
         </div>

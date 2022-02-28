@@ -10,24 +10,21 @@ import Navbar from './components/Navbar'
 import NavbarLogged from './components/NavbarLogged'
 export default {
 components:{Navbar, NavbarLogged},
-data(){
-  return{
-
+  computed:{
+    isLogged(){
+      let status = this.$store.state.loggedIn;
+      return status;
+    }
   }
-},
-computed:{
-  isLogged(){
-    let status = this.$store.state.loggedIn;
-    return status;
-  }
-}
 }
 </script>
-
- 
 <style>
+section{
+  display:block;
+}
  body{
-   background-color:rgb(238, 245, 255);
+   background-color:rgb(238, 250, 255);
+   height:100%;
  }
 .gray-text{
   color:gray;
@@ -42,11 +39,9 @@ computed:{
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 }
-
 #nav a {
   font-weight: bold;
   color: #2c3e50;

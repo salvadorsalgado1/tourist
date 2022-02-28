@@ -1,10 +1,8 @@
 <template>
-  <div class="reviews">
-          <h2 class="display-4 white-text testimonial-text">Testimonials</h2>
-          <div class="container">
+  <section class="reviews">
+           <div class="container">
               <div class="reviews-body">
               <div class="row">
-                  
                   <div class="col-md-6 col-sm-12">
                       <ReviewCard name="Mary" 
                       review="First time doing this tour thing with Rendezvous, and I could not have been happier. 
@@ -37,25 +35,11 @@
               </div>
           </div>
       </div>
-  </div>
+  </section>
 </template>
-
 <script>
 import ReviewCard from '../../components/ReviewCard'
 export default {
     components:{ReviewCard},
-    data(){
-        return{
-            
-        }
-        
-    },
-
 }
 </script>
-
-<style>
-.reviews{
-    background-color:rgb(245, 80, 80);
-}
-</style>

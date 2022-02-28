@@ -2,7 +2,7 @@
   <div class="profile-reviews">
       <div class="card shadow">
           <div class="card-body">
-              <h2>My Reviews! {{this.$route.params.slug}}</h2>
+              <h2>Check out my Reviews!</h2>
               <ul class="list-group list-group-flush text-start">
                 <li v-for="rev in getReviews" :key="rev" class="list-group-item mt-3">
                  <Reviews name="Cynthia Tayllor"
@@ -38,9 +38,6 @@ mounted(){
 </script>
 
 <style>
-
-.review-card-body{
-    
-}
+ 
  
 </style>

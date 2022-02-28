@@ -9,6 +9,7 @@ import Testing from '../views/Testing'
 import Four from '../views/Four'
 import store from '../store/index'
 import Search from '../views/Search'
+import Test from '../views/Test'
 const routes = [
   {
     path: '/',
@@ -33,7 +34,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/profile',
+    path: '/profile/:slug',
     name: 'Profile',
     component: Profile,
     props:true,
@@ -44,12 +45,6 @@ const routes = [
     component: Account,
     props:true,
     meta:{auth:true}
-  },
-  {
-    path: '/testing/:slug',
-    name: 'Testing',
-    component: Testing,
-     
   },
   {
     path: '/signup',
@@ -70,6 +65,11 @@ const routes = [
     component: Search 
   },
   {
+    path: '/test/:slug',
+    name: 'Test',
+    component: Test 
+  },
+  {
     path: '/:catchall(.*)',
     name: 'Four',
     component: Four 
@@ -83,6 +83,7 @@ const router = createRouter({
   routes
 })
 
+ 
 router.beforeEach((to, from, next)=>{
   if(to.meta.auth && !store.state.loggedIn){
     next('/home')
@@ -90,6 +91,6 @@ router.beforeEach((to, from, next)=>{
     next();
   }
 })
-
+ 
 
 export default router

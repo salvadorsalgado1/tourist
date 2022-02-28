@@ -13,20 +13,17 @@ app.use(cors());
 const users = require('./routes/api/users')
 app.use('/api/users', users);
 
-//const profile = require('./routes/api/profile')
-//app.use('./app/profile', profile);
+const profile = require('./routes/api/profile')
+app.use('/api/profile', profile);
 
-//const details = require('./routes/api/details')
-//app.use('./app/details', details);
+const login = require('./routes/api/login')
+app.use('/api/login', login);
 
- const login = require('./routes/api/login')
- app.use('/api/login', login);
+const reviews = require('./routes/api/reviews')
+app.use('/api/reviews', reviews);
 
- const reviews = require('./routes/api/reviews')
- app.use('/api/reviews', reviews);
-
- const register = require('./routes/api/register')
- app.use('/api/register', register)
+const register = require('./routes/api/register')
+app.use('/api/register', register)
  
 if(process.env.NODE_ENV === 'production'){
     //Set static folder

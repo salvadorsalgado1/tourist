@@ -2,7 +2,7 @@
   <div class="typed">
     <img class="we-travel-logo mb-1" src="../assets/logos/we-travel/logo-we-travel-sm-transparent-sm-sm.png" alt=""/>
     <p class = "display-4 type-it" id="element"></p>
-    <router-link class="btn btn-outline-primary" :to="{name:'Home'}" >Get Started</router-link>
+    <router-link id="get-started" class="btn btn-primary" :to="{name:'Home'}" >Get Started</router-link>
   </div>
 </template>
 
@@ -26,7 +26,9 @@ export default {
 </script>
 
 <style>
-.we-travel-logo{
-    width:50%;
+.we-travel-logo{width:50%;}
+#get-started{
+    border-color:orange;
+    background-image:linear-gradient(120deg, rgb(255, 102, 0) , rgb(255, 143, 14),rgb(255, 145, 0));
 }
 </style>

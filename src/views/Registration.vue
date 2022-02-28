@@ -24,7 +24,7 @@
                 <input type="password" class="form-control form-control-lg" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
+            <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Sign Up</button>
         </form>
 
         </div>
@@ -39,5 +39,10 @@ name:'Registration'
 </script>
 
 <style>
-
+.registration{
+  height:100vh;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
 </style>

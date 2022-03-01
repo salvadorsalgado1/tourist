@@ -5,6 +5,9 @@
               <div class="col-md-8 mb-4">
                 <ProfileHeader :fullName="userData.fullName" :description="userData.introText"/>
               </div>
+              <div class="button-for-profile">
+                  <button @click="reserve(userData.userID)" class="btn btn-primary">Schedule Tour</button>
+              </div>
               <div class="col-md-4 col-sm-8 mb-4">
                         <SocialMedia 
                             :twitter="userData.twitter"
@@ -58,6 +61,11 @@ components:{
 data(){
     return{
         profileImage:null
+    }
+},
+methods:{
+    reserve(user){
+        console.log(user)
     }
 },
 computed:{

@@ -10,7 +10,7 @@ import Four from '../views/Four'
 import store from '../store/index'
 import Search from '../views/Search'
 import Test from '../views/Test'
-import Request from '../views/Request'
+//import Request from '../views/Request'
 const routes = [
   {
     path: '/',
@@ -34,12 +34,13 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
+  /*
   {
     path: '/request',
     name: 'Request',
     component: Request,
     props:true,
-  },
+  },*/
   {
     path: '/profile/:slug',
     name: 'Profile',

@@ -3,8 +3,8 @@
         <div class="card shadow">
             <div class="card-body">
                 <h2>Achievements and Ratings</h2>
-                <p>Ratings: <!--TODO--4.7--> {{ getRating }} </p>
-                <p>Reviews: <!--TODO--5--> {{ getReviews }}</p>
+                <p>Ratings: <!--TODO--4.7--> {{ getRatings.toFixed(1) }} </p>
+                <p>Reviews: <!--TODO--5--> {{ getReviewsQuant }}</p>
             </div>
         </div>
     </div>
@@ -14,19 +14,20 @@
 export default {
 computed:{
     getRatings(){
-        let rating = this.$store.state.reviews.reviews; //what is this code do????????
+        let reviews = this.$store.state.reviews; //what is this code do????????
+        let rating = 0;
         //TODO
-        var avg;  //hold sum and result after compute avg
+        var avg=0;  //hold sum and result after compute avg
         var i=0;
-            for(i; i<userReviews.reviews.length; i++) {
-            avg += userReviews.reviews[i].stars;
+            for(i; i<reviews.length; i++) {
+            avg += reviews[i].rating;
         };
-        rating = avg/i;
-        return rating
+        rating = avg/reviews.length;
+        return rating;
     },
-    getReviews(){
+    getReviewsQuant(){
        
-        return userReviews.reviews.length;
+        return this.$store.state.reviews.length;
     }
 }
 }

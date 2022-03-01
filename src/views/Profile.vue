@@ -9,14 +9,14 @@
                   <button @click="reserve(userData.userID)" class="btn btn-primary">Schedule Tour</button>
               </div>
               <div class="col-md-4 col-sm-8 mb-4">
-                        <SocialMedia 
-                            :twitter="userData.twitter"
-                            :facebook="userData.facebook"
-                            :instagram="userData.instagram"
-                            :mail="userData.mail"
-                            :tiktok="userData.tiktok"
-                            :youtube="userData.youtube"
-                        />
+                <SocialMedia 
+                    :twitter="userData.twitter"
+                    :facebook="userData.facebook"
+                    :instagram="userData.instagram"
+                    :mail="userData.mail"
+                    :tiktok="userData.tiktok"
+                    :youtube="userData.youtube"
+                />
                 </div>
             </div>
             <div class="row">

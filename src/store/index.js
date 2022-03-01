@@ -20,7 +20,8 @@ export default createStore({
     feedback:'',
     userList:'',
     successLogin:false,
-    errorLogin:false
+    errorLogin:false,
+    profileImage:'default-profile-picture1'
   },
   mutations: {
     setUser(state, payload){
@@ -104,6 +105,17 @@ export default createStore({
         }
       })
     },
+    uploadImage({commit}, payload){
+      console.log(payload)
+      axios.post(`http://localhost:5000/api/profile/image`, {     
+        image:payload
+    }).then(response=>{
+      console.log(response)
+    }).catch(error => {
+      this.errorMessage = error.message;
+      console.error("There was an error!", error);
+    });
+    }
     
   },
   modules: {

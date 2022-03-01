@@ -7,8 +7,9 @@ const {createPool} = require('mysql')
 const bodyParser = require('body-parser');
 const app = express();
 app.use(express.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:false}))
 app.use(cors());
+
  
 const users = require('./routes/api/users')
 app.use('/api/users', users);

@@ -20,4 +20,14 @@ const db = mysql.createPool({
       
  })
 
+ 
+ router.post('/image', (req, res)=>{
+  let image = req.body.image;
+   const sqlUploadImage= `SELECT * FROM heroku_533291d08d93d66.users;`
+   console.log(image);
+   db.query(sqlUploadImage, (err, result)=>{
+       res.send(result);
+   })
+})
+
   module.exports = router;

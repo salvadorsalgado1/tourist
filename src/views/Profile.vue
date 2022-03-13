@@ -28,9 +28,7 @@
                     :languageSpoken="userData.language_spoken"
                     :food="userData.favorite_food" />
                     </div>
-                    <div class="col-md-12 mb-4">
-                        <Ratings />
-                    </div>
+                     
                     <div class="col-md-12 mb-4">
                         <Contact/>
                     </div>

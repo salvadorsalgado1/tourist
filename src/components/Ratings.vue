@@ -1,12 +1,7 @@
 <template>
-    <div class="my-ratings">
-        <div class="card shadow">
-            <div class="card-body">
-                <h2>Achievements and Ratings</h2>
-                <p>Ratings: {{ getRatings.toFixed(1) }} </p>
-                <p>Reviews:{{ getReviewsQuant }}</p>
-            </div>
-        </div>
+    <div class="my-ratings"> 
+        <p>Average Rating {{ getRatings.toFixed(1) }} /5</p>
+        <p> {{ getReviewsQuant }} Reviews</p> 
     </div>
 </template>
 

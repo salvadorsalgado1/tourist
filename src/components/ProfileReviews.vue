@@ -3,6 +3,7 @@
       <div class="card shadow">
           <div class="card-body">
               <h2>Check out my Reviews!</h2>
+                <Ratings/>
                <SubmitReview/>
               <hr/>
               <ul class="list-group list-group-flush text-start">
@@ -23,8 +24,9 @@
 
 import Reviews from '../components/Reviews';
 import SubmitReview from '../components/SubmitReview'
+import Ratings from '../components/Ratings'
 export default {
-components:{Reviews, SubmitReview},
+components:{Reviews, SubmitReview, Ratings},
 data(){
   return{
     

@@ -55,6 +55,12 @@ export default createStore({
     }
   },
   actions: {
+    submitReview({commit}, payload){
+      axios.post('http://localhost:5000/api/reviews/submit', {review:payload})
+       .catch(err=>{
+         console.log(err)
+       })
+    },
     getProfile({commit}, payload){
       console.log(payload)
       axios.get(`http://localhost:5000/api/profile/${payload}`)

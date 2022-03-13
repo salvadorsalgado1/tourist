@@ -18,6 +18,25 @@ const db = mysql.createPool({
           res.send(result);
       })
   })
+
+  router.post('/submit', (req, res)=>{
+    const sqlSubmitReview = "CALL addProfileReview(?,?,?,?,?,?,?);";
+   // const reviewID = req.params.id;
+    
+    const profileID = req.body.review.profileID
+    const reviewerID = req.body.review.reviewerID
+    const rating = req.body.review.rating
+    const review = req.body.review.review
+    const dateSub = req.body.review.dateSubmit
+    const slug = req.body.review.slug
+    const fullName = req.body.review.fullName
+    
+       db.query(sqlSubmitReview, [review, rating, profileID, reviewerID, slug, fullName, dateSub],(err, result)=>{
+         console.log(result)
+          res.send(result);
+      })
+  })
+   
    
   
 

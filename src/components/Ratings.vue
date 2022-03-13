@@ -3,8 +3,8 @@
         <div class="card shadow">
             <div class="card-body">
                 <h2>Achievements and Ratings</h2>
-                <p>Ratings: <!--TODO--4.7--> {{ getRatings.toFixed(1) }} </p>
-                <p>Reviews: <!--TODO--5--> {{ getReviewsQuant }}</p>
+                <p>Ratings: {{ getRatings.toFixed(1) }} </p>
+                <p>Reviews:{{ getReviewsQuant }}</p>
             </div>
         </div>
     </div>

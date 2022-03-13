@@ -5,6 +5,7 @@
 </template>
 <script>
 import axios from 'axios'
+import firebase from '../firebase/init.js'
 export default {
   data(){
     return{
@@ -12,6 +13,19 @@ export default {
     }
   },
   mounted(){
+    const db = firebase.firestore()
+    console.log(db)
+     
+    db.collection('messages').add({
+      content:'another message',
+      name:'ayooooo',
+      timestamp:Date.now()
+    }).catch(err=>{
+      console.log(err)
+    })
+
+ 
+
     console.log("Mounted");
     axios.get('http://localhost:5000/api/register/')
     .then(response=>{

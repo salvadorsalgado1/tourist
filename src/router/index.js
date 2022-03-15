@@ -11,6 +11,8 @@ import store from '../store/index'
 import Search from '../views/Search'
 import Test from '../views/Test'
 //import Request from '../views/Request'
+//importing Messaging 
+import Messaging from '../views/Messaging'
 const routes = [
   {
     path: '/',
@@ -81,7 +83,12 @@ const routes = [
     path: '/:catchall(.*)',
     name: 'Four',
     component: Four 
-  }
+  },
+  {
+    path: '/messaging',
+    name: 'messaging',
+    component: Messaging 
+  },
  
 ]
 

@@ -3,11 +3,15 @@
       <div class="card shadow">
           <div class="card-body">
               <h2>Check out my Reviews!</h2>
+                <Ratings/>
+               <SubmitReview/>
+              <hr/>
               <ul class="list-group list-group-flush text-start">
                 <li v-for="rev in getReviews" :key="rev" class="list-group-item mt-3">
-                 <Reviews name="Cynthia Tayllor"
+                 <Reviews :name="rev.fullName"
                           :review="rev.review" 
-                          :stars="rev.rating" 
+                          :stars="rev.rating"
+                          :dates="rev.reviewDate"
                           image="review-portrait-four"/> 
                  </li>
             </ul>
@@ -19,8 +23,10 @@
 <script>
 
 import Reviews from '../components/Reviews';
+import SubmitReview from '../components/SubmitReview'
+import Ratings from '../components/Ratings'
 export default {
-components:{Reviews},
+components:{Reviews, SubmitReview, Ratings},
 data(){
   return{
     
@@ -31,6 +37,9 @@ computed:{
     let review = this.$store.state.reviews;
     return review;
   }
+},
+methods:{
+  
 },
 mounted(){
  }

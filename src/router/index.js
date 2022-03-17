@@ -10,6 +10,7 @@ import Four from '../views/Four'
 import store from '../store/index'
 import Search from '../views/Search'
 import Test from '../views/Test'
+import Discover from '../views/Discover'
 //import Request from '../views/Request'
 //importing Messaging 
 import Messaging from '../views/Messaging'
@@ -48,6 +49,11 @@ const routes = [
     name: 'Profile',
     component: Profile,
     props:true,
+  },
+  {
+    path: '/discover',
+    name: 'Discover',
+    component: Discover
   },
   {
     path: '/account',

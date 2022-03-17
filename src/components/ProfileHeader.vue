@@ -11,6 +11,7 @@
             <p class="left-text">
               {{description}}
             </p>
+              <ReservationModal/>
           </div>
         </div>
       </div>
@@ -19,14 +20,27 @@
 </template>
 
 <script>
+import ReservationModal from './modals/ReservationModal';
 export default {
-  props:[  'description', 'fullName'],
+components:{ReservationModal},
+props:[  'description', 'fullName'],
   mounted(){
+  },
+  methods:{
+    reserve(user){
+        console.log(user)
+    }
   },
   computed:{
     Person(){
       let person = this.$store.state.user;
       return person;
+    },
+    userData(){
+        console.log("computed")
+        let user = this.$store.state.profile
+         console.log(user)
+        return user;
     },
     userWithImage(){
       //let image = './test-images/'+ this.$store.state.person.image + '.jpg'
@@ -44,5 +58,9 @@ export default {
 <style>
 .profile-img{
     width:70%;
+}
+#create-reservation{
+    border-color:orange;
+    background-image:linear-gradient(120deg, rgb(255, 102, 0) , rgb(255, 143, 14),rgb(255, 145, 0));
 }
 </style>

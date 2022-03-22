@@ -17,7 +17,6 @@ const db = mysql.createPool({
      db.query(sqlGetUser, slug, (err, result)=>{
          res.send(result);
      })
-      
  })
 
  

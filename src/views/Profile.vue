@@ -5,9 +5,6 @@
               <div class="col-md-8 mb-4">
                 <ProfileHeader :fullName="userData.fullName" :description="userData.introText"/>
               </div>
-              <div class="button-for-profile">
-                  <button @click="reserve(userData.userID)" class="btn btn-primary">Schedule Tour</button>
-              </div>
               <div class="col-md-4 col-sm-8 mb-4">
                 <SocialMedia 
                     :twitter="userData.twitter"
@@ -15,26 +12,23 @@
                     :instagram="userData.instagram"
                     :mail="userData.mail"
                     :tiktok="userData.tiktok"
-                    :youtube="userData.youtube"
-                />
+                    :youtube="userData.youtube"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 mb-4">
                     <div class="col-md-12 mb-4">
-              <Details 
-                    :location="userData.location" 
-                    :age="userData.age" 
-                    :languageSpoken="userData.language_spoken"
-                    :food="userData.favorite_food" />
+                    <Details 
+                        :location="userData.location" 
+                        :age="userData.age" 
+                        :languageSpoken="userData.language_spoken"
+                        :food="userData.favorite_food" />
                     </div>
-                     
                     <div class="col-md-12 mb-4">
                         <Contact/>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    
                     <div class="col-md-12 mb-4">
                         <ProfileReviews/>
                     </div>
@@ -68,16 +62,17 @@ methods:{
 },
 computed:{
     userData(){
-        console.log("computed")
         let user = this.$store.state.profile
-         console.log(user)
         return user;
     },
 },
 mounted(){
-    //get profile detail
-    console.log("mounted")
+    //Retrieve user data based on profile endpoint
+    //      app.com/profile/(slug)
+    //Where slug is a username
+    
     let slug = this.$route.params.slug
+    // let slug = "one-wish"
     this.$store.dispatch('getProfile', slug);
 }
  

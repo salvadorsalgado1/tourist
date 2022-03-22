@@ -15,26 +15,29 @@ export default {
   },
   mounted(){
 
-    let date = new Date('2020-11-05 18:37:42')
-    console.log(date)
-    console.log(date.getDate())
- 
-    
-
-    /*
-    const db = firebase.firestore()
+/*   
+ const db = firebase.firestore()
     console.log(db)
-     
-    db.collection('messages').add({
-      content:'another message',
-      name:'ayooooo',
+
+    const snapshot = db.collection('profile').where('userID', '==', 1).get()
+    .then(response=>{
+       response.docs.map(doc=>{console.log(doc.data())})
+    })
+    console.log(snapshot)
+    
+    
+      
+    db.collection('profile').doc('one-wish').set({
+      userID:1,
+      image:'some image that got updated',
+      slug:'the-slug',
       timestamp:Date.now()
     }).catch(err=>{
       console.log(err)
     })
 
  
-
+/*
     console.log("Mounted");
     axios.get('http://localhost:5000/api/register/')
     .then(response=>{

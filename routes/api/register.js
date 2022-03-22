@@ -10,14 +10,20 @@ const db = mysql.createPool({
     password:'3f2b40ad'
   })
 
-  router.get('/', (req, res)=>{
-    const sqlTest= "CALL testingP()";
-   // const userPW = req.params.userPW;
+  router.post('/', (req, res)=>{
+    //(userID, fullName, slug, email, username, userPassword, tiktok, facebook, mail,instagram, youtube, twitter )
+    const sqlTest= "CALL createNewUser(?, ?, ?, ?, ?, '', '', '', '', ')";
+    let fullName = req.body.fullName;
+    let userName = req.body.userName;
+    let email = req.body.email;
+    let password = req.body.password;
+     
+   
        db.query(sqlTest, (err, result)=>{
           res.send(result);
       })
   })
-   
+   //http://localhost:5000/api/register
   
 
   module.exports = router;

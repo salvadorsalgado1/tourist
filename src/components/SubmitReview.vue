@@ -4,6 +4,8 @@
               class="btn btn-primary" 
               data-bs-toggle="modal" 
               data-bs-target="#exampleModal">Submit A Review!</button>
+
+              
    <div class="modal" tabindex="-1" id="exampleModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -66,7 +68,17 @@
         slug:slug, 
         fullName:fullName
         }
+
         
+        /*if(null){
+          some error message
+        }else{
+          dispatch
+        }
+        
+        
+        
+        */
       this.$store.dispatch('submitReview', review)
        
       

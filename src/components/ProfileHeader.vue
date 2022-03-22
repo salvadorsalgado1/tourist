@@ -4,7 +4,8 @@
       <div class="card-body">
         <div class="row">
           <div class="col-6 d-flex align-items-center justify-content-center">
-            <img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>
+            <img :src="userWithImage" alt="" class="rounded-circle profile-img "/>
+        <!--    <img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>-->
           </div>
           <div class="col-6 text-start">
             <h1 class="heading-name">{{fullName}}</h1>
@@ -21,7 +22,14 @@
 <script>
 export default {
   props:[  'description', 'fullName'],
+  data(){
+    return{
+      default:null
+    }
+  },
   mounted(){
+  
+
   },
   computed:{
     Person(){
@@ -31,9 +39,12 @@ export default {
     userWithImage(){
       //let image = './test-images/'+ this.$store.state.person.image + '.jpg'
 
-      let image = this.$store.state.image
+      let image = this.$store.state.profileImage
       if(image == null){
-        image = 'default-profile-picture1'
+        
+      }else{
+        console.log('else')
+       // this.default = false
       }
       return image
     }

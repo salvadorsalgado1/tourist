@@ -1,17 +1,17 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import firebase from '../firebase/init.js'
 export default createStore({
   state: {
+    reviews:[],
+    profile:[],
     loggedIn:false,
     image:null,
-    test:5,
     user:{profile:{}, socials:{}},
     userID:null,
-    profile:[],
     socials:[],
     fullName:'',
     slug:'',
-    reviews:[],
     loggedIn:false,
     reviews:[],
     person:[],
@@ -21,7 +21,7 @@ export default createStore({
     userList:'',
     successLogin:false,
     errorLogin:false,
-    profileImage:'default-profile-picture1'
+    profileImage:null
   },
   mutations: {
     setUser(state, payload){
@@ -52,6 +52,9 @@ export default createStore({
     setProfile(state, payload){
       state.profile = payload[0][0]
       state.reviews = payload[1] 
+    },
+    setProfileImage(state,payload){
+      state.profileImage = payload
     }
   },
   actions: {
@@ -65,6 +68,22 @@ export default createStore({
       console.log(payload)
       axios.get(`http://localhost:5000/api/profile/${payload}`)
       .then(response=>{
+        console.log(response.data[0][0].userID);
+        let userID = response.data[0][0].userID;
+        console.log('Finding: ', userID)
+        const db = firebase.firestore()
+        console.log(db)
+        const snapshot = db.collection('profile').where('userID', '==', userID).get()
+        .then(response=>{
+          response.docs.map(doc=>{
+            commit('setProfileImage', doc.data().image)
+            console.log(doc.data().image)
+          })
+        })
+        console.log(snapshot)
+        
+
+
         console.log(response.data)
         commit('setProfile', response.data)
       }) 
@@ -73,7 +92,6 @@ export default createStore({
       console.log(payload);
       axios.get(`http://localhost:5000/api/users/list/${payload}`)
       .then(response=>{
-        console.log(response.data);
         commit('setUserList', response.data);
       })
     },
@@ -90,6 +108,7 @@ export default createStore({
       .then(response=>{
         console.log(response.data);
         commit('setUser', response.data);
+
         //this.dispatch('getReviews', payload)
       })
     },
@@ -105,6 +124,17 @@ export default createStore({
             let ID = response.data[0].userID;
             commit('successLoginState');
             this.dispatch('acceptLogin', ID);
+            const db = firebase.firestore()
+            console.log(db)
+            const snapshot = db.collection('profile').where('userID', '==', ID).get()
+            .then(response=>{
+              response.docs.map(doc=>{
+                commit('setProfileImage', doc.data())
+                console.log(doc.data())
+              })
+            })
+            console.log(snapshot)
+
           }else{
             console.log("cannot login")
           }
@@ -121,6 +151,18 @@ export default createStore({
       this.errorMessage = error.message;
       console.error("There was an error!", error);
     });
+    },
+    createUser({commit}, payload){
+      console.log(payload)
+      axios.post('http://localhost:5000/api/register', {
+        fullName:payload.fullName,
+        userName:payload.userName,
+        email:payload.email,
+        password:payload.password
+      })
+      .catch(error=>{
+        console.log(error)
+      })
     }
     
   },

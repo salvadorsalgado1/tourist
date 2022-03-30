@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 import firebase from '../firebase/init.js'
+import router from '../router'
 export default createStore({
   state: {
     reviews:[],
@@ -21,7 +22,9 @@ export default createStore({
     userList:'',
     successLogin:false,
     errorLogin:false,
-    profileImage:null
+    profileImage:null,
+    returnEmail:null,
+    returnUserName:null
   },
   mutations: {
     setUser(state, payload){
@@ -55,6 +58,15 @@ export default createStore({
     },
     setProfileImage(state,payload){
       state.profileImage = payload
+    },
+    setCheckEmail(state, payload){
+      state.returnEmail = payload
+    },
+    setCheckUserName(state, payload){
+      state.returnUserName = payload
+    },
+    setRoute(state, payload){
+      state.routes = payload;
     }
   },
   actions: {
@@ -80,10 +92,7 @@ export default createStore({
             console.log(doc.data().image)
           })
         })
-        console.log(snapshot)
-        
-
-
+        console.log(snapshot) 
         console.log(response.data)
         commit('setProfile', response.data)
       }) 
@@ -134,7 +143,7 @@ export default createStore({
               })
             })
             console.log(snapshot)
-
+            router.push({name:'Details'})
           }else{
             console.log("cannot login")
           }
@@ -152,16 +161,68 @@ export default createStore({
       console.error("There was an error!", error);
     });
     },
+     
     createUser({commit}, payload){
-      console.log(payload)
+      console.log(payload.email)
+      console.log(payload.slug)
+      axios.get(`http://localhost:5000/api/register/check/email/${payload.email}`)
+      .then(response=>{
+        console.log(response.data)
+        if(payload.email === response.data[0].email){
+          console.log('Email already exists.')
+        } 
+       }).catch(()=>{
+        console.log("Email is unique")
+        axios.get(`http://localhost:5000/api/register/check/username/${payload.slug}`)
+          .then(response=>{
+            console.log(response.data[0].slug)
+            if(payload.slug == response.data[0].slug){
+              console.log("Username already exists")
+            } 
+           }).catch(()=>{
+             console.log("Username is unique");
+             axios.post('http://localhost:5000/api/register', {
+                fullName:payload.fullName,
+                userName:payload.userName,
+                email:payload.email,
+                password:payload.password,
+                slug:payload.slug
+              }).then(()=>{
+                this.dispatch('loginUser', payload)
+               //router.push({name:'Home'})
+              }).catch(error=>{
+                console.log(error)
+              })
+           }) 
+      })
+
+
+
+
+      /*
       axios.post('http://localhost:5000/api/register', {
         fullName:payload.fullName,
         userName:payload.userName,
         email:payload.email,
-        password:payload.password
+        password:payload.password,
+        slug:payload.slug
       })
       .catch(error=>{
         console.log(error)
+      })*/
+
+    },
+    checkUserEmailExists({commit}, payload){
+      axios.get(`http://localhost:5000/api/register/check/email/${payload}`)
+      .then(response=>{
+        commit('setCheckEmail', response.data[0].email)
+      })
+    },
+    checkUserNameExists({commit}, payload){
+      axios.get(`http://localhost:5000/api/register/check/username/${payload}`)
+      .then(response=>{
+        console.log(response.data[0].slug)
+        commit('setCheckUserName', response.data[0].slug)
       })
     }
     

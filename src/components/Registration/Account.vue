@@ -1,8 +1,8 @@
 <template>
   <div class="account">
-     
+    <img class="right-half-img" src="@/assets/logos/we-travel/logo-16x9-transparent.png" alt="">
+    <h1 class="sign-up-header">Sign Up</h1>
         <form @submit.prevent="submitRegistration">
-             
             <div class="row">
               <div class="col-sm-12 col-lg-6"><div class="form-group">
                 <label>Full Name</label>
@@ -14,11 +14,11 @@
             </div></div>
             </div>
             <div class="row">
-              <div class="col-12"><div class="form-group">
+              <div class="col-sm-12 col-lg-6 "><div class="form-group">
                 <label>Email</label>
                 <input v-model="email" type="email" minlength="6" maxlength="40" class="form-control form-control-lg" />
             </div></div>
-              <div class="col-12"><div class="form-group">
+              <div class="col-sm-12 col-lg-6"><div class="form-group">
                 <label>Password</label>
                 <input v-model="password" minlength="6" type="password" class="form-control form-control-lg" />
             </div></div>
@@ -56,8 +56,7 @@ methods:{
   },
   submitRegistration(){
     let slug = this.userName.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-    console.log(this.fullName, this.userName, this.email, this.password)
-    
+    console.log('Attempt to register: ', this.fullName, this.userName, this.email, this.password)
     if(this.fullName == '' || this.userName == '' 
     || this.email == '' || this.password == ''){ 
       this.error('Fields cannot be blank.')
@@ -67,9 +66,12 @@ methods:{
         fullName:this.fullName,
         userName:this.userName,
         email:this.email,
-        password:this.password
+        password:this.password,
+        slug:slug
       }
-      this.$store.dispatch('createUser', user)
+      console.log(user)
+      console.log(this.email)
+      this.$store.dispatch('createUser', user) 
     }
   }
 }
@@ -77,5 +79,7 @@ methods:{
 </script>
 
 <style>
-
+.sign-up-header{
+  font-size:1.4em;
+}
 </style>

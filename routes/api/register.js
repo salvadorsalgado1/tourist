@@ -12,16 +12,37 @@ const db = mysql.createPool({
 
   router.post('/', (req, res)=>{
     //(userID, fullName, slug, email, username, userPassword, tiktok, facebook, mail,instagram, youtube, twitter )
-    const sqlTest= "CALL createNewUser(?, ?, ?, ?, ?, '', '', '', '', ')";
+    const sqlCreateUser = "CALL createNewUser(?, ?, ?, ?, ?);";
     let fullName = req.body.fullName;
-    let userName = req.body.userName;
+    let slug = req.body.slug
     let email = req.body.email;
+    let userName = req.body.userName;
     let password = req.body.password;
-     
-   
-       db.query(sqlTest, (err, result)=>{
+ 
+    console.log(fullName, userName, email, password, slug)
+       db.query(sqlCreateUser, [fullName, slug, email, userName, password], (err, result)=>{
           res.send(result);
       })
+  })
+  router.get('/check/email/:email', (req, res)=>{
+    //(userID, fullName, slug, email, username, userPassword, tiktok, facebook, mail,instagram, youtube, twitter )
+    const sqlCheckEmail= "SELECT email FROM heroku_533291d08d93d66.users where email = ?;";
+    let email = req.params.email;
+    
+    console.log(email)
+        db.query(sqlCheckEmail, email,(err, result)=>{
+          res.send(result);
+      }) 
+  })
+  router.get('/check/username/:slug', (req, res)=>{
+    //(userID, fullName, slug, email, username, userPassword, tiktok, facebook, mail,instagram, youtube, twitter )
+    const sqlCheckUserName= "SELECT slug FROM heroku_533291d08d93d66.users where slug = ?;";
+    let slug = req.params.slug;
+    
+    console.log(slug)
+        db.query(sqlCheckUserName, slug,(err, result)=>{
+          res.send(result);
+      }) 
   })
    //http://localhost:5000/api/register
   

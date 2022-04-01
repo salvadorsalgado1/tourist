@@ -3,10 +3,15 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-// Import the functions you need from the SDKs you need
+
+
+//import both Firebase and Cloud Firestore.
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+
+var firebase = require("firebase/app");
 
 // Required for side-effects
 require("firebase/firestore");
@@ -28,9 +33,7 @@ firebase.initializeApp(firebaseConfig);
 
 
 // Initialize Cloud Firestore and get a reference to the service
-const db = firebase.firestore();
-
-
+const db = getFirestore(app);
 
 createApp(App).use(store).use(router).mount('#app')
  

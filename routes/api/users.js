@@ -28,7 +28,7 @@ const db = mysql.createPool({
     details.language_spoken\
     FROM heroku_533291d08d93d66.users\ 
     INNER JOIN heroku_533291d08d93d66.details on users.userID = details.userID\
-    INNER JOIN heroku_533291d08d93d66.intro ON users.userID = intro.userID\
+     
     where details.userID = users.userID\
     AND users.fullname\
     LIKE '%${param}%' LIMIT 100;`;

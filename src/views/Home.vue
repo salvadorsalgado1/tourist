@@ -8,6 +8,7 @@
 </template>
 <script>
 // @ is an alias to /src
+ 
  import Header from './sections/Header'
  import About from './sections/About'
  import Services from './sections/Services'
@@ -15,5 +16,6 @@
 export default {
   name: 'Home',
   components: {Header, About, Services, Reviews},
+  
 }
 </script>

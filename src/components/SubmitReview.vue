@@ -68,17 +68,7 @@
         slug:slug, 
         fullName:fullName
         }
-
-        
-        /*if(null){
-          some error message
-        }else{
-          dispatch
-        }
-        
-        
-        
-        */
+ 
       this.$store.dispatch('submitReview', review)
        
       

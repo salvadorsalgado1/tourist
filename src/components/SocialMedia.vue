@@ -1,9 +1,9 @@
 <template>
   <div class="social-media container">
       <h2>I'm Social</h2>
-      <div class=" social-icons">
+      <div class="social-icons">
         <a v-if="instagram" :href="`https://instagram.com/${instagram}`" title="Instagram"><img class="social-icon-instagram" src="../assets/icons/social/instagram.png" alt=""/></a>          
-       <a v-if="twitter" :href="`https://twitter.com/${twitter}`" title="Twitter"><img class="social-icon-twitter" src="../assets/icons/social/twitter.png" alt=""/></a>
+        <a v-if="twitter" :href="`https://twitter.com/${twitter}`" title="Twitter"><img class="social-icon-twitter" src="../assets/icons/social/twitter.png" alt=""/></a>
         <a v-if="tiktok" :href="`https://tiktok.com/@${tiktok}`" title="TikTok"><img class="social-icon-tiktok" src="../assets/icons/social/tiktok.png" alt=""/></a>
         <a v-if="facebook" :href="`https://facebook.com/${facebook}/`" title="Facebook"><img class="social-icon-facebook" src="../assets/icons/social/facebook.png" alt=""/></a>
         <a v-if="mail" :href="`mailto:${mail}`" title="mail"><img class="social-icon-mail" src="../assets/icons/social/mail.png" alt=""/></a>

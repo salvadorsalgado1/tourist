@@ -1,11 +1,12 @@
 <template>
   <div class="profile">
+      
       <div class="container mb-4">
           <div class="row mt-4">
               <div class="col-md-8 mb-4">
-                <ProfileHeader :fullName="userData.fullName" :description="userData.introText"/>
+                <ProfileHeader :fullName="userData.fullName" :description="userData.intro"/>
               </div>
-              <div class="col-md-4 col-sm-8 mb-4">
+              <div class="col-md-4 col-sm-8 mb-4" v-if="userData.twitter || userData.facebook || userData.instagram || userData.mail || userData.tiktok || userData.youtube">
                 <SocialMedia 
                     :twitter="userData.twitter"
                     :facebook="userData.facebook"
@@ -34,11 +35,13 @@
                     </div>
                 </div>
           </div> 
+          
       </div>
-  </div>
+  </div><Toast/>
 </template>
 
 <script>
+import Toast from '../components/Toast'
 import ProfileHeader from '../components/ProfileHeader'
 import Ratings from '../components/Ratings'
 import ProfileReviews from '../components/ProfileReviews'
@@ -48,7 +51,7 @@ import Contact from '../components/Contact'
 export default {
     name:'Profile',
 components:{
-    ProfileReviews, Ratings, Details, ProfileHeader, Contact, SocialMedia
+    ProfileReviews, Ratings, Details, ProfileHeader, Contact, SocialMedia, Toast
 },
 data(){
     return{
@@ -80,6 +83,7 @@ mounted(){
 </script>
 
 <style>
+ 
 .heading-name{
     font-size:1.8em;
 }

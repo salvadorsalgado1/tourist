@@ -24,6 +24,28 @@ const db = mysql.createPool({
           res.send(result);
       })
   })
+
+  router.post('/details/true', (req, res)=>{
+    const sqlDetails = "UPDATE heroku_533291d08d93d66.users SET details_completed = 1 WHERE userID = ?;";
+   let id = req.body.details.id;
+  
+    console.log(id)
+        db.query(sqlDetails, id, (err, result)=>{
+         res.send(result);
+     })  
+ })
+  router.post('/details', (req, res)=>{
+     const sqlDetails= "CALL submitDetailsUser(?, ?, ?, ?, ?);";
+    let id = req.body.details.id;
+    let location = req.body.details.location;
+    let age = req.body.details.age;
+    let food = req.body.details.food;
+    let language = req.body.details.language
+     console.log(id, location, age, food, language)
+         db.query(sqlDetails, [location, age, language, food, id],(err, result)=>{
+          res.send(result);
+      })  
+  })
   router.get('/check/email/:email', (req, res)=>{
     //(userID, fullName, slug, email, username, userPassword, tiktok, facebook, mail,instagram, youtube, twitter )
     const sqlCheckEmail= "SELECT email FROM heroku_533291d08d93d66.users where email = ?;";

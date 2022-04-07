@@ -4,19 +4,18 @@
       <div class="card-body">
         <div class="row">
           <div v-if="userWithImage" class="col-6 d-flex align-items-center justify-content-center">
-            
             <img  :src="userWithImage" alt="" class="rounded-circle profile-img "/>
         <!--<img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>-->
           </div>
           <div class="col-6 text-start">
             <h1 class="heading-name">{{fullName}}</h1>
-            <ReservationModal/> 
             <p v-if="description" class="left-text">
               {{description}}
             </p>
             <p v-else class="left-text">
               {{this.defaultIntro}}
             </p>
+            <ReservationModal/> 
           </div>
         </div>
       </div>

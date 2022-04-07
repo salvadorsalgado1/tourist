@@ -73,7 +73,10 @@ export default createStore({
     }
   },
   actions:{
-
+    submitDescription({commit}, payload){
+      axios.post('http://localhost:5000/api/profile/description', {description:payload})
+      .catch(err=>{console.log(err)})
+    },
     submitReview({commit}, payload){
       axios.post('http://localhost:5000/api/reviews/submit', {review:payload})
        .catch(err=>{

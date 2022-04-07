@@ -19,7 +19,15 @@ const db = mysql.createPool({
      })
  })
 
- 
+ router.post('/description', (req, res)=>{
+  let id = req.body.description.id;
+  let desc = req.body.description.description
+   const sqlUpdateDescription= `UPDATE heroku_533291d08d93d66.details SET intro = ? where userID = ?;`
+   db.query(sqlUpdateDescription, [desc, id],(err, result)=>{
+       res.send(result);
+   })
+})
+
  router.post('/image', (req, res)=>{
   let image = req.body.image;
    const sqlUploadImage= `SELECT * FROM heroku_533291d08d93d66.users;`

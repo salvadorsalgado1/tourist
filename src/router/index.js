@@ -11,6 +11,7 @@ import store from '../store/index'
 import Search from '../views/Search'
 import Test from '../views/Test'
 import Discover from '../views/Discover'
+import Details from '../views/Details'
 //import Request from '../views/Request'
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     component: Home,
     props:true,
      
+  },
+  {
+    path: '/about-you',
+    name: 'Details',
+    component: Details
   },
   {
     path: '/about',

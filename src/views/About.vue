@@ -1,12 +1,21 @@
 <template>
   <div class="about-us">
     <h1>This is an about page</h1>
-
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h2>Card</h2>
+          <input type="text" class="datepicker">
+           <input type="text" class="timepicker">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import axios from 'axios'
 import firebase from '../firebase/init.js'
+import timepicker from '../packages/timepicker/timepicker.js'
 export default {
   data(){
     return{
@@ -14,27 +23,37 @@ export default {
     }
   },
   mounted(){
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });
 
-    let date = new Date('2020-11-05 18:37:42')
-    console.log(date)
-    console.log(date.getDate())
- 
-    
+  // Or with jQuery
 
-    /*
-    const db = firebase.firestore()
+  
+/*   
+ const db = firebase.firestore()
     console.log(db)
-     
-    db.collection('messages').add({
-      content:'another message',
-      name:'ayooooo',
+
+    const snapshot = db.collection('profile').where('userID', '==', 1).get()
+    .then(response=>{
+       response.docs.map(doc=>{console.log(doc.data())})
+    })
+    console.log(snapshot)
+    
+    
+      
+    db.collection('profile').doc('one-wish').set({
+      userID:1,
+      image:'some image that got updated',
+      slug:'the-slug',
       timestamp:Date.now()
     }).catch(err=>{
       console.log(err)
     })
 
  
-
+/*
     console.log("Mounted");
     axios.get('http://localhost:5000/api/register/')
     .then(response=>{

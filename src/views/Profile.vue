@@ -58,6 +58,11 @@ data(){
         profileImage:null
     }
 },
+methods:{
+    reserve(user){
+        console.log(user)
+    }
+},
 computed:{
     userData(){
         console.log("computed")

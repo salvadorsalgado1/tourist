@@ -11,7 +11,7 @@
             <p class="left-text">
               {{description}}
             </p>
-              <ReservationModal/>
+              <ReservationModal :tourGuideName="fullName">
           </div>
         </div>
       </div>
@@ -59,8 +59,8 @@ props:[  'description', 'fullName'],
 .profile-img{
     width:70%;
 }
-#create-reservation{
+/* #create-reservation{
     border-color:orange;
     background-image:linear-gradient(120deg, rgb(255, 102, 0) , rgb(255, 143, 14),rgb(255, 145, 0));
-}
+} */
 </style>

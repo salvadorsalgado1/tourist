@@ -10,6 +10,19 @@ const db = mysql.createPool({
     password:'3f2b40ad'
   })
 
+  router.post('/upload/image', (req, res)=>{
+    let image = req.body.user.userImage
+    let id = req.body.user.id
+    console.log(image, id)
+   const sqlUploadImage = 
+   `update heroku_533291d08d93d66.images \
+    SET imageURL = "${image}" \
+    where userID = ${id};`
+     db.query(sqlUploadImage, (err, result)=>{
+        res.send(result);
+     })
+ })
+
   router.get('/:slug', (req, res)=>{
     let slug = req.params.slug
     console.log(slug)

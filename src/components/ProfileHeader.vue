@@ -3,8 +3,9 @@
     <div class="card shadow">
       <div class="card-body">
         <div class="row">
-          <div v-if="userWithImage" class="col-6 d-flex align-items-center justify-content-center">
-            <img  :src="userWithImage" alt="" class="rounded-circle profile-img "/>
+          <div class="col-6 d-flex align-items-center justify-content-center">
+            
+            <img :src="imageProfile" alt="" class="rounded-circle profile-img "/>
         <!--<img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>-->
           </div>
           <div class="col-6 text-start">
@@ -27,7 +28,7 @@
 import ReservationModal from './modals/ReservationModal';
 export default {
 components:{ReservationModal},
-props:[  'description', 'fullName'],
+props:[  'description', 'fullName', 'imageProfile'],
   data(){
     return{
       default:null,
@@ -60,7 +61,7 @@ props:[  'description', 'fullName'],
 
       let image = this.$store.state.profileImage
       if(image == null){
-        
+        console.log(image);
       }else{
         console.log('else')
        // this.default = false

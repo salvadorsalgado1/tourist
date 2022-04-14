@@ -12,7 +12,7 @@
                           :review="rev.review" 
                           :stars="rev.rating"
                           :dates="rev.reviewDate"
-                          image="review-portrait-four"/> 
+                          :image="rev.imageURL"/> 
                  </li>
             </ul>
           </div>

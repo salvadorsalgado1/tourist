@@ -4,7 +4,11 @@
       <div class="container mb-4">
           <div class="row mt-4">
               <div class="col-md-8 mb-4">
-                <ProfileHeader :fullName="userData.fullName" :description="userData.intro"/>
+                
+                <ProfileHeader 
+                    :fullName="userData.fullName" 
+                    :description="userData.intro"
+                    :imageProfile="userData.imageURL"/>
               </div>
               <div class="col-md-4 col-sm-8 mb-4" v-if="userData.twitter || userData.facebook || userData.instagram || userData.mail || userData.tiktok || userData.youtube">
                 <SocialMedia 

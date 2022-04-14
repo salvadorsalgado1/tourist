@@ -1,38 +1,6 @@
 <template>
   <div class="reservation-modal">
-      <!-- <div class="modal-content modal" id="exampleModal">
-
-       
-        <div class="modal-header">
-            <span class="closeBtn">&times;</span>
-            <h2>TOUR SCHEDULER</h2>
-        </div>
-        <div class="modal-body">
-            <p>Hello.....I am a modal</p>
-            <p>More information comming up.....</p>
-
-            <label>Tour Guide: </label>
-            <input type="text" id="tour-guide-name" value="name base on profile's name" class="input" readOnly>
-            <br><br>
-            <label>Tourist: </label>
-            <input type="text" id="tourist-name" value="name base on tourist name" class="input">
-            <br><br>
-            <div class="date-picker-container">
-                <label>From:</label>
-                <input type="date" min="" id="fromDate" class="date-box">
-                
-                <label>To:</label>
-                <input type="date" name="" max="" id="toDate" class="date-box">
-            </div>
-        
-
-       
-        <div class="modal-footer">
-            
-            <button id="submitBtn" class="button">Submit</button>
-        </div>
-        </div>
-    </div>            -->
+     
 
     <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

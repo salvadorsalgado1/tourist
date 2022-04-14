@@ -132,8 +132,8 @@
           </div>
           <div class="type_msg">
             <div class="input_msg_write">
-<!--adding function message-->
-              <input v-model="message" input type="text" class="write_msg" placeholder="Type a message" />
+<!--adding function message (v-model), added keyup.enter,-->
+              <input @keyup.enter="saveMessage" v-model="message" input type="text" class="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
           </div>
@@ -147,13 +147,52 @@
 </template>
 
 <script>
+import { QuerySnapshot } from '@firebase/firestore'
+import firebase from '../firebase/init.js'
 
 export default {
-    components:{
-        
+    name:'PrivateChat',
+//add the function data to handle message data.
+   data(){
+       return {
+           message:null,
+           messages:[]
+       }
+   },
+
+   methods:{
+    
+    saveMessage(){
+        //save to firestore, create a db for chat.
+        //check out About.vue for exmaple.
+        const db = firebase.firestore()
+        db.collection("messages").add({
+            message:this.message
+            }).catch(err=>{
+        console.log(err)
+        })
+
+        this.messages=null;
+    }, 
+//TODO: currently not fetching messages.
+    fetchMessages(){
+        db.collection("messages").get().then((querySnapshot)=>{
+            let allMessages=[];
+            querySnapshot.forEach(doc=>{
+                allMessages.push(doc.data())
+            })
+
+            this.messages=allMessages;
+        })
+    },
+    
+
+    created(){
+        this.fetchMessages();
     }
 }
 
+}
 </script>
 
 <style scoped="">

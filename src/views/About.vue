@@ -19,12 +19,12 @@ export default {
     console.log(date)
     console.log(date.getDate())
  
-    
+
 
     /*
     const db = firebase.firestore()
     console.log(db)
-     
+
     db.collection('messages').add({
       content:'another message',
       name:'ayooooo',
@@ -36,10 +36,28 @@ export default {
  
 
     console.log("Mounted");
-    axios.get('http://localhost:5000/api/register/')
+    axios.get('http://localhost:5000/api/register/%27)
     .then(response=>{
       console.log(response.data);
     })*/
+
+    // const db = firebase.firestore()
+    // console.log(db)
+
+    // const snapshot = db.collection('messages').where('userID', '==', 1).get()
+    // .then(response=>{
+    //    response.docs.map(doc=>{console.log(doc.data())})
+    // })
+    // console.log(snapshot)
+
+    const db = firebase.firestore()
+    console.log(db)
+
+    const snapshot = db.collection('messages').get()
+    .then(response=>{
+       response.docs.map(doc=>{console.log(doc.data())})
+    })
+    console.log(snapshot)
   }
 }
 </script>

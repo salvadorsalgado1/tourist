@@ -2,7 +2,7 @@
  
 <div class="messaging ">
   <div class="container mt-3">
-
+    
     </div></div>
 </template>
 <script>
@@ -16,6 +16,7 @@ export default {
     }
   },
   mounted(){
+    /*
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems, options);
@@ -81,7 +82,7 @@ export default {
     //    response.docs.map(doc=>{console.log(doc.data())})
     // })
     // console.log(snapshot)
-
+/*
     const db = firebase.firestore()
     console.log(db)
 
@@ -89,7 +90,7 @@ export default {
     .then(response=>{
        response.docs.map(doc=>{console.log(doc.data())})
     })
-    console.log(snapshot)
+    console.log(snapshot)*/
   }
 }
 </script>

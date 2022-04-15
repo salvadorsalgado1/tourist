@@ -1,8 +1,7 @@
 <template>
     <div class="alert alert-success" role="alert">
-        <p>{{text}} <Loading start="true"/></p>
+        <p>{{text}}</p>
     </div>
-   
 </template>
 <script>
 import Loading from '../Spinner.vue'

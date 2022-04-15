@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.$route.name !='Landing'">
+  <div v-if="this.$route.name !='Landing' && this.$route.name !='Details'">
     <div v-if="!isLogged"><Navbar/></div>
     <div v-if="isLogged"><NavbarLogged/></div>
   </div>

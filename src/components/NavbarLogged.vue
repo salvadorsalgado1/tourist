@@ -25,6 +25,10 @@
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Account'}">My Account</router-link>
          </li>
+<!--Added the messaging nav link to nav bar.-->
+         <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'Messaging'}">Messaging</router-link>
+         </li>
       </ul>
       <span class="navbar-text">
           Welcome back {{getUser}}!

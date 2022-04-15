@@ -1,7 +1,9 @@
 <template>
+ 
 <div class="about-test">
       <Messaging class="mt-2"/>
 </div>
+ 
 </template>
 <script>
 import axios from 'axios'
@@ -15,13 +17,30 @@ export default {
     }
   },
   mounted(){
-document.addEventListener('DOMContentLoaded', function() {
+    /*
+    document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems, options);
   });
+  /*
  const db = firebase.firestore()
     console.log(db)
 
+ 
+    let date = new Date('2020-11-05 18:37:42')
+    console.log(date)
+    console.log(date.getDate())
+ 
+
+
+    
+    const db = firebase.firestore()
+    console.log(db)
+
+    db.collection('messages').add({
+      content:'another message',
+      name:'ayooooo',
+ 
     const snapshot = db.collection('messages').where('userID', '==', 1).get()
     .then(response=>{
        response.docs.map(doc=>{console.log(doc.data())})
@@ -32,16 +51,35 @@ document.addEventListener('DOMContentLoaded', function() {
       userID:1,
       image:'some image that got updated',
       slug:'the-slug',
+ 
       timestamp:Date.now()
     }).catch(err=>{
       console.log(err)
     })
 /*
     console.log("Mounted");
-    axios.get('http://localhost:5000/api/register/')
+    axios.get('http://localhost:5000/api/register/%27)
     .then(response=>{
       console.log(response.data);
     })*/
+
+    // const db = firebase.firestore()
+    // console.log(db)
+
+    // const snapshot = db.collection('messages').where('userID', '==', 1).get()
+    // .then(response=>{
+    //    response.docs.map(doc=>{console.log(doc.data())})
+    // })
+    // console.log(snapshot)
+/*
+    const db = firebase.firestore()
+    console.log(db)
+
+    const snapshot = db.collection('messages').get()
+    .then(response=>{
+       response.docs.map(doc=>{console.log(doc.data())})
+    })
+    console.log(snapshot)*/
   }
 }
 </script>

@@ -13,6 +13,8 @@ import Test from '../views/Test'
 import Discover from '../views/Discover'
 import Details from '../views/Details'
 //import Request from '../views/Request'
+//importing Messaging 
+import Messaging from '../views/Messaging'
 const routes = [
   {
     path: '/',
@@ -93,7 +95,12 @@ const routes = [
     path: '/:catchall(.*)',
     name: 'Four',
     component: Four 
-  }
+  },
+  {
+    path: '/messaging',
+    name: 'Messaging',
+    component: Messaging 
+  },
  
 ]
 

@@ -1,5 +1,4 @@
 <template>
- 
 <div class="about-test">
       <Messaging class="mt-2"/>
 </div>

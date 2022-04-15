@@ -1,15 +1,14 @@
 <template>
- 
-<div class="messaging ">
-  <div class="container mt-3">
-
-    </div></div>
+<div class="about-test">
+      <Messaging class="mt-2"/>
+</div>
 </template>
 <script>
 import axios from 'axios'
 import firebase from '../firebase/init.js'
-import timepicker from '../packages/timepicker/timepicker.js'
+ import Messaging from './test/Messaging'
 export default {
+  components:{Messaging},
   data(){
     return{
 
@@ -28,17 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
        response.docs.map(doc=>{console.log(doc.data())})
     })
     console.log(snapshot)
-
-
-
-  // Or with jQuery
-
-  
 /*   
-
-    
-    
-      
     db.collection('profile').doc('one-wish').set({
       userID:1,
       image:'some image that got updated',
@@ -47,8 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }).catch(err=>{
       console.log(err)
     })
-
- 
 /*
     console.log("Mounted");
     axios.get('http://localhost:5000/api/register/')
@@ -58,9 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 </script>
-<style scoped="">
-.container{max-width:1170px; margin:auto;}
-img{ max-width:100%;}
+<style>
+.messages-container{max-width:1170px; margin:auto;}
+img.img-mes{ max-width:100%;}
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;

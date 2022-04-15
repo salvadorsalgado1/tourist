@@ -14,7 +14,7 @@ import Discover from '../views/Discover'
 import Details from '../views/Details'
 //import Request from '../views/Request'
 //importing Messaging 
-import Messaging from '../views/Messaging'
+import Messaging from '../views/Chat/Messaging'
 const routes = [
   {
     path: '/',

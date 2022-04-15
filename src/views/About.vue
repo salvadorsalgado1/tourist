@@ -16,10 +16,11 @@ export default {
     }
   },
   mounted(){
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems, options);
   });
+  /*
  const db = firebase.firestore()
     console.log(db)
 
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
  
 
 
-    /*
+    
     const db = firebase.firestore()
     console.log(db)
 

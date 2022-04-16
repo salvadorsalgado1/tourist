@@ -29,6 +29,14 @@
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Messaging'}">Messaging</router-link>
          </li>
+         <li class="nav-item">
+          <router-link class="nav-link  " :to="{name:'Requests'}">
+            Requests
+             <span class="badge rounded-pill bg-secondary">4</span>
+            
+             
+          </router-link>
+         </li>
       </ul>
       <span class="navbar-text">
           Welcome back {{getUser}}!

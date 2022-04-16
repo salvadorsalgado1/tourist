@@ -12,7 +12,7 @@ const db = mysql.createPool({
 
   
   router.get('/:id', (req, res)=>{
-    const sqlGetReservations= "SELECT * FROM heroku_533291d08d93d66.reservations where guideID = ? ORDER BY start_time asc";
+    const sqlGetReservations= "CALL getReservations(?)";
     let id = req.params.id;
     console.log(id)
         db.query(sqlGetReservations, id, (err, result)=>{

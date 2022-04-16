@@ -28,7 +28,7 @@ export default createStore({
     test:'testing',
     details:null,
     discover:[],
-    reservations:[]
+    reservations:{pending:'', accepted:'', rejected:''}
   },
   mutations: {
     setUser(state, payload){
@@ -77,7 +77,9 @@ export default createStore({
       state.discover = payload
     },
     setReservations(state, payload){
-      state.reservations = payload
+      state.reservations.pending = payload[0]
+      state.reservations.rejected = payload[1]
+      state.reservations.accepted = payload[2]
     }
   },
   actions:{
@@ -85,6 +87,7 @@ export default createStore({
       console.log(payload)
       axios.get(`http://localhost:5000/api/reservation/${payload}`)
       .then((response)=>{
+        console.log(response.data);
         commit('setReservations', response.data)
       }) 
     },

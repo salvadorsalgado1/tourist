@@ -12,7 +12,7 @@ import Search from '../views/Search'
 import Test from '../views/Test'
 import Discover from '../views/Discover'
 import Details from '../views/Details'
-import Requests from '../views/Requests'
+import Requests from '../views/Requests/Requests'
 //import Request from '../views/Request'
 //importing Messaging 
 import Messaging from '../views/Chat/Messaging'

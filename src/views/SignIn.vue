@@ -62,6 +62,7 @@ methods:{
       },4000)
     }else{
       this.success=true;
+      
       setTimeout(()=>{
         this.$router.push({name:'Home'})
       }, 1000)

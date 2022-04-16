@@ -12,6 +12,7 @@ import Search from '../views/Search'
 import Test from '../views/Test'
 import Discover from '../views/Discover'
 import Details from '../views/Details'
+import Requests from '../views/Requests'
 //import Request from '../views/Request'
 //importing Messaging 
 import Messaging from '../views/Chat/Messaging'
@@ -72,6 +73,12 @@ const routes = [
     path: '/signup',
     name: 'Registration',
     component: Registration,
+    props:true
+  },
+  {
+    path: '/requests',
+    name: 'Requests',
+    component: Requests,
     props:true
   },
   {

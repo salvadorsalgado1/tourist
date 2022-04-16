@@ -27,7 +27,8 @@ export default createStore({
     returnUserName:null,
     test:'testing',
     details:null,
-    discover:[]
+    discover:[],
+    reservations:[]
   },
   mutations: {
     setUser(state, payload){
@@ -74,9 +75,19 @@ export default createStore({
     },
     setDiscover(state, payload){
       state.discover = payload
+    },
+    setReservations(state, payload){
+      state.reservations = payload
     }
   },
   actions:{
+    getReservations({commit}, payload){
+      console.log(payload)
+      axios.get(`http://localhost:5000/api/reservation/${payload}`)
+      .then((response)=>{
+        commit('setReservations', response.data)
+      }) 
+    },
     submitProfileImage({commit}, payload){
       console.log(payload)
       axios.post('http://localhost:5000/api/profile/upload/image', {user:payload})
@@ -147,7 +158,7 @@ export default createStore({
         commit('setUser', response.data);
         if(state.details){console.log("Going to Home route", state.details);router.push({name:'Home'})}
         else{console.log("Going to Details route", state.details);router.push({name:'Details'})}
-        //this.dispatch('getReviews', payload)
+        this.dispatch('getReservations', payload)
       })
     },
     loginUser({commit, state}, payload){

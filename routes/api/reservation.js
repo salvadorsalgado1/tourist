@@ -19,5 +19,23 @@ const db = mysql.createPool({
           res.send(result);
       }) 
   })
+
+  router.get('/accept/:id', (req, res)=>{
+    const sqlAcceptReservations= "CALL getReservations(?)";
+    let id = req.params.id;
+    console.log(id)
+        db.query(sqlGetReservations, id, (err, result)=>{
+          res.send(result);
+      }) 
+  })
+
+  router.get('/reject/:id', (req, res)=>{
+    const sqlRejectReservations= "CALL getReservations(?)";
+    let id = req.params.id;
+    console.log(id)
+        db.query(sqlGetReservations, id, (err, result)=>{
+          res.send(result);
+      }) 
+  })
  
   module.exports = router;

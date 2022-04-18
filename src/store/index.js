@@ -83,6 +83,12 @@ export default createStore({
     }
   },
   actions:{
+    acceptReservation({commit}, payload){
+      axios.get(`http://localhost:5000/api/reservation/accept/${payload}`)
+    },
+    rejectReservation({commit}, payload){
+      axios.get(`http://localhost:5000/api/reservation/reject/${payload}`)
+    },
     getReservations({commit}, payload){
       console.log(payload)
       axios.get(`http://localhost:5000/api/reservation/${payload}`)

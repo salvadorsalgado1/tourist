@@ -62,6 +62,11 @@ data(){
         profileImage:null
     }
 },
+methods:{
+    reserve(user){
+        console.log(user)
+    }
+},
 computed:{
     userData(){
         let user = this.$store.state.profile

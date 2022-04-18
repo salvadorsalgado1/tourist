@@ -3,20 +3,20 @@
     <div class="card shadow">
       <div class="card-body">
         <div class="row">
+ 
           <div class="col-6 d-flex align-items-center justify-content-center">
             
             <img :src="imageProfile" alt="" class="rounded-circle profile-img "/>
         <!--<img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>-->
           </div>
           <div class="col-6 text-start">
-            <h1 class="heading-name">{{fullName}}</h1>
-            <p v-if="description" class="left-text">
-              {{description}}
-            </p>
+            <h1 class="heading-name">{{fullName}}</h1>    
+            <p v-if="description" class="left-text">{{description}}</p>
+              <!-- <ReservationModal :tourGuideName="fullName"> -->
             <p v-else class="left-text">
               {{this.defaultIntro}}
             </p>
-            <ReservationModal/> 
+            <ReservationModal :tourGuideName="fullName"/> 
           </div>
         </div>
       </div>
@@ -76,8 +76,8 @@ props:[  'description', 'fullName', 'imageProfile'],
 .profile-img{
     width:70%;
 }
-#create-reservation{
+/* #create-reservation{
     border-color:orange;
     background-image:linear-gradient(120deg, rgb(255, 102, 0) , rgb(255, 143, 14),rgb(255, 145, 0));
-}
+} */
 </style>

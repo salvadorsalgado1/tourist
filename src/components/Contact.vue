@@ -2,7 +2,7 @@
   <div class="contact-info">
       <div class="card shadow">
           <div class="card-body">
-              <h2>Message</h2>
+              <h2>Contact / Message</h2>
           </div>
       </div>
   </div>

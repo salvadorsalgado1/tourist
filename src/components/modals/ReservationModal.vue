@@ -1,69 +1,35 @@
 <template>
   <div class="reservation-modal">
-      <!-- <div class="modal-content modal" id="exampleModal">
-
-       
-        <div class="modal-header">
-            <span class="closeBtn">&times;</span>
-            <h2>TOUR SCHEDULER</h2>
-        </div>
-        <div class="modal-body">
-            <p>Hello.....I am a modal</p>
-            <p>More information comming up.....</p>
-
-            <label>Tour Guide: </label>
-            <input type="text" id="tour-guide-name" value="name base on profile's name" class="input" readOnly>
-            <br><br>
-            <label>Tourist: </label>
-            <input type="text" id="tourist-name" value="name base on tourist name" class="input">
-            <br><br>
-            <div class="date-picker-container">
-                <label>From:</label>
-                <input type="date" min="" id="fromDate" class="date-box">
-                
-                <label>To:</label>
-                <input type="date" name="" max="" id="toDate" class="date-box">
-            </div>
-        
-
-       
-        <div class="modal-footer">
-            
-            <button id="submitBtn" class="button">Submit</button>
-        </div>
-        </div>
-    </div>            -->
 
     <!-- Button trigger modal -->
 <button type="button" class="createReservationButton" data-bs-toggle="modal" data-bs-target="#tourScheduleModal">
   Schedule A Tour
 </button>
 
-<!-- <div class="button-for-profile"> -->
-    <!-- <button @click="reserve(userData.userID)" class="btn btn-primary" id="create-reservation">Schedule Tour</button> -->
-<!-- </div> -->
-
 <!-- Modal -->
 <div class="modal fade" id="tourScheduleModal" tabindex="-1" aria-labelledby="tourScheduleLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+
       <div class="modal-header">
             <!-- <h5 class="modal-title" id="tourScheduleLabel">Tour Scheduler</h5> -->
             <h5>Tour Scheduler</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
-            <label>Tour Guide: </label>
-            <input type="text" id="tourGuideName" value="name base on profile's name" class="input" readOnly>
+            <label>Tour Guide: {{tourGuideName}} </label>
+            <!-- <input type="text" id="tourGuideName" value="name base on profile's name" class="input" readOnly> -->
             <br><br>
             <label>Tourist: </label>
-            <!-- <input type="text" id="touristName" value="name base on tourist name" class="input"> -->
-            userData.fullName
+            <input type="text" id="touristName" value=" tourist name " class="input">
             <br><br>
             <div class="date-picker-container">
-                <label>Date:</label>
-                <input type="date" min="" id="fromDate" class="date-box">
+                <Datepicker v-model="datePicked" :minDate="new Date()" />
             </div>
+            <p>Tour scheduled for {{ formatedDate }} at {{ formatedTime }}.</p>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -76,10 +42,26 @@
 </template>
 
 <script>
-export default {
-props:[ 'tourGuideName'],
-
+import { ref } from 'vue';
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
     
+const date = ref();
+
+export default {
+props:[ 'tourGuideName'], 
+label: String,
+components:{
+    Datepicker
+},
+data() {
+    const datePicked = ref(new Date());
+
+    return {
+        datePicked,
+    };
+},
+
  methods:{
       showModal(){
       var myModal = document.getElementById('myModal')
@@ -87,8 +69,28 @@ props:[ 'tourGuideName'],
 
       myModal.addEventListener('tourScheduleModal', function () {
       myInput.focus()})
-  }
+    },
+
+     
  },
+
+ computed:{
+
+     formatedDate: function() {
+         var date = this.datePicked.getDate();
+         var month = this.datePicked.getMonth()+1;
+         var year = this.datePicked.getFullYear();
+      return `${month}/${date}/${year}`;
+    },
+
+    formatedTime: function() {
+         var hours = this.datePicked.getHours();
+         var minutes = this.datePicked.getMinutes();
+      return `${hours}/${minutes}`;
+    },
+ }
+
+ 
 //  computed:{
 //     userData(){
 //         console.log("computed")
@@ -122,9 +124,9 @@ props:[ 'tourGuideName'],
     width: 400px;
     text-align: center;
 }
-.date-box, .input{
+/* .date-box, .input{
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
 </style>

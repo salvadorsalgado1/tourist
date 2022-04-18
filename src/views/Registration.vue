@@ -1,48 +1,78 @@
 <template>
   <div class="registration">
-      <div class="card" style="width: 22rem;margin:0 auto;">
-        <div class="card-body">
-          <form>
-            <h3>Sign Up</h3>
-             <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control form-control-lg"/>
-            </div>
-
-            <div class="form-group">
-                <label>First Name</label>
-                <input type="text" class="form-control form-control-lg"/>
-            </div>
-
-             <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control form-control-lg" />
-            </div>
-
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
-            </div>
-
-            <button type="submit" class="btn btn-dark btn-lg btn-block mt-3">Sign Up</button>
-        </form>
-
-        </div>
+    <section class="container-sign-up">
+      <div class="left-half">
+        <article>
+          <img class="left-half-img" src="@/assets/logos/we-travel/letter-logo-transparent.png" alt=""/>
+        </article>
       </div>
+      <div class="right-half">
+        <article>
+          <Account />
+        </article>
+      </div>
+    </section>
   </div>
 </template>
-
 <script>
-export default {
-name:'Registration'
-}
+import Account from "../components/Registration/Account";
+ export default {
+  components: { Account },
+  name: "Registration",
+  data() {
+    return {};
+  },
+  mounted() {},
+};
 </script>
 
 <style>
-.registration{
-  height:100vh;
-  display:flex;
-  justify-content: center;
-  align-items:center;
+.registration {
+  height: 100%;
+}
+.left-half-img, .right-half-img, .sign-up-img{
+  width:40%;
+}
+/* Pen-specific styles */
+.container-sign-up {
+  height: 100vh; 
+}
+article {
+  position: relative;
+  top: 50%;
+  text-align: center;
+  transform: translate(0, -50%);
+  padding: .25rem;
+}
+/* Pattern styles */
+.container-sign-up {display: grid;}
+
+.left-half {
+  background: url("../assets/backgrounds/airline-sign-up.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  grid-column: 1;
+}
+
+.right-half {
+  background: #eeeeee;
+  grid-column: 2;
+}
+@media only screen and (max-width: 1000px) {
+  .left-half {
+  background: url("../assets/backgrounds/shore.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  grid-column: 1;
+}
+}
+@media only screen and (max-width: 600px) {
+  .left-half {
+    display: none;
+  }
 }
 </style>

@@ -44,14 +44,7 @@ export default {
       formData.append('image', this.selectedFile);
       formData.append('name', this.selectedFile.name);
       console.log(this.selectedFile)
-      /*
-      try{
-        await this.$store.dispatch('uploadImage', formData); 
-      } catch(err){
-        console.log(err)
-      } 
-    }*/
-
+  
       const metadata = {contentType:'image/jpeg'};
       const storage = getStorage();
       const storageRef = ref(storage, 'images/' + this.selectedFile.name);
@@ -83,9 +76,6 @@ uploadTask.on('state_changed',
       case 'storage/canceled':
         // User canceled the upload
         break;
-
-      // ...
-
       case 'storage/unknown':
         // Unknown error occurred, inspect error.serverResponse
         break;
@@ -94,7 +84,8 @@ uploadTask.on('state_changed',
   () => {
     // Upload completed successfully, now we can get the download URL
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-
+      
+/*
       const db = firebase.firestore()
       db.collection('profile').doc('one-wish').set({
       userID:1,
@@ -104,36 +95,25 @@ uploadTask.on('state_changed',
     }).catch(err=>{
       console.log(err)
     })
-
-
-
+*/
       this.urlImage = downloadURL;
-      this.$store.commit('setProfileImage', this.urlImage)
+      let user = {id:this.getUser.userID, userImage:this.urlImage}
+      console.log(user)
+      this.$store.dispatch('submitProfileImage', user)
+     // this.$store.commit('setProfileImage', this.urlImage)
       console.log('File available at', downloadURL);
     });
   }
 );
-
-     /* const uploadFiles = ref(`images/${this.selectedFile.name}`).put(this.selectedFile);
-      uploadFiles.on("stage_changed",
-      snapshot=>{},
-      error=>{
-        console.log(error)
-      },
-      ()=>{
-        storage
-          .ref("images")
-          .child(this.selectedFile.name)
-          .getDownloadURL()
-          .then(url=>{
-            console.log('t')
-          });
-      }*/
+ 
     }
   },
   computed:{
     getProfileImage(){
-      return this.$store.state.profileImage
+      return this.$store.state.user.imageURL
+    },
+    getUser(){
+      return this.$store.state.user
     }
   }
 }

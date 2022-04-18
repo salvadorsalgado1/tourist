@@ -27,7 +27,7 @@ const db = mysql.createPool({
 
   router.post('/details/true', (req, res)=>{
     const sqlDetails = "UPDATE heroku_533291d08d93d66.users SET details_completed = 1 WHERE userID = ?;";
-   let id = req.body.details.id;
+    let id = req.body.id;
   
     console.log(id)
         db.query(sqlDetails, id, (err, result)=>{
@@ -66,7 +66,7 @@ const db = mysql.createPool({
           res.send(result);
       }) 
   })
-   //http://localhost:5000/api/register
+ 
   
 
   module.exports = router;

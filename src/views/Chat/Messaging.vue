@@ -1,90 +1,70 @@
 <template>
-<div class="about-test">
-      <Messaging class="mt-2"/>
-</div>
- 
+ <div class="messaging">
+     <div class="container">
+         <div class="card">
+             <div class="card-body">
+                 <div class="inbox_msg">
+                    <MessageContainer/>
+                </div>
+             </div>
+         </div>
+     </div>
+ </div>
 </template>
+
 <script>
-import axios from 'axios'
-import firebase from '../firebase/init.js'
- import Messaging from './Chat/Messaging'
+import { QuerySnapshot } from '@firebase/firestore'
+import firebase from '../../firebase/init.js'
+import MessageContainer from './MessageContainer'
 export default {
-  components:{Messaging},
-  data(){
-    return{
+    name:'PrivateChat',
+    components:{MessageContainer},
+//add the function data to handle message data.
+   data(){
+       return {
+           message:null,
+           messages:[]
+       }
+   },
 
-    }
-  },
-  mounted(){
-    /*
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, options);
-  });
-  /*
- const db = firebase.firestore()
-    console.log(db)
-
- 
-    let date = new Date('2020-11-05 18:37:42')
-    console.log(date)
-    console.log(date.getDate())
- 
-
-
+   methods:{
     
-    const db = firebase.firestore()
-    console.log(db)
+    saveMessage(){
+        //save to firestore, create a db for chat.
+        //check out About.vue for exmaple.
+        const db = firebase.firestore()
+        db.collection("messages").add({
+            message:this.message
+            }).catch(err=>{
+        console.log(err)
+        })
 
-    db.collection('messages').add({
-      content:'another message',
-      name:'ayooooo',
- 
-    const snapshot = db.collection('messages').where('userID', '==', 1).get()
-    .then(response=>{
-       response.docs.map(doc=>{console.log(doc.data())})
-    })
-    console.log(snapshot)
-/*   
-    db.collection('profile').doc('one-wish').set({
-      userID:1,
-      image:'some image that got updated',
-      slug:'the-slug',
- 
-      timestamp:Date.now()
-    }).catch(err=>{
-      console.log(err)
-    })
-/*
-    console.log("Mounted");
-    axios.get('http://localhost:5000/api/register/%27)
-    .then(response=>{
-      console.log(response.data);
-    })*/
+        this.messages=null;
+    }, 
+//TODO: currently not fetching messages.
+    fetchMessages(){
+        db.collection("messages").get().then((querySnapshot)=>{
+            let allMessages=[];
+            querySnapshot.forEach(doc=>{
+                allMessages.push(doc.data())
+            })
 
-    // const db = firebase.firestore()
-    // console.log(db)
+            this.messages=allMessages;
+        })
+    },
+    
 
-    // const snapshot = db.collection('messages').where('userID', '==', 1).get()
-    // .then(response=>{
-    //    response.docs.map(doc=>{console.log(doc.data())})
-    // })
-    // console.log(snapshot)
-/*
-    const db = firebase.firestore()
-    console.log(db)
+    created(){
+        this.fetchMessages();
+    }
+}
 
-    const snapshot = db.collection('messages').get()
-    .then(response=>{
-       response.docs.map(doc=>{console.log(doc.data())})
-    })
-    console.log(snapshot)*/
-  }
 }
 </script>
+
 <style>
-.messages-container{max-width:1170px; margin:auto;}
-img.img-mes{ max-width:100%;}
+.container{max-width:1170px; margin:auto;}
+.img-mes{ max-width:100%;}
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
@@ -97,6 +77,8 @@ img.img-mes{ max-width:100%;}
   overflow: hidden;
 }
 .top_spac{ margin: 20px 0 0;}
+
+
 .recent_heading {float: left; width:40%;}
 .srch_bar {
   display: inline-block;
@@ -104,6 +86,7 @@ img.img-mes{ max-width:100%;}
   width: 60%;
 }
 .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
 .recent_heading h4 {
   color: #05728f;
   font-size: 21px;
@@ -118,6 +101,7 @@ img.img-mes{ max-width:100%;}
   font-size: 18px;
 }
 .srch_bar .input-group-addon { margin: 0 0 0 -27px;}
+
 .chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
 .chat_ib h5 span{ font-size:13px; float:right;}
 .chat_ib p{ font-size:14px; color:#989898; margin:auto}
@@ -130,6 +114,7 @@ img.img-mes{ max-width:100%;}
   padding: 0 0 0 15px;
   width: 88%;
 }
+
 .chat_people{ overflow:hidden; clear:both;}
 .chat_list {
   border-bottom: 1px solid #c4c4c4;
@@ -137,7 +122,9 @@ img.img-mes{ max-width:100%;}
   padding: 18px 16px 10px;
 }
 .inbox_chat { height: 550px; overflow-y: scroll;}
+
 .active_chat{ background:#ebebeb;}
+
 .incoming_msg_img {
   display: inline-block;
   width: 6%;
@@ -169,6 +156,7 @@ img.img-mes{ max-width:100%;}
   padding: 30px 15px 0 25px;
   width: 60%;
 }
+
  .sent_msg p {
   background: #05728f none repeat scroll 0 0;
   border-radius: 3px;
@@ -190,6 +178,7 @@ img.img-mes{ max-width:100%;}
   min-height: 48px;
   width: 100%;
 }
+
 .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
 .msg_send_btn {
   background: #05728f none repeat scroll 0 0;
@@ -209,4 +198,5 @@ img.img-mes{ max-width:100%;}
   height: 516px;
   overflow-y: auto;
 }
+
 </style>

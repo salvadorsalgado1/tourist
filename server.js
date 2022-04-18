@@ -25,6 +25,9 @@ app.use('/api/reviews', reviews);
 
 const register = require('./routes/api/register')
 app.use('/api/register', register)
+
+const reservation = require('./routes/api/reservation')
+app.use('/api/reservation', reservation);
  
 if(process.env.NODE_ENV === 'production'){
     //Set static folder

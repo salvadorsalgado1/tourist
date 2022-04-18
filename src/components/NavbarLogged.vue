@@ -1,6 +1,6 @@
 <template>
   <div class="navigation-logged">
-      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rgb(235, 141, 134)">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(235, 141, 134)">
     <div class="container-fluid">
     <router-link class="navbar-brand" :to="{name:'Landing'}">
       <img src="../assets/logos/we-travel/letter-logo-md.png" alt="" class="d-inline-block align-text-top brand-img-nav">
@@ -24,6 +24,18 @@
          </li>
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Account'}">My Account</router-link>
+         </li>
+<!--Added the messaging nav link to nav bar.-->
+         <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'Messaging'}">Messaging</router-link>
+         </li>
+         <li class="nav-item">
+          <router-link class="nav-link  " :to="{name:'Requests'}">
+            Requests
+             <span class="badge rounded-pill bg-secondary">4</span>
+            
+             
+          </router-link>
          </li>
       </ul>
       <span class="navbar-text">

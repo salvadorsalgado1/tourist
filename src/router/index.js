@@ -12,7 +12,10 @@ import Search from '../views/Search'
 import Test from '../views/Test'
 import Discover from '../views/Discover'
 import Details from '../views/Details'
+import Requests from '../views/Requests/Requests'
 //import Request from '../views/Request'
+//importing Messaging 
+import Messaging from '../views/Chat/Messaging'
 const routes = [
   {
     path: '/',
@@ -73,6 +76,12 @@ const routes = [
     props:true
   },
   {
+    path: '/requests',
+    name: 'Requests',
+    component: Requests,
+    props:true
+  },
+  {
     path: '/signin',
     name: 'SignIn',
     component: SignIn,
@@ -93,7 +102,12 @@ const routes = [
     path: '/:catchall(.*)',
     name: 'Four',
     component: Four 
-  }
+  },
+  {
+    path: '/messaging',
+    name: 'Messaging',
+    component: Messaging 
+  },
  
 ]
 

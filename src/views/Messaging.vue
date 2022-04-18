@@ -171,8 +171,8 @@ export default {
             }).catch(err=>{
         console.log(err)
         })
-
-        this.messages=null;
+        
+        this.message=null;
     }, 
 //TODO: currently not fetching messages.
     fetchMessages(){

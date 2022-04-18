@@ -1,7 +1,7 @@
 <template>
   <div class="reservation-modal">
     <!-- Button trigger modal -->
-    <button  
+    <button v-if="this.$store.state.userID"
       type="button" 
       class="createReservationButton btn" 
       data-bs-toggle="modal" data-bs-target="#tourScheduleModal">
@@ -23,9 +23,12 @@
             <div class="date-picker-container">
                <Datepicker v-model="date" placeholder="Start Typing ..." :enableTimePicker="false"/>
             </div>
-            <div class="date-picker-container">
+            <div class="date-picker-container mt-2">
                 <Datepicker minutesIncrement="30"  :is24="false"  v-model="starttime" timePicker  />
-                <Datepicker minutesIncrement="30"  :is24="false"   v-model="endtime" timePicker  />
+                
+            </div>
+            <div class="date-picker-container mt-2">
+              <Datepicker minutesIncrement="30"  :is24="false"   v-model="endtime" timePicker  />
             </div>
             <p>Tour scheduled for  {{formattedDate.start.hours}}:{{formattedDate.start.minutes}} {{formattedDate.end.hours}}:{{formattedDate.end.minutes}}.</p>
       </div>
@@ -74,7 +77,7 @@ export default {
       console.log(`start: ${start}`, `end: ${end}`);
       let reservation = {start:start, end:end, tourist:this.getUsers.touristID, guide:this.getUsers.guideID, fullName:this.getUsers.fullName}
       console.log(reservation)
-      //this.$store.dispatch('submitReservation', reservation);
+      this.$store.dispatch('submitReservation', reservation);
     },
     showModal(){
       var myModal = document.getElementById('myModal')

@@ -21,7 +21,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <h5>Geo <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions 
                     astrology under one roof.</p>
                 </div>
@@ -31,7 +31,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <h5>Geo <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions 
                     astrology under one roof.</p>
                 </div>
@@ -41,7 +41,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <h5>Geo <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions 
                     astrology under one roof.</p>
                 </div>
@@ -51,7 +51,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <h5>Geo <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions 
                     astrology under one roof.</p>
                 </div>
@@ -61,7 +61,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <h5>Geo <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions 
                     astrology under one roof.</p>
                 </div>
@@ -71,7 +71,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <h5>Geo <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions 
                     astrology under one roof.</p>
                 </div>
@@ -81,7 +81,7 @@
               <div class="chat_people">
                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <h5>Geo <span class="chat_date">Dec 25</span></h5>
                   <p>Test, which is a new approach to have all solutions 
                     astrology under one roof.</p>
                 </div>
@@ -116,7 +116,7 @@
             </div>
             <div class="outgoing_msg">
               <div class="sent_msg">
-                <p>Apollo University, Delhi, India Test</p>
+                <p>CI University</p>
                 <span class="time_date"> 11:01 AM    |    Today</span> </div>
             </div>
             <div class="incoming_msg">
@@ -141,7 +141,6 @@
       </div>
       
       
-      <p class="text-center top_spac"> Design by <a target="_blank" href="https://www.linkedin.com/in/sunil-rajput-nattho-singh/">Sunil Rajput</a></p>
       
     </div></div>
 </template>

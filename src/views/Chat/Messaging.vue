@@ -39,25 +39,30 @@ export default {
         console.log(err)
         })
 
-        this.messages=null;
+        this.message=null;
     }, 
-//TODO: currently not fetching messages.
+//TODO: currently fetching messages.
     fetchMessages(){
-        db.collection("messages").get().then((querySnapshot)=>{
+        console.log("fetchMessages")
+        const db = firebase.firestore()
+        console.log(db)
+
+        db.collection("messages")
+        .get()
+        .then((response)=>{
             let allMessages=[];
-            querySnapshot.forEach(doc=>{
+            response.docs.map(doc=>{
                 allMessages.push(doc.data())
             })
-
+            
             this.messages=allMessages;
+            console.log(this.messages)
         })
-    },
-    
-
-    created(){
-        this.fetchMessages();
-    }
-}
+     },
+   },
+   created(){
+     this.fetchMessages()
+   }
 
 }
 </script>

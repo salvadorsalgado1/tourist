@@ -1,6 +1,6 @@
 <template>
  <div class="messaging">
-     <div class="container">
+     <div class="container mt-2">
          <div class="card">
              <div class="card-body">
                  <div class="inbox_msg">

@@ -173,7 +173,7 @@ export default {
 
         this.message=null;
     }, 
-//TODO: currently not fetching messages.
+//TODO: currently fetching messages.
     fetchMessages(){
         console.log("fetchMessages")
         const db = firebase.firestore()

@@ -171,28 +171,34 @@ export default {
             }).catch(err=>{
         console.log(err)
         })
-        
+
         this.message=null;
     }, 
 //TODO: currently not fetching messages.
     fetchMessages(){
-        db.collection("messages").get().then((querySnapshot)=>{
+        console.log("fetchMessages")
+        const db = firebase.firestore()
+        console.log(db)
+
+        db.collection("messages")
+        .get()
+        .then((response)=>{
             let allMessages=[];
-            querySnapshot.forEach(doc=>{
+            response.docs.map(doc=>{
                 allMessages.push(doc.data())
             })
-
+            
             this.messages=allMessages;
         })
-    },
-    
+     },
+   },
 
-    created(){
+    mounted(){
+        console.log("mounted");
         this.fetchMessages();
     }
 }
 
-}
 </script>
 
 <style scoped="">

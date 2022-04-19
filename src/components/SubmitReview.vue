@@ -3,8 +3,10 @@
     <button type="button" 
               class="btn btn-primary" 
               data-bs-toggle="modal" 
-              data-bs-target="#exampleModal">Submit A Review!</button>
-   <div class="modal" tabindex="-1" id="exampleModal">
+              data-bs-target="#reviewModal">Submit A Review!</button>
+
+              
+   <div class="modal" tabindex="-1" id="reviewModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -66,7 +68,7 @@
         slug:slug, 
         fullName:fullName
         }
-        
+ 
       this.$store.dispatch('submitReview', review)
        
       

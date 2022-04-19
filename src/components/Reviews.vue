@@ -2,7 +2,7 @@
         <div class="review container">
             <div class="row">
                 <div class="col-md-5 col-sm-12 col-xs-12 d-flex align-items-center justify-content-start">
-                  <img class="review-img rounded-circle" :src="require(`../assets/portraits/${image}.jpg`)" :alt="name"/>
+                  <img class="review-img rounded-circle" :src="image" :alt="name"/>
                 </div>
                 <div class="col-md-7 col-sm-12 col-xs-12 review-card-body">
                     <div class="stars">

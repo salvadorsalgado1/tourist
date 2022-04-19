@@ -1,6 +1,6 @@
 <template>
   <div class="navigation">
-      <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rgb(235, 141, 134)">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(235, 141, 134)">
     <div class="container-fluid">
     <router-link class="navbar-brand" :to="{name:'Landing'}">
       <img src="../assets/logos/we-travel/letter-logo-md.png" alt="" class="d-inline-block align-text-top brand-img-nav">
@@ -20,10 +20,11 @@
           <router-link class="nav-link" :to="{name:'Discover'}">Discover</router-link>
          </li> 
       </ul>
-      <span class="navbar-text">
-        <router-link :to="{name:'SignIn'}">Sign In</router-link> | 
-        <router-link :to="{name:'Registration'}">Sign Up</router-link>  
-      </span>
+      <ul class="navbar-nav">
+        <router-link class="nav-link" :to="{name:'SignIn'}">Sign In</router-link> 
+        <span class="nav-link">|</span> 
+        <router-link class="nav-link" :to="{name:'Registration'}">Sign Up</router-link>  
+      </ul>
     </div>
   </div>
 </nav>

@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 import Testing from '../Testing'
 export default {
     components:{Testing},

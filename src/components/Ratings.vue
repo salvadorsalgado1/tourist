@@ -9,7 +9,7 @@
 export default {
 computed:{
     getRatings(){
-        let reviews = this.$store.state.reviews; //what is this code do????????
+        let reviews = this.$store.state.reviews;  
         let rating = 0;
         //TODO
         var avg=0;  //hold sum and result after compute avg

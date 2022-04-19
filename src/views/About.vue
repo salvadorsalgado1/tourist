@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems, options);
   });
- const db = firebase.firestore()
-    console.log(db)
+//  const db = firebase.firestore()
+//     console.log(db)
 
  
     let date = new Date('2020-11-05 18:37:42')

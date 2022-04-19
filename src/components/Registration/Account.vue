@@ -69,8 +69,6 @@ methods:{
         password:this.password,
         slug:slug
       }
-      console.log(user)
-      console.log(this.email)
       this.$store.dispatch('createUser', user) 
     }
   }

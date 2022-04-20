@@ -91,42 +91,12 @@
         </div>
         <div class="mesgs">
           <div class="msg_history">
-            <div class="incoming_msg">
+            <div v-for="message in messages" class="incoming_msg">
               <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
               <div class="received_msg">
                 <div class="received_withd_msg">
-                  <p>Test which is a new approach to have all
-                    solutions</p>
+                  <p>{{message.message}}</p>
                   <span class="time_date"> 11:01 AM    |    June 9</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test, which is a new approach to have</p>
-                  <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>CI University</p>
-                <span class="time_date"> 11:01 AM    |    Today</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>We work directly with our designers and suppliers,
-                    and sell direct to you, which means quality, exclusive
-                    products, at a price anyone can afford.</p>
-                  <span class="time_date"> 11:01 AM    |    Today</span></div>
               </div>
             </div>
           </div>
@@ -146,7 +116,7 @@
 </template>
 
 <script>
-import { QuerySnapshot } from '@firebase/firestore'
+import { QuerySnapshot, snapshotEqual } from '@firebase/firestore'
 import firebase from '../firebase/init.js'
 
 export default {
@@ -166,8 +136,10 @@ export default {
         //check out About.vue for exmaple.
         const db = firebase.firestore()
         db.collection("messages").add({
-            message:this.message
-            }).catch(err=>{
+          message:this.message,
+          //time stamp of message
+          createdAt: new Date()
+          }).catch(err=>{
         console.log(err)
         })
 
@@ -178,15 +150,17 @@ export default {
         console.log("fetchMessages")
         const db = firebase.firestore()
         console.log(db)
-
         db.collection("messages")
-        .get()
-        .then((response)=>{
+        //added orderby method to save timestamp of message.
+        .orderBy('createdAt')
+        //.get()
+        .limit(5)
+        //onSnapshot emliminates the need to refresh page to get latest messages.
+        .onSnapshot((response)=>{
             let allMessages=[];
             response.docs.map(doc=>{
                 allMessages.push(doc.data())
             })
-            
             this.messages=allMessages;
         })
      },

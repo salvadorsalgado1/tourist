@@ -88,7 +88,7 @@ export default createStore({
   },
   actions:{
     retrievePassword({commit}, payload){
-      axios.get(`http://localhost:5000/api/email/${payload}`)
+      axios.get(`/api/email/${payload}`)
       .then((response)=>{
         commit('successfullySent')
         console.log(response.data[0].userPassword)

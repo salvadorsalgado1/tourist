@@ -13,6 +13,7 @@ import Test from '../views/Test'
 import Discover from '../views/Discover'
 import Details from '../views/Details'
 import Requests from '../views/Requests/Requests'
+import Password from '../views/Password'
 //import Request from '../views/Request'
 //importing Messaging 
 import Messaging from '../views/Chat/Messaging'
@@ -35,6 +36,11 @@ const routes = [
     path: '/about-you',
     name: 'Details',
     component: Details
+  },
+  {
+    path: '/forget-password',
+    name: 'Password',
+    component: Password
   },
   {
     path: '/about',

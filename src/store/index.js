@@ -28,7 +28,8 @@ export default createStore({
     test:'testing',
     details:null,
     discover:[],
-    reservations:{pending:'', accepted:'', rejected:''}
+    reservations:{pending:'', accepted:'', rejected:''},
+    emailSent:false
   },
   mutations: {
     setUser(state, payload){
@@ -80,10 +81,22 @@ export default createStore({
       state.reservations.pending = payload[0]
       state.reservations.rejected = payload[1]
       state.reservations.accepted = payload[2]
+    },
+    successfullySent(state){
+      state.emailSent = true;
     }
   },
   actions:{
-    //TODO
+    retrievePassword({commit}, payload){
+      axios.get(`http://localhost:5000/api/email/${payload}`)
+      .then((response)=>{
+        commit('successfullySent')
+        console.log(response.data[0].userPassword)
+      })
+      .catch(error=>{
+        console.log("Error sending email:", error);
+      })
+    },
     acceptReservation({commit}, payload){
       axios.post(`http://localhost:5000/api/reservation/accept`, {id:payload})
     },

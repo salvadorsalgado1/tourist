@@ -21,9 +21,11 @@
               <label for="InputPassword1" class="form-label">Password</label>
               <input v-model="password" type="password" class="form-control" id="InputPassword1">
             </div>
+            
             <button type="submit" class="btn btn-dark btn-block">Sign In</button>
           </form>
         </div>
+        <p><router-link :to="{name:'Password'}">Forgot your password?</router-link></p>
       </div></div>
       </div>
     </div>

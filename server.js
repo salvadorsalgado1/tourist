@@ -28,6 +28,9 @@ app.use('/api/register', register)
 
 const reservation = require('./routes/api/reservation')
 app.use('/api/reservation', reservation);
+
+const email = require('./routes/api/emailer')
+app.use('/api/email', email);
  
 if(process.env.NODE_ENV === 'production'){
     //Set static folder

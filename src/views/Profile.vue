@@ -1,24 +1,14 @@
 <template>
   <div class="profile">
-      
       <div class="container mb-4">
           <div class="row mt-4">
               <div class="col-md-8 mb-4">
-                
                 <ProfileHeader 
                     :fullName="userData.fullName" 
                     :description="userData.intro"
                     :imageProfile="userData.imageURL"/>
               </div>
-              <div class="col-md-4 col-sm-8 mb-4" v-if="userData.twitter || userData.facebook || userData.instagram || userData.mail || userData.tiktok || userData.youtube">
-                <SocialMedia 
-                    :twitter="userData.twitter"
-                    :facebook="userData.facebook"
-                    :instagram="userData.instagram"
-                    :mail="userData.mail"
-                    :tiktok="userData.tiktok"
-                    :youtube="userData.youtube"/>
-                </div>
+              
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 mb-4">
@@ -29,9 +19,15 @@
                         :languageSpoken="userData.language_spoken"
                         :food="userData.favorite_food" />
                     </div>
-                    <div class="col-md-12 mb-4">
-                        <Contact/>
-                    </div>
+                    <div class="col-md-7 mb-4" v-if="userData.twitter || userData.facebook || userData.instagram || userData.mail || userData.tiktok || userData.youtube">
+                        <SocialMedia 
+                            :twitter="userData.twitter"
+                            :facebook="userData.facebook"
+                            :instagram="userData.instagram"
+                            :mail="userData.mail"
+                            :tiktok="userData.tiktok"
+                            :youtube="userData.youtube"/>
+                        </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="col-md-12 mb-4">
@@ -73,14 +69,18 @@ computed:{
         return user;
     },
 },
-mounted(){
-    //Retrieve user data based on profile endpoint
+created(){
+    console.log("Created")
+ //Retrieve user data based on profile endpoint
     //      app.com/profile/(slug)
     //Where slug is a username
     
     let slug = this.$route.params.slug
     // let slug = "one-wish"
     this.$store.dispatch('getProfile', slug);
+},
+mounted(){
+   console.log("mounted")
 }
  
 }

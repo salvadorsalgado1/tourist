@@ -5,10 +5,12 @@
             <div class="row">
                 <div class="col-4">
                     <img class="reservation-img rounded-circle" :src="image" :alt="fullName"/>
+                    {{index}}
                     </div>
                 <div class="col-8"> 
                     <p><router-link :to='`/profile/${slug}`'>{{fullName}}</router-link></p>
                     <p>{{getdates.start}} {{getdates.end}}</p>
+                    
                     <button @click="acceptReservation(id)" type="button" class="btn btn-success btn-circle"><i class="fa fa-check"></i></button>
                     <button @click="rejectReservation(id)" type="button" class="btn btn-danger btn-circle"><i class="fa fa-close"></i></button>
                 </div>
@@ -20,7 +22,7 @@
 
 <script>
 export default {
-    props:['start', 'end', 'fullName', 'image', 'slug', 'id'],
+    props:['start', 'end', 'fullName', 'image', 'slug', 'id', 'index'],
     data(){
         return{
             weekDays:['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']

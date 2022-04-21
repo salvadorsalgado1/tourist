@@ -20,7 +20,7 @@
           <router-link class="nav-link" :to="{name:'About'}">About</router-link>
          </li>
           <li class="nav-item">
-           <router-link class="nav-link" :to="{path:`/profile/${this.$store.state.slug}`}">My Profile</router-link>
+           <router-link class="nav-link" :to="{path:`/profile/${getRouteSlug}`}">My Profile</router-link>
          </li>
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Account'}">My Account</router-link>
@@ -32,7 +32,7 @@
          <li class="nav-item">
           <router-link class="nav-link  " :to="{name:'Requests'}">
             Requests
-             <span class="badge rounded-pill bg-secondary">4</span>
+             <span class="badge rounded-pill bg-secondary">{{this.$store.state.reservations.pending.length}}</span>
             
              
           </router-link>
@@ -41,7 +41,7 @@
       <span class="navbar-text">
           Welcome back {{getUser}}!
       </span>
-      <button @click="logOut()" class="btn btn-primary log-out">Log Out</button>
+      <button @click="logOut()" class="btn btn-primary log-out"><span v-if="small">Log Out </span><i class="fa fa-sign-out"></i></button>
     </div>
   </div>
 </nav>
@@ -56,7 +56,7 @@ import NavbarLogged from '../components/NavbarLogged'
   components:{NavbarLogged},
   data(){
     return{
-
+      small:true
     }
   },
   methods:{
@@ -66,6 +66,9 @@ import NavbarLogged from '../components/NavbarLogged'
     }
   },
   computed:{
+    getRouteSlug(){
+      return this.$store.state.slug
+    },
     isLogged(){
       let status = this.$store.state.loggedIn;
       return status;

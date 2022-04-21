@@ -30,7 +30,6 @@ const routes = [
     name: 'Home',
     component: Home,
     props:true,
-     
   },
   {
     path: '/about-you',

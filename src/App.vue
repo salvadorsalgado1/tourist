@@ -10,6 +10,12 @@ import Navbar from './components/Navbar'
 import NavbarLogged from './components/NavbarLogged'
 export default {
 components:{Navbar, NavbarLogged},
+mounted(){
+  //When refresh, or user is not logged, route to Sign In page.
+  if(this.$store.state.userID==null){
+    this.$router.push({name:'SignIn'})
+  }
+},
   computed:{
     isLogged(){
       let status = this.$store.state.loggedIn;

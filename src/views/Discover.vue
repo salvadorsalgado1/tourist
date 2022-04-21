@@ -2,8 +2,9 @@
   <h2>Discover</h2>
   <div class="container">
     <div class="row">
-    <div class="col-md-6" v-for="(user, index) in allUsers" :key="index">
+    <div class="col-md-6 col-lg-4" v-for="(user, index) in allUsers" :key="index">
       <DiscoverCard 
+        :imageURL="user.imageURL"
         :name="user.fullName" 
         :userURL="user.slug" 
         :location="user.location" 

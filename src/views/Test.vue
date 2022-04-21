@@ -18,7 +18,7 @@ methods:{
 mounted(){
     console.log("Mounted");
     let slugURL = this.$route.params.slug;
-    axios.get(`http://localhost:5000/api/profile/${slugURL}`)
+    axios.get(`/api/profile/${slugURL}`)
     .then(response=>{
         console.log(response.data);
     })

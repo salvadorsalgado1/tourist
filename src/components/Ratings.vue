@@ -11,6 +11,10 @@ computed:{
     getRatings(){
         let reviews = this.$store.state.reviews;  
         let rating = 0;
+
+        if(reviews.length == 0){
+            return rating
+        }else{
         //TODO
         var avg=0;  //hold sum and result after compute avg
         var i=0;
@@ -19,6 +23,7 @@ computed:{
         };
         rating = avg/reviews.length;
         return rating;
+        }
     },
     getReviewsQuant(){
        

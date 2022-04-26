@@ -4,6 +4,7 @@ import firebase from '../firebase/init.js'
 import router from '../router'
 export default createStore({
   state: {
+    token: null,
     current_session:'',
     sessions:[],
     messages:null,
@@ -41,20 +42,27 @@ export default createStore({
       state.user = payload[0]
       state.userID = payload[0].userID;
       state.slug = payload[0].slug;
-      state.details = payload[0].details_completed
+      state.details = payload[0].details_completed;
       //let slug = state.user.slug;
       state.loggedIn = true;
      // router.push({path:`/profile/${slug}`})
+
+     //create and set state info to local storeage
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setAcceptReservations(state, payload){
       state.reservations.rejected.splice(payload,1);
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setReservations(state, payload){
       state.reservations.pending = payload[0]
       state.reservations.rejected = payload[1]
       state.reservations.accepted = payload[2]
+      localStorage.setItem("info", JSON.stringify(state));
     },
     logoutUser(state){
+      //remove local storage when user logout 
+       localStorage.removeItem('info');
        state.loggedIn=false;
     },
     getPerson(state, payload){
@@ -62,6 +70,7 @@ export default createStore({
     },
     successLoginState(state){
       state.successLogin = true;
+
     },
     failedLoginState(state){
       console.log("Setting Login State to true");
@@ -73,9 +82,11 @@ export default createStore({
     setProfile(state, payload){
       state.profile = payload[0][0]
       state.reviews = payload[1] 
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setProfileImage(state,payload){
       state.user.imageURL = payload
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setCheckEmail(state, payload){
       state.returnEmail = payload
@@ -91,6 +102,9 @@ export default createStore({
     },
     successfullySent(state){
       state.emailSent = true;
+
+      localStorage.setItem("info", JSON.stringify(state));
+
     },
     setMessages(state, payload){
      
@@ -111,6 +125,7 @@ export default createStore({
     },
     addSession(state, payload){
       state.sessions.unshift(payload)
+
     }
   },
   actions:{
@@ -255,6 +270,7 @@ export default createStore({
     loginUser({commit, state}, payload){
       axios.get(`/api/login/user/${payload.email}`)
       .then(response=>{
+        console.log(response)
         if(response.data.length == 0){
           console.log("Login User, If Statement");
         }else{
@@ -263,6 +279,7 @@ export default createStore({
           if(userPassword == payload.password){
             let ID = response.data[0].userID;
             commit('successLoginState');
+
             this.dispatch('acceptLogin', ID);
           }else{
             console.log("cannot login")

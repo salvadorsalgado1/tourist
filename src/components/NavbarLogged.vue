@@ -62,7 +62,7 @@ import NavbarLogged from '../components/NavbarLogged'
   methods:{
     logOut(){
       this.$store.commit('logoutUser');
-      this.$router.push({name:'Home'})
+      this.$router.push({name:'SignIn'});
     }
   },
   computed:{

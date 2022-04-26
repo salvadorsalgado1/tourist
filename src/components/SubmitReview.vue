@@ -1,11 +1,9 @@
 <template>
-  <div class="submit-review">
+  <div class="submit-review" v-if="this.$store.state.userID">
     <button type="button" 
               class="btn btn-primary" 
               data-bs-toggle="modal" 
               data-bs-target="#reviewModal">Submit A Review!</button>
-
-              
    <div class="modal" tabindex="-1" id="reviewModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -21,61 +19,55 @@
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="review"></textarea>
    </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button @click="submitReview(rating, review)" data-bs-dismiss="modal" type="button" class="btn btn-primary">Submit Review</button>
-
-       </div>
     </div>
-  </div>
-</div>
   </div>
 </template>
 
 <script>
- export default {
-    
+  export default {
+      
     data(){
-        return{
-          rating:5,
-          review:'', 
+      return{
+        rating:5,
+        review:'', 
       }
     },
     methods:{
       showModal(){
-      var myModal = document.getElementById('myModal')
-      var myInput = document.getElementById('myInput')
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
 
-      myModal.addEventListener('exampleModal', function () {
-      myInput.focus()})
-  },
-  submitReview(rating, description){
-      let profileID = this.$store.state.profile.userID
-      let reviewerID = this.$store.state.userID
-      let fullName = this.$store.state.fullName
-      let date = new Date()
-      let year = date.getFullYear()
-      let day = date.getDate()
-      let month = date.getMonth()
-      let dateSubmit = `${month}/${day}/${year}`
-      let slug = this.$store.state.profile.slug;
+        myModal.addEventListener('exampleModal', function () {
+        myInput.focus()})
+      },
+      submitReview(rating, description){
       
-      let review = {
-        profileID:profileID, 
-        reviewerID:reviewerID, 
-        rating:rating, review:description, 
-        dateSubmit:dateSubmit, 
-        slug:slug, 
-        fullName:fullName
+        let profileID = this.$store.state.profile.userID
+        let reviewerID = this.$store.state.userID
+        let fullName = this.$store.state.fullName
+        let date = new Date()
+        let year = date.getFullYear()
+        let day = date.getDate()
+        let month = date.getMonth()
+        let dateSubmit = `${month}/${day}/${year}`
+        let slug = this.$store.state.profile.slug;
+        
+        let review = {
+          profileID:profileID, 
+          reviewerID:reviewerID, 
+          rating:rating, review:description, 
+          dateSubmit:dateSubmit, 
+          slug:slug, 
+          fullName:fullName
         }
- 
-      this.$store.dispatch('submitReview', review)
-       
+  
+        this.$store.dispatch('submitReview', review)
+        
+        
+      }
+    }
       
-    }
-    }
-    
-}
+  }
 </script>
 
 <style>

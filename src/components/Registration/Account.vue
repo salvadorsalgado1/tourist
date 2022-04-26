@@ -12,7 +12,7 @@
                 <label>Username</label>
                 <input v-model="userName" type="text" minlength="6" maxlength="20" class="form-control form-control-lg"/>
             </div></div>
-            </div>
+            </div>  
             <div class="row">
               <div class="col-sm-12 col-lg-6 "><div class="form-group">
                 <label>Email</label>

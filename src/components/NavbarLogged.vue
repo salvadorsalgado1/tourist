@@ -60,19 +60,12 @@ import NavbarLogged from '../components/NavbarLogged'
     }
   },
   methods:{
-    // deleteCookie(cName){
-    //   document.cookie = cName +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    // },
     logOut(){
       this.$store.commit('logoutUser');
-      // deleteCookie("loggedUser");
       this.$router.push({name:'SignIn'});
     }
   },
   computed:{
-    setCookie(cname, uEmail, uPassword){
-    document.cookie = cname + "=" + uEmail + "+" + uPassword;
-  },
     getRouteSlug(){
       return this.$store.state.slug
     },

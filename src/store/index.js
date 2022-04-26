@@ -38,22 +38,26 @@ export default createStore({
       state.user = payload[0]
       state.userID = payload[0].userID;
       state.slug = payload[0].slug;
-      state.details = payload[0].details_completed
+      state.details = payload[0].details_completed;
       //let slug = state.user.slug;
       state.loggedIn = true;
      // router.push({path:`/profile/${slug}`})
 
-     localStorage.setItem("info", JSON.stringify(state));
+     //create and set state info to local storeage
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setAcceptReservations(state, payload){
       state.reservations.rejected.splice(payload,1);
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setReservations(state, payload){
       state.reservations.pending = payload[0]
       state.reservations.rejected = payload[1]
       state.reservations.accepted = payload[2]
+      localStorage.setItem("info", JSON.stringify(state));
     },
     logoutUser(state){
+      //remove local storage when user logout 
        localStorage.removeItem('info');
        state.loggedIn=false;
     },
@@ -62,6 +66,7 @@ export default createStore({
     },
     successLoginState(state){
       state.successLogin = true;
+
     },
     failedLoginState(state){
       console.log("Setting Login State to true");
@@ -73,9 +78,11 @@ export default createStore({
     setProfile(state, payload){
       state.profile = payload[0][0]
       state.reviews = payload[1] 
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setProfileImage(state,payload){
       state.user.imageURL = payload
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setCheckEmail(state, payload){
       state.returnEmail = payload
@@ -91,6 +98,7 @@ export default createStore({
     },
     successfullySent(state){
       state.emailSent = true;
+      localStorage.setItem("info", JSON.stringify(state));
     }
   },
   actions:{
@@ -185,8 +193,6 @@ export default createStore({
       console.log("accept login ", payload);
       axios.get(`/api/login/success/${payload}`)
       .then(response=>{
-        // const token = response.data.access_token;
-        // console.log(token);
         console.log(response.data);
         commit('setUser', response.data);
         if(state.details){console.log("Going to Home route", state.details);router.push({name:'Home'})}

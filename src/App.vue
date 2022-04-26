@@ -11,6 +11,13 @@ import NavbarLogged from './components/NavbarLogged'
 export default {
 components:{Navbar, NavbarLogged},
 mounted(){
+  // Set session data from local storage, if session data is available, 
+  // replace current state with the session data
+  const sessionData = localStorage.getItem('info');
+  if (sessionData) {
+    this.$store.replaceState(JSON.parse(sessionData));
+  }
+
   //When refresh, or user is not logged, route to Sign In page.
   if(this.$store.state.userID==null){
     this.$router.push({name:'SignIn'})

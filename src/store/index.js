@@ -4,6 +4,7 @@ import firebase from '../firebase/init.js'
 import router from '../router'
 export default createStore({
   state: {
+    token: null,
     reviews:[],
     profile:[],
     loggedIn:false,
@@ -41,6 +42,8 @@ export default createStore({
       //let slug = state.user.slug;
       state.loggedIn = true;
      // router.push({path:`/profile/${slug}`})
+
+     localStorage.setItem("info", JSON.stringify(state));
     },
     setAcceptReservations(state, payload){
       state.reservations.rejected.splice(payload,1);
@@ -51,6 +54,7 @@ export default createStore({
       state.reservations.accepted = payload[2]
     },
     logoutUser(state){
+       localStorage.removeItem('info');
        state.loggedIn=false;
     },
     getPerson(state, payload){
@@ -181,6 +185,8 @@ export default createStore({
       console.log("accept login ", payload);
       axios.get(`/api/login/success/${payload}`)
       .then(response=>{
+        // const token = response.data.access_token;
+        // console.log(token);
         console.log(response.data);
         commit('setUser', response.data);
         if(state.details){console.log("Going to Home route", state.details);router.push({name:'Home'})}
@@ -191,6 +197,7 @@ export default createStore({
     loginUser({commit, state}, payload){
       axios.get(`/api/login/user/${payload.email}`)
       .then(response=>{
+        console.log(response)
         if(response.data.length == 0){
           console.log("Login User, If Statement");
         }else{
@@ -199,6 +206,7 @@ export default createStore({
           if(userPassword == payload.password){
             let ID = response.data[0].userID;
             commit('successLoginState');
+
             this.dispatch('acceptLogin', ID);
           }else{
             console.log("cannot login")

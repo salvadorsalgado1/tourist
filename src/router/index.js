@@ -125,7 +125,7 @@ const router = createRouter({
  
 router.beforeEach((to, from, next)=>{
   if(to.meta.auth && !store.state.loggedIn){
-    next('/home')
+    next('/home');
   }else{
     next();
   }

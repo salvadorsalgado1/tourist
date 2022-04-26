@@ -24,7 +24,7 @@ props:['youtube', 'tiktok', 'mail', 'facebook', 'twitter', 'instagram']
     width:25%;
 }
 .social-icons img{
-    margin: 10px;
+    margin: 15px;
 }
 .social-icons a img:hover{
     border-radius:100px 100px;

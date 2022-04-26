@@ -4,6 +4,9 @@ import firebase from '../firebase/init.js'
 import router from '../router'
 export default createStore({
   state: {
+    current_session:'',
+    sessions:[],
+    messages:null,
     reviews:[],
     profile:[],
     loggedIn:false,
@@ -26,10 +29,14 @@ export default createStore({
     returnEmail:null,
     returnUserName:null,
     test:'testing',
-    details:null
+    details:null,
+    discover:[],
+    reservations:{pending:'', accepted:'', rejected:''},
+    emailSent:false
   },
   mutations: {
     setUser(state, payload){
+      console.log(payload)
       state.fullName = payload[0].fullName;
       state.user = payload[0]
       state.userID = payload[0].userID;
@@ -38,6 +45,14 @@ export default createStore({
       //let slug = state.user.slug;
       state.loggedIn = true;
      // router.push({path:`/profile/${slug}`})
+    },
+    setAcceptReservations(state, payload){
+      state.reservations.rejected.splice(payload,1);
+    },
+    setReservations(state, payload){
+      state.reservations.pending = payload[0]
+      state.reservations.rejected = payload[1]
+      state.reservations.accepted = payload[2]
     },
     logoutUser(state){
        state.loggedIn=false;
@@ -60,7 +75,7 @@ export default createStore({
       state.reviews = payload[1] 
     },
     setProfileImage(state,payload){
-      state.profileImage = payload
+      state.user.imageURL = payload
     },
     setCheckEmail(state, payload){
       state.returnEmail = payload
@@ -70,49 +85,157 @@ export default createStore({
     },
     setRoute(state, payload){
       state.routes = payload;
+    },
+    setDiscover(state, payload){
+      state.discover = payload
+    },
+    successfullySent(state){
+      state.emailSent = true;
+    },
+    setMessages(state, payload){
+     
+   
+     console.log(payload)
+     state.messages = payload
+       
+    },
+    setNewMessages(state, payload){
+       console.log(payload)
+      state.messages=payload;
+    },
+    setUserSessions(state, payload){
+      state.sessions = payload
+    },
+    setSession(state, payload){
+      state.current_session = payload
+    },
+    addSession(state, payload){
+      state.sessions.unshift(payload)
     }
   },
   actions:{
+    createSession({commit}, payload){
+      axios.get(`/api/messages/check/${payload.convo}`)
+        .then((response)=>{
+          console.log(response.data)
+          let retrieveSession = response.data[0].session_name;
+          if(retrieveSession == payload.convo){
+           
+            console.log("Match")
+            //TODO
+            //payload.session_id
+
+          }
+        }).catch(()=>{
+          console.log("Catch")
+          axios.post(`/api/messages/send`, {
+            convo:payload.convo,
+            //--Profile---
+            profile_userID:payload.profile.userID,
+            profile_FullName:payload.profile.fullName,
+            profile_image:payload.profile.image,
+            //----End of Profile
+            //----User----
+            user_userID:payload.user.userID,
+            user_FullName:payload.user.fullName,
+            user_image:payload.user.image
+            //----End of User----
+          }).catch(error=>{
+            console.log(error)
+          })
+        })
+    },
+    getNewMessages({commit}, payload){
+      console.log(payload)
+      //commit('setNewMessages', payload)
+    },
+    getUserSessions({commit}, payload){
+       axios.get(`/api/messages/${payload}`)
+       .then((response)=>{
+         commit('setUserSessions', response.data)
+       })
+    }, 
+    retrievePassword({commit}, payload){
+      axios.get(`/api/email/${payload}`)
+      .then((response)=>{
+        commit('successfullySent')
+        console.log(response.data[0].userPassword)
+      })
+      .catch(error=>{
+        console.log("Error sending email:", error);
+      })
+    },
+    acceptReservation({commit}, payload){
+      axios.post(`/api/reservation/accept`, {id:payload}).then(()=>{
+        commit('setAcceptReservations', payload)
+      })
+    },
+    rejectReservation({commit}, payload){
+      axios.post(`/api/reservation/reject`, {id:payload})
+    },
+    submitReservation({commit}, payload){
+      axios.post('/api/reservation/submit', {reservation:payload})
+      .catch((error)=>{
+        console.log(error)
+      })
+    },
+    getReservations({commit}, payload){
+      console.log(payload)
+      axios.get(`/api/reservation/${payload}`)
+      .then((response)=>{
+        
+        commit('setReservations', response.data)
+      }) 
+    },
+    submitProfileImage({commit}, payload){
+      console.log(payload)
+      axios.post('/api/profile/upload/image', {user:payload})
+      .then(()=>{
+         commit('setProfileImage', payload.userImage)
+      })
+      .catch((err)=>{
+        console.log("Invalid url");
+      })
+    },
+    discoverUsers({commit}){
+      axios.get('/api/users/list/discover')
+      .then(response=>{
+        commit('setDiscover', response.data)
+      })
+    },
     submitDescription({commit}, payload){
-      axios.post('http://localhost:5000/api/profile/description', {description:payload})
+      axios.post('/api/profile/description', {description:payload})
       .catch(err=>{console.log(err)})
     },
     submitReview({commit}, payload){
-      axios.post('http://localhost:5000/api/reviews/submit', {review:payload})
+      axios.post('/api/reviews/submit', {review:payload})
        .catch(err=>{
          console.log(err)
        })
     },
     getProfile({commit}, payload){
       console.log(payload)
-      axios.get(`http://localhost:5000/api/profile/${payload}`)
+      axios.get(`/api/profile/${payload}`)
       .then(response=>{
+        console.log(response.data)
         console.log(response.data[0][0].userID);
         let userID = response.data[0][0].userID;
         console.log('Finding: ', userID)
-        const db = firebase.firestore()
-        console.log(db)
-        const snapshot = db.collection('profile').where('userID', '==', userID).get()
-        .then(response=>{
-          response.docs.map(doc=>{
-            commit('setProfileImage', doc.data().image)
-            console.log(doc.data().image)
-          })
-        })
-        console.log(snapshot) 
+        commit('setProfileImage', response.data[0][0].imageURL)
+
         console.log(response.data)
         commit('setProfile', response.data)
       }) 
     },
     getListUsers({commit}, payload){
       console.log(payload);
-      axios.get(`http://localhost:5000/api/users/list/${payload}`)
+      axios.get(`/api/users/list/${payload}`)
       .then(response=>{
         commit('setUserList', response.data);
       })
     },
     getReviews({commit}, payload){
-      axios.get(`http://localhost:5000/api/reviews/${payload}`)
+      axios.get(`/api/reviews/${payload}`)
       .then(response=>{
         console.log(response.data);
         commit('setReviews', response.data);
@@ -120,38 +243,27 @@ export default createStore({
     },
     acceptLogin({commit, state}, payload){
       console.log("accept login ", payload);
-      axios.get(`http://localhost:5000/api/login/success/${payload}`)
+      axios.get(`/api/login/success/${payload}`)
       .then(response=>{
-        console.log(response.data);
+        console.log(response.data)
         commit('setUser', response.data);
         if(state.details){console.log("Going to Home route", state.details);router.push({name:'Home'})}
         else{console.log("Going to Details route", state.details);router.push({name:'Details'})}
-        //this.dispatch('getReviews', payload)
+        this.dispatch('getReservations', payload)
       })
     },
     loginUser({commit, state}, payload){
-      axios.get(`http://localhost:5000/api/login/user/${payload.email}`)
+      axios.get(`/api/login/user/${payload.email}`)
       .then(response=>{
         if(response.data.length == 0){
           console.log("Login User, If Statement");
         }else{
-            console.log(response.data);
+            
             let userPassword = response.data[0].userPassword;
           if(userPassword == payload.password){
             let ID = response.data[0].userID;
             commit('successLoginState');
             this.dispatch('acceptLogin', ID);
-            const db = firebase.firestore()
-            console.log(db)
-            const snapshot = db.collection('profile').where('userID', '==', ID).get()
-            .then(response=>{
-              response.docs.map(doc=>{
-                commit('setProfileImage', doc.data())
-                console.log(doc.data())
-              })
-            })
-            console.log(snapshot)
-           
           }else{
             console.log("cannot login")
           }
@@ -160,10 +272,9 @@ export default createStore({
     },
     uploadImage({commit}, payload){
       console.log(payload)
-      axios.post(`http://localhost:5000/api/profile/image`, {     
-        image:payload
-    }).then(response=>{
-      console.log(response)
+      axios.post(`/api/profile/image`, {image:payload})
+      .then(()=>{
+      commit('setProfileImage', payload);
     }).catch(error => {
       this.errorMessage = error.message;
       console.error("There was an error!", error);
@@ -174,7 +285,7 @@ export default createStore({
       console.log(payload.email)
       console.log(payload.slug)
        
-      axios.get(`http://localhost:5000/api/register/check/email/${payload.email}`)
+      axios.get(`/api/register/check/email/${payload.email}`)
       .then(response=>{
         console.log(response.data)
         if(payload.email === response.data[0].email){
@@ -182,7 +293,7 @@ export default createStore({
         } 
        }).catch(()=>{
         console.log("Email is unique")
-        axios.get(`http://localhost:5000/api/register/check/username/${payload.slug}`)
+        axios.get(`/api/register/check/username/${payload.slug}`)
           .then(response=>{
             console.log(response.data[0].slug)
             if(payload.slug == response.data[0].slug){
@@ -190,7 +301,7 @@ export default createStore({
             } 
            }).catch(()=>{
              console.log("Username is unique");
-             axios.post('http://localhost:5000/api/register', {
+             axios.post('/api/register', {
                 fullName:payload.fullName,
                 userName:payload.userName,
                 email:payload.email,
@@ -205,39 +316,34 @@ export default createStore({
            }) 
       }) 
     },
-    submitDetails({commit, state}, payload){
-      console.log("Payload", payload)
-      axios.post('http://localhost:5000/api/register/details', {details:payload})
-      .then(()=>{
+    submitDetails({commit, state}, payload){ /*.then(()=>{
         const db = firebase.firestore()
         db.collection('profile').doc(state.user.slug).set({
           userID:payload.id,
           image:'https://firebasestorage.googleapis.com/v0/b/tourist-f5057.appspot.com/o/images%2Fdefault-profile-picture1.jpg?alt=media&token=a4443b3f-5584-469a-9399-e9e6dde2727a',
           slug: state.user.slug,
-          timestamp:Date.now()
-        }).then(()=>{
-          axios.post('http://localhost:5000/api/register/details/true', {id:payload.id})
-          .catch((err)=>{
-            console.log(err)
+          timestamp:Date.now() })*/
+
+      console.log("Payload", payload)
+      axios.post('/api/register/details', {details:payload})
+      .then(()=>{
+          axios.post('/api/register/details/true', {id:payload.id}).then(()=>{
+            console.log("Succeessful Post: ", payload)
+            router.push({name:'Home'})
           })
-        }).catch(err=>{
+          .catch((err)=>{console.log(err)})
+      }).catch(err=>{
           console.log(err)
-        })
-        console.log("Succeessful Post: ", payload)
-        router.push({name:'Home'})
-      }).catch((error)=>{
-        console.log(error)
       })
-       
     },
     checkUserEmailExists({commit}, payload){
-      axios.get(`http://localhost:5000/api/register/check/email/${payload}`)
+      axios.get(`/api/register/check/email/${payload}`)
       .then(response=>{
         commit('setCheckEmail', response.data[0].email)
       })
     },
     checkUserNameExists({commit}, payload){
-      axios.get(`http://localhost:5000/api/register/check/username/${payload}`)
+      axios.get(`/api/register/check/username/${payload}`)
       .then(response=>{
         console.log(response.data[0].slug)
         commit('setCheckUserName', response.data[0].slug)

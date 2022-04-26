@@ -10,6 +10,8 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(cors());
 
+const messages = require('./routes/api/messages')
+app.use('/api/messages', messages);
  
 const users = require('./routes/api/users')
 app.use('/api/users', users);
@@ -25,6 +27,12 @@ app.use('/api/reviews', reviews);
 
 const register = require('./routes/api/register')
 app.use('/api/register', register)
+
+const reservation = require('./routes/api/reservation')
+app.use('/api/reservation', reservation);
+
+const email = require('./routes/api/emailer')
+app.use('/api/email', email);
  
 if(process.env.NODE_ENV === 'production'){
     //Set static folder

@@ -3,19 +3,18 @@
     <div class="card shadow">
       <div class="card-body">
         <div class="row">
-          <div v-if="userWithImage" class="col-6 d-flex align-items-center justify-content-center">
-            <img  :src="userWithImage" alt="" class="rounded-circle profile-img "/>
+          <div class="col-6 d-flex align-items-center justify-content-center">
+            <img :src="imageProfile" alt="" class="rounded-circle profile-img "/>
         <!--<img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>-->
           </div>
           <div class="col-6 text-start">
-            <h1 class="heading-name">{{fullName}}</h1>
-            <p v-if="description" class="left-text">
-              {{description}}
-            </p>
+            <h1 class="heading-name">{{fullName}}</h1>    
+            <p v-if="description" class="left-text lead description-text">{{description}}</p>
+              <!-- <ReservationModal :tourGuideName="fullName"> -->
             <p v-else class="left-text">
               {{this.defaultIntro}}
             </p>
-            <ReservationModal/> 
+            <div v-if="this.$store.state.user.userID !== this.$store.state.profile.userID"><ReservationModal :tourGuideName="fullName"/> </div>
           </div>
         </div>
       </div>
@@ -27,7 +26,7 @@
 import ReservationModal from './modals/ReservationModal';
 export default {
 components:{ReservationModal},
-props:[  'description', 'fullName'],
+props:[  'description', 'fullName', 'imageProfile'],
   data(){
     return{
       default:null,
@@ -60,7 +59,7 @@ props:[  'description', 'fullName'],
 
       let image = this.$store.state.profileImage
       if(image == null){
-        
+        console.log(image);
       }else{
         console.log('else')
        // this.default = false
@@ -72,11 +71,18 @@ props:[  'description', 'fullName'],
 </script>
 
 <style>
+.description-text{
+  color:gray;
+  font-size:1.2em;
+}
+.heading-name{
+  color:gray
+}
 .profile-img{
     width:70%;
 }
-#create-reservation{
+/* #create-reservation{
     border-color:orange;
     background-image:linear-gradient(120deg, rgb(255, 102, 0) , rgb(255, 143, 14),rgb(255, 145, 0));
-}
+} */
 </style>

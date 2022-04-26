@@ -4,6 +4,9 @@ import firebase from '../firebase/init.js'
 import router from '../router'
 export default createStore({
   state: {
+    current_session:'',
+    sessions:[],
+    messages:null,
     reviews:[],
     profile:[],
     loggedIn:false,
@@ -33,6 +36,7 @@ export default createStore({
   },
   mutations: {
     setUser(state, payload){
+      console.log(payload)
       state.fullName = payload[0].fullName;
       state.user = payload[0]
       state.userID = payload[0].userID;
@@ -87,9 +91,70 @@ export default createStore({
     },
     successfullySent(state){
       state.emailSent = true;
+    },
+    setMessages(state, payload){
+     
+   
+     console.log(payload)
+     state.messages = payload
+       
+    },
+    setNewMessages(state, payload){
+       console.log(payload)
+      state.messages=payload;
+    },
+    setUserSessions(state, payload){
+      state.sessions = payload
+    },
+    setSession(state, payload){
+      state.current_session = payload
+    },
+    addSession(state, payload){
+      state.sessions.unshift(payload)
     }
   },
   actions:{
+    createSession({commit}, payload){
+      axios.get(`/api/messages/check/${payload.convo}`)
+        .then((response)=>{
+          console.log(response.data)
+          let retrieveSession = response.data[0].session_name;
+          if(retrieveSession == payload.convo){
+           
+            console.log("Match")
+            //TODO
+            //payload.session_id
+
+          }
+        }).catch(()=>{
+          console.log("Catch")
+          axios.post(`/api/messages/send`, {
+            convo:payload.convo,
+            //--Profile---
+            profile_userID:payload.profile.userID,
+            profile_FullName:payload.profile.fullName,
+            profile_image:payload.profile.image,
+            //----End of Profile
+            //----User----
+            user_userID:payload.user.userID,
+            user_FullName:payload.user.fullName,
+            user_image:payload.user.image
+            //----End of User----
+          }).catch(error=>{
+            console.log(error)
+          })
+        })
+    },
+    getNewMessages({commit}, payload){
+      console.log(payload)
+      //commit('setNewMessages', payload)
+    },
+    getUserSessions({commit}, payload){
+       axios.get(`/api/messages/${payload}`)
+       .then((response)=>{
+         commit('setUserSessions', response.data)
+       })
+    }, 
     retrievePassword({commit}, payload){
       axios.get(`/api/email/${payload}`)
       .then((response)=>{
@@ -118,7 +183,7 @@ export default createStore({
       console.log(payload)
       axios.get(`/api/reservation/${payload}`)
       .then((response)=>{
-        console.log(response.data);
+        
         commit('setReservations', response.data)
       }) 
     },
@@ -135,7 +200,6 @@ export default createStore({
     discoverUsers({commit}){
       axios.get('/api/users/list/discover')
       .then(response=>{
-        console.log(response)
         commit('setDiscover', response.data)
       })
     },
@@ -181,7 +245,7 @@ export default createStore({
       console.log("accept login ", payload);
       axios.get(`/api/login/success/${payload}`)
       .then(response=>{
-        console.log(response.data);
+        console.log(response.data)
         commit('setUser', response.data);
         if(state.details){console.log("Going to Home route", state.details);router.push({name:'Home'})}
         else{console.log("Going to Details route", state.details);router.push({name:'Details'})}
@@ -194,7 +258,7 @@ export default createStore({
         if(response.data.length == 0){
           console.log("Login User, If Statement");
         }else{
-            console.log(response.data);
+            
             let userPassword = response.data[0].userPassword;
           if(userPassword == payload.password){
             let ID = response.data[0].userID;

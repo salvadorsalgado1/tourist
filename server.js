@@ -10,6 +10,8 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(cors());
 
+const messages = require('./routes/api/messages')
+app.use('/api/messages', messages);
  
 const users = require('./routes/api/users')
 app.use('/api/users', users);

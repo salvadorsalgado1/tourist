@@ -1,69 +1,51 @@
 <template>
  <div class="messaging">
-     <div class="container mt-2">
-         <div class="card">
-             <div class="card-body">
-                 <div class="inbox_msg">
-                    <MessageContainer/>
-                </div>
-             </div>
-         </div>
-     </div>
+  <MessageContainer/>
  </div>
 </template>
-
 <script>
-import { QuerySnapshot } from '@firebase/firestore'
 import firebase from '../../firebase/init.js'
 import MessageContainer from './MessageContainer'
 export default {
-    name:'PrivateChat',
+    name:'Messaging',
     components:{MessageContainer},
-//add the function data to handle message data.
    data(){
        return {
            message:null,
            messages:[]
        }
    },
-
-   methods:{
-    
-    saveMessage(){
-        //save to firestore, create a db for chat.
-        //check out About.vue for exmaple.
-        const db = firebase.firestore()
-        db.collection("messages").add({
-            message:this.message
-            }).catch(err=>{
-        console.log(err)
-        })
-
-        this.message=null;
-    }, 
-//TODO: currently fetching messages.
-    fetchMessages(){
-        console.log("fetchMessages")
-        const db = firebase.firestore()
-        console.log(db)
-
-        db.collection("messages")
-        .get()
-        .then((response)=>{
-            let allMessages=[];
-            response.docs.map(doc=>{
-                allMessages.push(doc.data())
-            })
-            
-            this.messages=allMessages;
-            console.log(this.messages)
-        })
-     },
-   },
-   created(){
-     this.fetchMessages()
+   mounted(){
+     this.$store.dispatch('getUserSessions', this.$store.state.userID)
    }
+  //  methods:{
+  //   saveMessage(){
+  //       //save to firestore, create a db for chat.
+  //       //check out About.vue for exmaple.
 
+  //       const db = firebase.firestore()
+  //       db.collection("messages").add({
+  //           message:this.message
+  //           }).catch(err=>{
+  //       console.log(err)
+  //       })
+  //       this.message=null;
+  //   }, 
+  // //TODO: currently fetching messages.
+  //   fetchMessages(){
+       
+  //     const db = firebase.firestore()
+  //     //---13adeehilnnnnoooswy
+
+  //     db.collection('---13adeehilnnnnoooswy').where('convo', "==", '---13adeehilnnnnoooswy').get()
+  //     .then((snapshot) => {
+  //        console.log(snapshot.data())
+  //     }).catch((e) => console.log(e))
+  //    },
+  //  },
+  //  created(){
+  //   // this.fetchMessages()
+  // }
 }
 </script>
 

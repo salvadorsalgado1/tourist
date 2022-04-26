@@ -1,6 +1,6 @@
 <template>
 <div class="about-test">
-      <Messaging class="mt-2"/>
+       <p>{{this.response}}</p>
 </div>
  
 </template>
@@ -12,15 +12,33 @@ export default {
   components:{Messaging},
   data(){
     return{
-
+      response:[]
     }
   },
   mounted(){
-    /*
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, options);
-  });
+ const db = firebase.firestore()
+         db.collection("messages")
+         .doc('---13adeehilnnnnoooswy')
+         .collection('---13adeehilnnnnoooswy').get().then((snapshot) => {
+           snapshot.forEach(response=>{
+             this.response.push(response.data())
+             console.log(response)
+           })
+ 
+        }).catch((e) => console.log(e))
+//------------------------------------------
+  //works
+
+    // const db = firebase.firestore()
+    //      db.collection("messages/---13adeehilnnnnoooswy/---13adeehilnnnnoooswy").get().then((snapshot) => {
+    //        snapshot.forEach(response=>{
+    //          this.response.push(response.data())
+    //          console.log(response)
+    //        })
+ 
+    //     }).catch((e) => console.log(e))
+   //----------------------------------------------------
+ 
   /*
  const db = firebase.firestore()
     console.log(db)

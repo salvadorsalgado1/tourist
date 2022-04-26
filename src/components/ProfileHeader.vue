@@ -3,20 +3,18 @@
     <div class="card shadow">
       <div class="card-body">
         <div class="row">
- 
           <div class="col-6 d-flex align-items-center justify-content-center">
-            
             <img :src="imageProfile" alt="" class="rounded-circle profile-img "/>
         <!--<img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>-->
           </div>
           <div class="col-6 text-start">
             <h1 class="heading-name">{{fullName}}</h1>    
-            <p v-if="description" class="left-text">{{description}}</p>
+            <p v-if="description" class="left-text lead description-text">{{description}}</p>
               <!-- <ReservationModal :tourGuideName="fullName"> -->
             <p v-else class="left-text">
               {{this.defaultIntro}}
             </p>
-            <ReservationModal :tourGuideName="fullName"/> 
+            <div v-if="this.$store.state.user.userID !== this.$store.state.profile.userID"><ReservationModal :tourGuideName="fullName"/> </div>
           </div>
         </div>
       </div>
@@ -73,6 +71,13 @@ props:[  'description', 'fullName', 'imageProfile'],
 </script>
 
 <style>
+.description-text{
+  color:gray;
+  font-size:1.2em;
+}
+.heading-name{
+  color:gray
+}
 .profile-img{
     width:70%;
 }

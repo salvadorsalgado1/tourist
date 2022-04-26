@@ -20,7 +20,7 @@ mounted(){
 
   //When refresh, or user is not logged, route to Sign In page.
   if(this.$store.state.userID==null){
-    this.$router.push({name:'SignIn'})
+    this.$router.push({name:'Home'})
   }
 },
   computed:{

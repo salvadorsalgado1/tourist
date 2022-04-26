@@ -1,43 +1,98 @@
 <template>
   <div class="messages-container">
-      <MessagesSearch/>
-      <MessageHistory/>
-      <Messages/>
-      <p>{{this.messages}}</p>
-  </div>         
+    <div class="container mt-2">
+      <div class="card">
+        <div class="card-body">
+          <div class="inbox_msg">
+            <MessagesSearch/>
+            <MessageHistory/>
+            <SubmitMessages/>
+          </div>         
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-
 <script>
-import MessageHistory from './MessageHistory'
-import Messages from './Messages'
-import MessagesSearch from './MessageSearch'
+import MessageHistory from './Messaging/MessageHistory'
+import SubmitMessages from './Messaging/SubmitMessage'
+import MessagesSearch from './Messaging/MessageSearch'
+import firebase from '../../firebase/init'
 export default {
-components:{MessageHistory, Messages, MessagesSearch},
-data(){
+  components:{MessageHistory, SubmitMessages, MessagesSearch},
+  computed:{
+    chat(){
+      return this.$store.state.messages
+    }
+  },
+  data(){ 
+    return{
+      messages:[]
+    }
+  },
+  methods:{
+    
+  },
+ created(){
 
 
-  //messages / apskdjf;lapouipe / 
-  return{
-    messages:{
-      id:1, 
-    conversations:[
-      { 
-        id:1, 
-        otherID:2,
-        message:'This is a message by me' , 
-        timestamp:'4/19/2022'},
-      {
-        id:2, 
-        message:'Im replying to your message delilah', 
-        timestamp:'4/19/2022'},
-      {
-        id:1, 
-        message:"I'm replying to your reply Jason", 
-        timestamp:'4/20/2022'}
-        ,]}
+
+    // let messages=[];
+    // const db = firebase.firestore()
+    // db.collection('---13adeehilnnnnoooswy').get().then((snapshot) => {
+    // // console.log(snapshot.data().conversations)
+      
+    //   snapshot.docs.map(doc=>{
+    //     messages.push(doc.data())
+    //     console.log(doc.data())}
+
+    //     )
+    //     this.$store.dispatch("getMessages", messages)
+      
+    // }).catch((e) => console.log(e))
+  },
+  mounted(){
+   
+      //this.messages=message
+      // const db = firebase.firestore()
+      // db.collection('---13adeehilnnnnoooswy').where('convo', "==", '---13adeehilnnnnoooswy').get()
+      // .then((snapshot) => {
+      //    console.log(snapshot.val())
+      // }).catch((e) => console.log(e))
+          
+
+      //-------------Start of time conversion----------
+        //  console.log(typeof doc.data().timestamp)
+        //   let temp = parseInt(doc.data().timestamp) 
+        //   temp = new Date(temp)
+        //   console.log(temp)
+        //   let day = temp.getDay()
+        //   let month = temp.getMonth()
+        //   let monthYear = months[month]
+        //   let year = temp.getFullYear();
+        //   let hours = temp.getHours();
+        //   let meridian;
+        //   (hours <= 12) ? meridian = 'a.m.' : meridian = "p.m.";
+        //   hours = ((hours + 11) % 12 + 1);
+        //   let minutes = temp.getMinutes();
+        //   if(minutes < 10){minutes = `0${minutes}`}
+        //   if(hours < 10){hours = `0${hours}`}  
+        //   let date = `${hours}:${minutes} ${meridian}| ${monthYear} ${day}`
+        //   console.log(doc.data().timestamp)
+        //   console.log("Date: ", date)
+        //   doc.data().timestamp = date;
+           
+          
+          
+        //-------------end of time conversion----------
+          
+    //      console.log(this.messages)
+    
+    
+       
+        
+ 
   }
-},
-
 }
 </script>
 

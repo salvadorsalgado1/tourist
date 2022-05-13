@@ -7,7 +7,6 @@
   </div>
 </template>
 <script>
-// @ is an alias to /src
  
  import Header from './sections/Header'
  import About from './sections/About'

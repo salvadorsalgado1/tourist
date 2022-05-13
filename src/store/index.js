@@ -43,22 +43,20 @@ export default createStore({
       state.userID = payload[0].userID;
       state.slug = payload[0].slug;
       state.details = payload[0].details_completed;
-      //let slug = state.user.slug;
       state.loggedIn = true;
-     // router.push({path:`/profile/${slug}`})
 
      //create and set state info to local storeage
       localStorage.setItem("info", JSON.stringify(state));
     },
     setAcceptReservations(state, payload){
       state.reservations.rejected.splice(payload,1);
-      localStorage.setItem("info", JSON.stringify(state));
+      //localStorage.setItem("info", JSON.stringify(state));
     },
     setReservations(state, payload){
       state.reservations.pending = payload[0]
       state.reservations.rejected = payload[1]
       state.reservations.accepted = payload[2]
-      localStorage.setItem("info", JSON.stringify(state));
+      //localStorage.setItem("info", JSON.stringify(state));
     },
     logoutUser(state){
       //remove local storage when user logout 
@@ -102,16 +100,11 @@ export default createStore({
     },
     successfullySent(state){
       state.emailSent = true;
-
-      localStorage.setItem("info", JSON.stringify(state));
-
+      //localStorage.setItem("info", JSON.stringify(state));
     },
     setMessages(state, payload){
-     
-   
      console.log(payload)
      state.messages = payload
-       
     },
     setNewMessages(state, payload){
        console.log(payload)
@@ -125,7 +118,6 @@ export default createStore({
     },
     addSession(state, payload){
       state.sessions.unshift(payload)
-
     }
   },
   actions:{
@@ -135,11 +127,7 @@ export default createStore({
           console.log(response.data)
           let retrieveSession = response.data[0].session_name;
           if(retrieveSession == payload.convo){
-           
             console.log("Match")
-            //TODO
-            //payload.session_id
-
           }
         }).catch(()=>{
           console.log("Catch")
@@ -162,7 +150,6 @@ export default createStore({
     },
     getNewMessages({commit}, payload){
       console.log(payload)
-      //commit('setNewMessages', payload)
     },
     getUserSessions({commit}, payload){
        axios.get(`/api/messages/${payload}`)
@@ -333,13 +320,7 @@ export default createStore({
            }) 
       }) 
     },
-    submitDetails({commit, state}, payload){ /*.then(()=>{
-        const db = firebase.firestore()
-        db.collection('profile').doc(state.user.slug).set({
-          userID:payload.id,
-          image:'https://firebasestorage.googleapis.com/v0/b/tourist-f5057.appspot.com/o/images%2Fdefault-profile-picture1.jpg?alt=media&token=a4443b3f-5584-469a-9399-e9e6dde2727a',
-          slug: state.user.slug,
-          timestamp:Date.now() })*/
+    submitDetails({commit, state}, payload){
 
       console.log("Payload", payload)
       axios.post('/api/register/details', {details:payload})

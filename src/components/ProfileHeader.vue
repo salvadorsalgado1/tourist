@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-6 d-flex align-items-center justify-content-center">
-            <img :src="imageProfile" alt="" class="rounded-circle profile-img "/>
+            <img :src="imageProfile" :alt="fullName" class="rounded-circle profile-img "/>
         <!--<img :src="require(`../assets/profile/${userWithImage}.jpg`)" alt="" class="rounded-circle profile-img "/>-->
           </div>
           <div class="col-6 text-start">

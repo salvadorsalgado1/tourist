@@ -38,8 +38,8 @@ data(){
     userName:'',
     email:'',
     password:'',
-    feedback:'',
-    alert:false
+    feedback:'Fields cannot be empty!',
+    alert:true
   }
 },
 methods:{

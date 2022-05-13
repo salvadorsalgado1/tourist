@@ -3,9 +3,9 @@
     <div class="inbox_chat list-group" id="list-tab" role="tablist">
       <a @click="getSessions(session.session_names, session.image)" v-for="session in this.sessions" :key="session.idmessages" class="chat_list active_chat list-group-item list-group-item-action" :id="`list-${session.user_session}-list`" data-bs-toggle="list" :href="`#list-${session.user_session}`" role="tab" :aria-controls="`list-${session.user_session}`">
         <div class="chat_people">
-          <div class="chat_img"><img :src="session.image" class="img-mes" :alt="session.fullName"> </div>
+          <div class="chat_img"><img :src="session.image" class="rounded-circle img-mes" :alt="session.fullName"> </div>
           <div class="chat_ib">
-            <p><small>{{session.session_names}}</small></p>
+            <!-- <p><small>{{session.session_names}}</small></p> -->
              <h5>{{session.fullName}} <!--<span class="chat_date">{{message.date}}</span>--></h5> 
             <!-- <p>{{session.preview}}</p> -->
           </div>
@@ -19,7 +19,7 @@
       <div class="message" v-for="(response, userID) in this.messages" :key="userID">
     <div v-if="response.userID !== this.userID" class="incoming_msg">
         <div class="incoming_msg_img">
-            <img class="img-mes" :src="response.image" alt="user">
+            <img class="rounded-circle img-mes" :src="response.image" alt="user">
         </div>
         <div class="received_msg">
         

@@ -102,17 +102,19 @@ const routes = [
     path: '/test/:slug',
     name: 'Test',
     component: Test 
-  },
-  {
-    path: '/:catchall(.*)',
-    name: 'Four',
-    component: Four 
+    
   },
   {
     path: '/messaging',
     name: 'Messaging',
     component: Messaging 
   },
+  {
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four 
+  }
+  
  
 ]
 

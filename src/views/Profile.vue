@@ -7,8 +7,7 @@
                     :fullName="userData.fullName" 
                     :description="userData.intro"
                     :imageProfile="userData.imageURL"/>
-              </div>
-              
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 mb-4">

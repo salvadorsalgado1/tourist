@@ -17,7 +17,6 @@
         </div>
     </div>
 </template>
-
 <script>
 export default {
 props:['name', 'userURL', 'location', 'age', 'language', 'imageURL']

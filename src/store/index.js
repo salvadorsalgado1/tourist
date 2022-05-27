@@ -4,6 +4,10 @@ import firebase from '../firebase/init.js'
 import router from '../router'
 export default createStore({
   state: {
+    token: null,
+    current_session:'',
+    sessions:[],
+    messages:null,
     reviews:[],
     profile:[],
     loggedIn:false,
@@ -33,24 +37,30 @@ export default createStore({
   },
   mutations: {
     setUser(state, payload){
+      console.log(payload)
       state.fullName = payload[0].fullName;
       state.user = payload[0]
       state.userID = payload[0].userID;
       state.slug = payload[0].slug;
-      state.details = payload[0].details_completed
-      //let slug = state.user.slug;
+      state.details = payload[0].details_completed;
       state.loggedIn = true;
-     // router.push({path:`/profile/${slug}`})
+
+     //create and set state info to local storeage
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setAcceptReservations(state, payload){
       state.reservations.rejected.splice(payload,1);
+      //localStorage.setItem("info", JSON.stringify(state));
     },
     setReservations(state, payload){
       state.reservations.pending = payload[0]
       state.reservations.rejected = payload[1]
       state.reservations.accepted = payload[2]
+      //localStorage.setItem("info", JSON.stringify(state));
     },
     logoutUser(state){
+      //remove local storage when user logout 
+       localStorage.removeItem('info');
        state.loggedIn=false;
     },
     getPerson(state, payload){
@@ -58,6 +68,7 @@ export default createStore({
     },
     successLoginState(state){
       state.successLogin = true;
+
     },
     failedLoginState(state){
       console.log("Setting Login State to true");
@@ -69,9 +80,11 @@ export default createStore({
     setProfile(state, payload){
       state.profile = payload[0][0]
       state.reviews = payload[1] 
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setProfileImage(state,payload){
       state.user.imageURL = payload
+      localStorage.setItem("info", JSON.stringify(state));
     },
     setCheckEmail(state, payload){
       state.returnEmail = payload
@@ -87,9 +100,63 @@ export default createStore({
     },
     successfullySent(state){
       state.emailSent = true;
+      //localStorage.setItem("info", JSON.stringify(state));
+    },
+    setMessages(state, payload){
+     console.log(payload)
+     state.messages = payload
+    },
+    setNewMessages(state, payload){
+       console.log(payload)
+      state.messages=payload;
+    },
+    setUserSessions(state, payload){
+      state.sessions = payload
+    },
+    setSession(state, payload){
+      state.current_session = payload
+    },
+    addSession(state, payload){
+      state.sessions.unshift(payload)
     }
   },
   actions:{
+    createSession({commit}, payload){
+      axios.get(`/api/messages/check/${payload.convo}`)
+        .then((response)=>{
+          console.log(response.data)
+          let retrieveSession = response.data[0].session_name;
+          if(retrieveSession == payload.convo){
+            console.log("Match")
+          }
+        }).catch(()=>{
+          console.log("Catch")
+          axios.post(`/api/messages/send`, {
+            convo:payload.convo,
+            //--Profile---
+            profile_userID:payload.profile.userID,
+            profile_FullName:payload.profile.fullName,
+            profile_image:payload.profile.image,
+            //----End of Profile
+            //----User----
+            user_userID:payload.user.userID,
+            user_FullName:payload.user.fullName,
+            user_image:payload.user.image
+            //----End of User----
+          }).catch(error=>{
+            console.log(error)
+          })
+        })
+    },
+    getNewMessages({commit}, payload){
+      console.log(payload)
+    },
+    getUserSessions({commit}, payload){
+       axios.get(`/api/messages/${payload}`)
+       .then((response)=>{
+         commit('setUserSessions', response.data)
+       })
+    }, 
     retrievePassword({commit}, payload){
       axios.get(`/api/email/${payload}`)
       .then((response)=>{
@@ -118,7 +185,7 @@ export default createStore({
       console.log(payload)
       axios.get(`/api/reservation/${payload}`)
       .then((response)=>{
-        console.log(response.data);
+        
         commit('setReservations', response.data)
       }) 
     },
@@ -135,7 +202,6 @@ export default createStore({
     discoverUsers({commit}){
       axios.get('/api/users/list/discover')
       .then(response=>{
-        console.log(response)
         commit('setDiscover', response.data)
       })
     },
@@ -181,7 +247,7 @@ export default createStore({
       console.log("accept login ", payload);
       axios.get(`/api/login/success/${payload}`)
       .then(response=>{
-        console.log(response.data);
+        console.log(response.data)
         commit('setUser', response.data);
         if(state.details){console.log("Going to Home route", state.details);router.push({name:'Home'})}
         else{console.log("Going to Details route", state.details);router.push({name:'Details'})}
@@ -191,14 +257,16 @@ export default createStore({
     loginUser({commit, state}, payload){
       axios.get(`/api/login/user/${payload.email}`)
       .then(response=>{
+        console.log(response)
         if(response.data.length == 0){
           console.log("Login User, If Statement");
         }else{
-            console.log(response.data);
+            
             let userPassword = response.data[0].userPassword;
           if(userPassword == payload.password){
             let ID = response.data[0].userID;
             commit('successLoginState');
+
             this.dispatch('acceptLogin', ID);
           }else{
             console.log("cannot login")
@@ -252,13 +320,7 @@ export default createStore({
            }) 
       }) 
     },
-    submitDetails({commit, state}, payload){ /*.then(()=>{
-        const db = firebase.firestore()
-        db.collection('profile').doc(state.user.slug).set({
-          userID:payload.id,
-          image:'https://firebasestorage.googleapis.com/v0/b/tourist-f5057.appspot.com/o/images%2Fdefault-profile-picture1.jpg?alt=media&token=a4443b3f-5584-469a-9399-e9e6dde2727a',
-          slug: state.user.slug,
-          timestamp:Date.now() })*/
+    submitDetails({commit, state}, payload){
 
       console.log("Payload", payload)
       axios.post('/api/register/details', {details:payload})

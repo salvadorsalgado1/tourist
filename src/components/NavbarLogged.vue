@@ -16,9 +16,9 @@
          <li class="nav-item">
           <router-link class="nav-link" :to="{name:'Discover'}">Discover</router-link>
          </li> 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link class="nav-link" :to="{name:'About'}">About</router-link>
-         </li>
+         </li> -->
           <li class="nav-item">
            <router-link class="nav-link" :to="{path:`/profile/${getRouteSlug}`}">My Profile</router-link>
          </li>
@@ -62,7 +62,7 @@ import NavbarLogged from '../components/NavbarLogged'
   methods:{
     logOut(){
       this.$store.commit('logoutUser');
-      this.$router.push({name:'Home'})
+      this.$router.push({name:'SignIn'});
     }
   },
   computed:{

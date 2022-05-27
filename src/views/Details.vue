@@ -25,7 +25,6 @@
                 <label for="customRange3" class="form-label">I am <span class="curr-age">{{this.age}}</span> years of age.</label>
                 <input v-model="age" type="range" class="form-range" min="18" max="70" step="1" id="customRange3">
               </div>
-          
           <div class="mb-3">
               <label for="languagesspoken1" class="form-label">Languages Spoken</label>
               <input v-model="languages" type="text" class="form-control" id="languagesspoken1">
@@ -36,7 +35,7 @@
             </div>
             <button type="submit" class="btn btn-dark btn-block">Finish Registration</button>
           </form>
-              <SignUpModal v-if="alert" class="mt-2" :text="this.feedback"/>
+              <SignUpModal v-if="true" class="mt-2" :text="this.feedback"/>
         </div>
       </div></div>
       </div>

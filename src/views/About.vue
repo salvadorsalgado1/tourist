@@ -1,6 +1,19 @@
 <template>
-<div class="about-test">
-      <Messaging class="mt-2"/>
+<div class="about-test container">
+       <!-- <p>{{this.response}}</p> -->
+       <h1>{{this.item}}</h1>
+       <p>This is the NumberOne {{this.numberOne + 10}}</p>
+       <p>This is the computed property {{this.computeAddition}}</p>
+        <!-- <p>{{this.users}}</p> -->
+        <div class="cont" v-for="user in this.users" :key="user.id">
+          <div class="card">
+            <div class="card-body">
+              <p>{{user.fullName}}</p>
+
+            </div>
+          </div>
+        </div>
+        
 </div>
  
 </template>
@@ -12,73 +25,33 @@ export default {
   components:{Messaging},
   data(){
     return{
+      // response:[],
+      item:'Sample Variable',
+      numberOne:50,
+      users:''
 
     }
   },
+  computed:{
+    computeAddition(){
+      let numberExample = this.numberOne
+      numberExample = numberExample + 5
+      return numberExample
+    }
+  },
+  beforeMount(){
+    console.log("before mount")
+  },
+  created(){
+    console.log("created")
+  },
   mounted(){
-    /*
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, options);
-  });
-  /*
- const db = firebase.firestore()
-    console.log(db)
-
- 
-    let date = new Date('2020-11-05 18:37:42')
-    console.log(date)
-    console.log(date.getDate())
- 
-
-
-    
-    const db = firebase.firestore()
-    console.log(db)
-
-    db.collection('messages').add({
-      content:'another message',
-      name:'ayooooo',
- 
-    const snapshot = db.collection('messages').where('userID', '==', 1).get()
-    .then(response=>{
-       response.docs.map(doc=>{console.log(doc.data())})
+    console.log("mounted")
+    axios.get('/api/users/all')
+    .then((response)=>{
+      console.log(response.data)
+      this.users = response.data
     })
-    console.log(snapshot)
-/*   
-    db.collection('profile').doc('one-wish').set({
-      userID:1,
-      image:'some image that got updated',
-      slug:'the-slug',
- 
-      timestamp:Date.now()
-    }).catch(err=>{
-      console.log(err)
-    })
-/*
-    console.log("Mounted");
-    axios.get('http://localhost:5000/api/register/%27)
-    .then(response=>{
-      console.log(response.data);
-    })*/
-
-    // const db = firebase.firestore()
-    // console.log(db)
-
-    // const snapshot = db.collection('messages').where('userID', '==', 1).get()
-    // .then(response=>{
-    //    response.docs.map(doc=>{console.log(doc.data())})
-    // })
-    // console.log(snapshot)
-/*
-    const db = firebase.firestore()
-    console.log(db)
-
-    const snapshot = db.collection('messages').get()
-    .then(response=>{
-       response.docs.map(doc=>{console.log(doc.data())})
-    })
-    console.log(snapshot)*/
   }
 }
 </script>

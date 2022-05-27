@@ -22,8 +22,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6" v-for="(user, index) in this.$store.state.userList" :key="index">
-                    <Users 
+                <div class="col-md-4 col-lg-3" v-for="(user, index) in this.$store.state.userList" :key="index">
+                    <Users
+                    :image="user.imageURL"
                     :name="user.fullName" 
                     :userURL="user.slug"
                     :location="user.location"

@@ -102,17 +102,19 @@ const routes = [
     path: '/test/:slug',
     name: 'Test',
     component: Test 
-  },
-  {
-    path: '/:catchall(.*)',
-    name: 'Four',
-    component: Four 
+    
   },
   {
     path: '/messaging',
     name: 'Messaging',
     component: Messaging 
   },
+  {
+    path: '/:catchall(.*)',
+    name: 'Four',
+    component: Four 
+  }
+  
  
 ]
 
@@ -125,7 +127,7 @@ const router = createRouter({
  
 router.beforeEach((to, from, next)=>{
   if(to.meta.auth && !store.state.loggedIn){
-    next('/home')
+    next('/home');
   }else{
     next();
   }
